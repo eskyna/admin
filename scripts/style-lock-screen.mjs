@@ -177,10 +177,18 @@ function lockThemeCss(logoDataUri, version) {
 </style>`;
 }
 
+function faviconLinks(logoDataUri) {
+  return `
+<link rel="icon" href="${logoDataUri}" type="image/png">
+<link rel="apple-touch-icon" href="${logoDataUri}">
+<meta name="theme-color" content="#1d211c">`;
+}
+
 async function main() {
   const logo = await fs.readFile(logoPath);
   const logoDataUri = `data:image/png;base64,${logo.toString("base64")}`;
   const css = lockThemeCss(logoDataUri, buildVersion.replace(/[^0-9A-Za-z._-]/g, ""));
+  const icons = faviconLinks(logoDataUri);
   const htmlFiles = await listHtmlFiles(targetPath);
 
   if (htmlFiles.length === 0) throw new Error(`No HTML files found in ${targetPath}.`);
@@ -190,7 +198,7 @@ async function main() {
     const html = await fs.readFile(htmlPath, "utf8");
     if (!html.includes("</head>")) throw new Error(`Could not find </head> in ${htmlPath}.`);
     if (html.includes('id="eskyna-lock-theme"')) continue;
-    const themed = html.replace("</head>", `${css}\n</head>`);
+    const themed = html.replace("</head>", `${icons}\n${css}\n</head>`);
     await fs.writeFile(htmlPath, themed, "utf8");
     styled += 1;
   }

@@ -8,7 +8,9 @@
   <meta name="theme-color" content="#1d211c">
   <meta name="eskyna-build" content="{{ site.Params.buildVersion | default "0.4.1" }}">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
-  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/png" sizes="48x48">
+  <link rel="icon" href="{{ "favicon-32.png" | relURL }}" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" sizes="180x180">
   <link rel="stylesheet" href="{{ "css/admin.css" | relURL }}">
 </head>
 <body data-page="{{ if .IsHome }}home{{ else }}{{ .Section }}{{ end }}">

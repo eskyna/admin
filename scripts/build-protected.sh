@@ -48,6 +48,8 @@ test -f public/index.html
 test -f public/audio/index.html
 grep -q 'id="eskyna-lock-theme"' public/index.html
 grep -q 'id="eskyna-lock-theme"' public/audio/index.html
+grep -qE 'rel="?icon"?' public/index.html
+grep -qE 'rel="?apple-touch-icon"?' public/index.html
 
 if grep -Rni '/admin/admin/' public --include='*.html' --include='*.css' --include='*.js'; then
   echo "ERROR: Protected build contains the duplicated /admin/admin/ path." >&2
