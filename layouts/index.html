@@ -1,0 +1,229 @@
+{{ define "main" }}
+{{ $assets := site.Data.assets.assets }}
+{{ $prompts := site.Data.prompts.prompts }}
+{{ $docsSection := site.GetPage "/docs" }}
+{{ $docs := $docsSection.Pages.ByWeight }}
+{{ $featured := where $assets "featured" true }}
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" aria-label="Hauptnavigation">
+    <a class="brand" href="#dashboard" aria-label="ESKYNA Social Media Studio Start">
+      <span class="brand__mark"><img src="{{ "media/brand/sign-gold.png" | relURL }}" alt=""></span>
+      <span class="brand__text"><strong>ESKYNA</strong><small>Social Media Studio</small></span>
+    </a>
+
+    <div class="workspace-label">Workspace</div>
+    <nav class="side-nav">
+      <a class="side-nav__link is-active" href="#dashboard" data-nav-link>
+        <svg><use href="#icon-grid"></use></svg><span>Dashboard</span>
+      </a>
+      <a class="side-nav__link" href="#assets" data-nav-link>
+        <svg><use href="#icon-image"></use></svg><span>Asset-Bibliothek</span><b>{{ len $assets }}</b>
+      </a>
+      <a class="side-nav__link" href="#prompts" data-nav-link>
+        <svg><use href="#icon-sparkles"></use></svg><span>Prompt Library</span><b>{{ len $prompts }}</b>
+      </a>
+      <a class="side-nav__link" href="#documents" data-nav-link>
+        <svg><use href="#icon-file"></use></svg><span>Brand-Dokumente</span><b>{{ len $docs }}</b>
+      </a>
+      <a class="side-nav__link" href="#campaigns" data-nav-link>
+        <svg><use href="#icon-calendar"></use></svg><span>Kampagnen-Board</span>
+      </a>
+    </nav>
+
+    <div class="sidebar__spacer"></div>
+    <div class="security-card">
+      <div class="security-card__icon"><svg><use href="#icon-lock"></use></svg></div>
+      <div><strong>Interner Bereich</strong><span>Kein Suchmaschinen-Index</span></div>
+    </div>
+    <button class="lock-button" type="button" data-lock-page>
+      <svg><use href="#icon-lock"></use></svg><span>Studio sperren</span>
+    </button>
+    <div class="sidebar__foot">ESKYNA / Admin v0.1</div>
+  </aside>
+
+  <button class="sidebar-scrim" type="button" aria-label="Navigation schließen" data-sidebar-close></button>
+
+  <div class="app-main">
+    <header class="topbar">
+      <button class="icon-button mobile-menu" type="button" aria-label="Navigation öffnen" data-sidebar-open>
+        <svg><use href="#icon-menu"></use></svg>
+      </button>
+      <label class="global-search" for="global-search">
+        <svg><use href="#icon-search"></use></svg>
+        <input id="global-search" type="search" placeholder="Assets, Prompts und Dokumente durchsuchen" autocomplete="off">
+        <kbd>⌘ K</kbd>
+      </label>
+      <div class="topbar__meta">
+        <span class="live-dot"></span>
+        <span>Workspace aktuell</span>
+      </div>
+      <div class="avatar" aria-label="Natalia Kleemann">NK</div>
+    </header>
+
+    <main class="workspace">
+      <section class="page-section hero-section" id="dashboard" data-section>
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span>Interner Content Hub</div>
+          <h1>Alles für starke<br><em>ESKYNA Inhalte.</em></h1>
+          <p>Hintergründe, Natalia-Motive, Prompts und Markenwissen - zentral organisiert und in Sekunden einsatzbereit.</p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#assets">Assets entdecken <svg><use href="#icon-arrow"></use></svg></a>
+            <a class="button button--ghost" href="#prompts">Prompt starten</a>
+          </div>
+          <div class="hero-note"><svg><use href="#icon-lock"></use></svg> Inhalte werden beim Deployment verschlüsselt.</div>
+        </div>
+        <div class="hero-collage" aria-label="Auswahl aktueller ESKYNA Assets">
+          <div class="hero-collage__backdrop"></div>
+          {{ range $index, $asset := first 3 $featured }}
+            {{ $assetURL := $asset.file | relURL }}
+            <figure class="hero-tile hero-tile--{{ add $index 1 }}">
+              <img src="{{ $assetURL }}" alt="{{ $asset.title }}" loading="eager">
+              <figcaption>{{ $asset.title }}</figcaption>
+            </figure>
+          {{ end }}
+          <div class="hero-stamp"><img src="{{ "media/brand/sign-gold.png" | relURL }}" alt=""><span>Curated<br>for ESKYNA</span></div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Bibliotheksstatus">
+        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-image"></use></svg></span><div><strong>{{ len $assets }}</strong><span>Assets bereit</span></div><small>+ Demo-Bibliothek</small></article>
+        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-sparkles"></use></svg></span><div><strong>{{ len $prompts }}</strong><span>Prompts gespeichert</span></div><small>Copy bis QA</small></article>
+        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-file"></use></svg></span><div><strong>{{ len $docs }}</strong><span>Brand-Dokumente</span></div><small>Markdown-basiert</small></article>
+        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-clock"></use></svg></span><div><strong>1</strong><span>zentraler Workspace</span></div><small>unter /admin</small></article>
+      </section>
+
+      <section class="page-section" id="assets" data-section>
+        <header class="section-heading">
+          <div><div class="eyebrow"><span></span>Medienbibliothek</div><h2>Bild-Dateien für Social Media</h2><p>Filtern, prüfen, Pfad kopieren oder Originaldatei herunterladen.</p></div>
+          <div class="section-heading__actions"><span class="count-badge"><b data-visible-assets>{{ len $assets }}</b> Assets</span></div>
+        </header>
+
+        <div class="filter-bar" aria-label="Asset-Filter">
+          <div class="filter-bar__label"><svg><use href="#icon-filter"></use></svg> Filtern</div>
+          <div class="chip-group">
+            {{ range site.Data.assets.categories }}
+              <button class="filter-chip{{ if eq .id "all" }} is-active{{ end }}" type="button" data-asset-filter="{{ .id }}">{{ .label }}</button>
+            {{ end }}
+          </div>
+        </div>
+
+        <div class="asset-grid" data-asset-grid>
+          {{ range $assets }}
+            {{ $assetURL := .file | relURL }}
+            {{ $searchText := printf "%s %s %s %s %s" .title .category_label .description .usage (delimit .tags " ") }}
+            <article class="asset-card searchable" data-asset-card data-category="{{ .category }}" data-search="{{ $searchText | lower }}" data-title="{{ .title }}" data-file="{{ $assetURL }}" data-path="{{ .file }}" data-filename="{{ .filename }}" data-format="{{ .format }}" data-dimensions="{{ .dimensions }}" data-ratio="{{ .ratio }}" data-usage="{{ .usage }}" data-rights="{{ .rights }}" data-updated="{{ .updated }}" data-description="{{ .description }}" data-tags="{{ delimit .tags ", " }}" data-category-label="{{ .category_label }}" data-fit="{{ .fit }}">
+              <button class="asset-card__visual" type="button" data-asset-open aria-label="{{ .title }} in Vorschau öffnen">
+                <img src="{{ $assetURL }}" alt="{{ .title }}" loading="lazy">
+                <span class="asset-card__badge">{{ .category_label }}</span>
+                <span class="asset-card__preview"><svg><use href="#icon-eye"></use></svg> Vorschau</span>
+              </button>
+              <div class="asset-card__body">
+                <div class="asset-card__title-row"><div><h3>{{ .title }}</h3><p>{{ .description }}</p></div><span class="format-pill">{{ .format }}</span></div>
+                <dl class="asset-meta"><div><dt>Format</dt><dd>{{ .ratio }}</dd></div><div><dt>Pixel</dt><dd>{{ .dimensions }}</dd></div><div><dt>Einsatz</dt><dd>{{ .usage }}</dd></div></dl>
+                <div class="tag-row">{{ range first 4 .tags }}<span>{{ . }}</span>{{ end }}</div>
+                <div class="asset-card__actions">
+                  <button class="text-button" type="button" data-copy-value="{{ .file }}"><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button>
+                  <a class="icon-button" href="{{ $assetURL }}" download="{{ .filename }}" title="Originaldatei herunterladen"><svg><use href="#icon-download"></use></svg></a>
+                </div>
+              </div>
+            </article>
+          {{ end }}
+        </div>
+        <div class="empty-state" data-assets-empty hidden><svg><use href="#icon-search"></use></svg><h3>Keine passenden Assets</h3><p>Filter oder Suchbegriff anpassen.</p></div>
+      </section>
+
+      <section class="page-section" id="prompts" data-section>
+        <header class="section-heading">
+          <div><div class="eyebrow"><span></span>Prompt Library</div><h2>Bewährte Prompts, sofort kopierbar</h2><p>Mit Variablen für schnelle, markenkonforme Social-Media-Produktion.</p></div>
+          <div class="section-heading__actions"><span class="count-badge"><b data-visible-prompts>{{ len $prompts }}</b> Prompts</span></div>
+        </header>
+
+        <div class="filter-bar" aria-label="Prompt-Filter">
+          <div class="filter-bar__label"><svg><use href="#icon-filter"></use></svg> Filtern</div>
+          <div class="chip-group">
+            {{ range site.Data.prompts.categories }}
+              <button class="filter-chip{{ if eq .id "all" }} is-active{{ end }}" type="button" data-prompt-filter="{{ .id }}">{{ .label }}</button>
+            {{ end }}
+          </div>
+        </div>
+
+        <div class="prompt-grid" data-prompt-grid>
+          {{ range $prompts }}
+            {{ $searchText := printf "%s %s %s %s" .title .platform .description (delimit .tags " ") }}
+            <article class="prompt-card searchable" data-prompt-card data-category="{{ .category }}" data-search="{{ $searchText | lower }}">
+              <header class="prompt-card__head"><span class="prompt-icon"><svg><use href="#icon-sparkles"></use></svg></span><div><span class="overline">{{ .platform }} / {{ .category_label }}</span><h3>{{ .title }}</h3></div></header>
+              <p class="prompt-card__description">{{ .description }}</p>
+              <div class="variable-row">{{ range .variables }}<code>{{ . }}</code>{{ end }}</div>
+              <div class="prompt-code" id="prompt-{{ .id }}"><pre><code>{{ .body }}</code></pre></div>
+              <footer class="prompt-card__footer">
+                <button class="text-button" type="button" data-prompt-toggle aria-expanded="false">Prompt ansehen <svg><use href="#icon-chevron"></use></svg></button>
+                <button class="button button--small button--primary" type="button" data-copy-target="prompt-{{ .id }}"><svg><use href="#icon-copy"></use></svg> Kopieren</button>
+              </footer>
+            </article>
+          {{ end }}
+        </div>
+        <div class="empty-state" data-prompts-empty hidden><svg><use href="#icon-search"></use></svg><h3>Kein passender Prompt</h3><p>Filter oder Suchbegriff anpassen.</p></div>
+      </section>
+
+      <section class="page-section" id="documents" data-section>
+        <header class="section-heading">
+          <div><div class="eyebrow"><span></span>Single Source of Truth</div><h2>Brand-Dokumente</h2><p>Direkt aus Markdown gerendert - leicht versionierbar und gemeinsam pflegbar.</p></div>
+        </header>
+        <div class="doc-grid">
+          {{ range $docs }}
+            {{ $docID := .File.ContentBaseName | urlize }}
+            {{ $docSearch := printf "%s %s %s" .Title .Params.summary .Plain }}
+            <article class="doc-card searchable" data-search="{{ $docSearch | lower }}">
+              <div class="doc-card__top"><span class="doc-icon"><svg><use href="#icon-{{ .Params.icon }}"></use></svg></span><span class="status-pill">{{ .Params.status }}</span></div>
+              <h3>{{ .Title }}</h3><p>{{ .Params.summary }}</p>
+              <footer><span><svg><use href="#icon-clock"></use></svg> {{ .Params.updated }}</span><button class="text-button" type="button" data-dialog-open="doc-{{ $docID }}">Öffnen <svg><use href="#icon-arrow"></use></svg></button></footer>
+            </article>
+          {{ end }}
+        </div>
+      </section>
+
+      <section class="page-section" id="campaigns" data-section>
+        <header class="section-heading">
+          <div><div class="eyebrow"><span></span>Nächster Ausbau</div><h2>Kampagnen-Board</h2><p>Ein vorbereiteter Bereich für Ideen, Produktion, Freigaben und Learnings.</p></div>
+          <button class="button button--ghost" type="button" data-demo-action><svg><use href="#icon-plus"></use></svg> Kampagne anlegen</button>
+        </header>
+        <div class="campaign-board">
+          {{ range $index, $lane := site.Data.campaigns.lanes }}
+            <section class="campaign-lane">
+              <header><div><span class="lane-dot lane-dot--{{ add $index 1 }}"></span><h3>{{ $lane.label }}</h3></div><b>0</b></header>
+              <p>{{ $lane.description }}</p>
+              <div class="lane-empty"><svg><use href="#icon-plus"></use></svg><span>Ersten Eintrag anlegen</span></div>
+            </section>
+          {{ end }}
+        </div>
+        <div class="implementation-note"><span class="implementation-note__icon"><svg><use href="#icon-sparkles"></use></svg></span><div><strong>Bereit für Phase 2</strong><p>Das Board ist visuell vorbereitet. Für echte Bearbeitung können später GitHub Issues, Decap CMS oder ein kleines Headless CMS angebunden werden.</p></div></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>ESKYNA Social Media Studio</span><span>Hugo + GitHub Pages + StatiCrypt</span></footer>
+  </div>
+</div>
+
+<dialog class="asset-dialog" id="asset-dialog">
+  <form method="dialog"><button class="dialog-close" aria-label="Vorschau schließen"><svg><use href="#icon-x"></use></svg></button></form>
+  <div class="asset-dialog__layout">
+    <div class="asset-dialog__visual"><img data-dialog-image src="" alt=""></div>
+    <div class="asset-dialog__content">
+      <span class="status-pill" data-dialog-category></span><h2 data-dialog-title></h2><p data-dialog-description></p>
+      <dl class="dialog-meta"><div><dt>Dateiformat</dt><dd data-dialog-format></dd></div><div><dt>Abmessungen</dt><dd data-dialog-dimensions></dd></div><div><dt>Seitenverhältnis</dt><dd data-dialog-ratio></dd></div><div><dt>Einsatz</dt><dd data-dialog-usage></dd></div><div><dt>Rechte</dt><dd data-dialog-rights></dd></div><div><dt>Aktualisiert</dt><dd data-dialog-updated></dd></div></dl>
+      <div class="tag-row" data-dialog-tags></div>
+      <div class="dialog-actions"><button class="button button--ghost" type="button" data-dialog-copy><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button><a class="button button--primary" href="#" download data-dialog-download><svg><use href="#icon-download"></use></svg> Original laden</a></div>
+    </div>
+  </div>
+</dialog>
+
+{{ range $docs }}
+  {{ $docID := .File.ContentBaseName | urlize }}
+  <dialog class="doc-dialog" id="doc-{{ $docID }}">
+    <div class="doc-dialog__bar"><div><span class="status-pill">{{ .Params.status }}</span><span>Aktualisiert {{ .Params.updated }}</span></div><form method="dialog"><button class="dialog-close" aria-label="Dokument schließen"><svg><use href="#icon-x"></use></svg></button></form></div>
+    <article class="prose"><div class="eyebrow"><span></span>ESKYNA Brand Library</div><h1>{{ .Title }}</h1><p class="lead">{{ .Params.summary }}</p>{{ .Content }}</article>
+  </dialog>
+{{ end }}
+
+<div class="toast" role="status" aria-live="polite" data-toast><svg><use href="#icon-check"></use></svg><span>In die Zwischenablage kopiert.</span></div>
+{{ end }}

@@ -1,0 +1,10 @@
+lanes:
+  - id: "ideas"
+    label: "Ideen"
+    description: "Themen sammeln, Nutzen schärfen, Format wählen."
+  - id: "production"
+    label: "In Produktion"
+    description: "Copy, Design, Freigabe und Export koordinieren."
+  - id: "live"
+    label: "Live & Learnings"
+    description: "Ergebnisse, Kommentare und Learnings dokumentieren."

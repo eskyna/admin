@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="description" content="{{ site.Params.description }}">
+  <meta name="theme-color" content="#1d211c">
+  <title>{{ site.Title }}</title>
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ "css/admin.css" | relURL }}">
+</head>
+<body>
+  {{ partial "icons.html" . }}
+  {{ block "main" . }}{{ end }}
+  <script src="{{ "js/admin.js" | relURL }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+baseURL = "http://localhost:1313/admin/"
+languageCode = "de-DE"
+title = "ESKYNA Social Media Studio"
+publishDir = "public/admin"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
+enableRobotsTXT = true
+
+[params]
+  description = "Interne Asset-, Prompt- und Brand-Bibliothek für das ESKYNA Social-Media-Team."
+  owner = "ESKYNA"
+
+[caches]
+  [caches.images]
+    dir = ":cacheDir/images"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

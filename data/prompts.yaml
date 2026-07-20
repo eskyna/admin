@@ -1,0 +1,161 @@
+categories:
+  - id: "all"
+    label: "Alle"
+  - id: "copy"
+    label: "Copy"
+  - id: "campaign"
+    label: "Kampagne"
+  - id: "image"
+    label: "Bild & Design"
+  - id: "quality"
+    label: "Qualität"
+
+prompts:
+  - id: "instagram-carousel"
+    title: "Instagram Carousel entwickeln"
+    category: "copy"
+    category_label: "Copy"
+    platform: "Instagram"
+    description: "Erstellt eine klare Carousel-Dramaturgie mit Hook, Nutzwert und ruhigem CTA."
+    updated: "20.07.2026"
+    tags: ["carousel", "instagram", "education", "cta"]
+    variables: ["THEMA", "ZIELGRUPPE", "ANZAHL SLIDES", "ANGEBOT"]
+    body: |-
+      Du arbeitest als Senior Social Media Editor für ESKYNA, eine Marke für Style- und Imagecoaching.
+
+      Entwickle ein Instagram-Carousel zum Thema {{THEMA}} für {{ZIELGRUPPE}} mit {{ANZAHL SLIDES}} Slides.
+
+      Anforderungen:
+      - Ton: klar, warm, souverän, persönlich; Premium ohne elitär zu klingen.
+      - Eine Hauptaussage pro Slide.
+      - Slide 1: konkrete Hook ohne Clickbait.
+      - Mittlere Slides: nachvollziehbare Beispiele aus Alltag, Garderobe oder Auftreten.
+      - Vorletzter Slide: kompakte Zusammenfassung.
+      - Letzter Slide: sanfter CTA zu {{ANGEBOT}}.
+      - Keine abwertende Sprache über Körper, Alter oder Stil.
+      - Keine Superlative und keine künstliche Verknappung.
+
+      Liefere:
+      1. Slide-Texte mit maximal 28 Wörtern je Slide.
+      2. Caption mit 900-1.300 Zeichen.
+      3. Drei alternative Hooks.
+      4. Alt-Text für Barrierefreiheit.
+
+  - id: "linkedin-thought-leadership"
+    title: "LinkedIn Thought-Leadership Post"
+    category: "copy"
+    category_label: "Copy"
+    platform: "LinkedIn"
+    description: "Übersetzt eine Beobachtung aus Stil und Wirkung in einen fachlichen LinkedIn-Post."
+    updated: "20.07.2026"
+    tags: ["linkedin", "personal-branding", "expertise", "b2b"]
+    variables: ["BEOBACHTUNG", "KERNAUSSAGE", "BEISPIEL", "CTA"]
+    body: |-
+      Schreibe einen LinkedIn-Post für Natalia Kleemann / ESKYNA.
+
+      Ausgangspunkt: {{BEOBACHTUNG}}
+      Kernaussage: {{KERNAUSSAGE}}
+      Konkretes Beispiel: {{BEISPIEL}}
+      Gewünschter CTA: {{CTA}}
+
+      Struktur:
+      - starke, ruhige Einstiegsbeobachtung in 1-2 Zeilen
+      - kurze fachliche Einordnung
+      - konkretes Beispiel
+      - 3 umsetzbare Gedanken oder Fragen
+      - persönlicher Abschluss mit offenem CTA
+
+      Stil:
+      - souverän, reflektiert und nahbar
+      - kurze Absätze, keine Buzzwords
+      - keine pauschalen Stilregeln
+      - 1.000-1.500 Zeichen
+      - maximal drei relevante Hashtags
+
+  - id: "campaign-concept"
+    title: "Kampagnenkonzept in 30 Minuten"
+    category: "campaign"
+    category_label: "Kampagne"
+    platform: "Multi-Channel"
+    description: "Erzeugt Leitidee, Content-Säulen, Formate und Messkriterien für eine Kampagne."
+    updated: "20.07.2026"
+    tags: ["campaign", "planning", "content-pillars", "kpi"]
+    variables: ["ZIEL", "ZIELGRUPPE", "ANGEBOT", "ZEITRAUM", "KANAELE"]
+    body: |-
+      Entwickle ein kompaktes Social-Media-Kampagnenkonzept für ESKYNA.
+
+      Ziel: {{ZIEL}}
+      Zielgruppe: {{ZIELGRUPPE}}
+      Angebot oder Thema: {{ANGEBOT}}
+      Zeitraum: {{ZEITRAUM}}
+      Kanäle: {{KANAELE}}
+
+      Berücksichtige die Markenprinzipien Klarheit, Wertigkeit, persönliche Beratung und bewusste Entscheidungen.
+
+      Liefere:
+      1. Eine Leitidee in einem Satz.
+      2. Drei mögliche Kampagnennamen.
+      3. Vier Content-Säulen mit jeweiligem Nutzen.
+      4. Einen realistischen Redaktionsplan nach Kanal und Woche.
+      5. Je drei Hooks für Awareness, Consideration und Conversion.
+      6. Benötigte Assets und offene Produktionsfragen.
+      7. Messbare KPIs mit einer kurzen Begründung.
+      8. Risiken für Marke oder Glaubwürdigkeit und passende Gegenmaßnahmen.
+
+  - id: "image-background"
+    title: "AI-Hintergrund für Social Media"
+    category: "image"
+    category_label: "Bild & Design"
+    platform: "Image Generation"
+    description: "Formuliert einen kontrollierten Bildprompt für ruhige ESKYNA-Hintergründe."
+    updated: "20.07.2026"
+    tags: ["image", "background", "editorial", "brand"]
+    variables: ["FORMAT", "FARBWELT", "TEXTZONE", "STIMMUNG", "MATERIAL"]
+    body: |-
+      Create a premium editorial background for ESKYNA social media.
+
+      Format: {{FORMAT}}
+      Color world: {{FARBWELT}}
+      Reserved negative space for copy: {{TEXTZONE}}
+      Mood: {{STIMMUNG}}
+      Material or texture: {{MATERIAL}}
+
+      Visual direction:
+      - quiet luxury, warm European editorial styling
+      - generous negative space and a clear focal hierarchy
+      - subtle organic geometry, refined gold accents, soft natural light
+      - tactile, believable materials and restrained depth
+      - no people, no text, no logos, no fashion products
+      - avoid glossy 3D render aesthetics, neon colors, busy patterns and generic stock imagery
+
+      Output should remain easy to crop and readable behind dark or ivory typography.
+
+  - id: "brand-quality-check"
+    title: "Brand- und Qualitätscheck"
+    category: "quality"
+    category_label: "Qualität"
+    platform: "Review"
+    description: "Prüft Entwürfe gegen Tone of Voice, CI, Nutzwert und sensible Aussagen."
+    updated: "20.07.2026"
+    tags: ["review", "qa", "tone-of-voice", "ci"]
+    variables: ["ENTWURF", "KANAL", "ZIEL", "CTA"]
+    body: |-
+      Prüfe den folgenden Social-Media-Entwurf für ESKYNA.
+
+      Kanal: {{KANAL}}
+      Ziel: {{ZIEL}}
+      Geplanter CTA: {{CTA}}
+
+      Entwurf:
+      {{ENTWURF}}
+
+      Bewerte von 1-5 und begründe knapp:
+      - Klarheit der Hauptaussage
+      - Markentonalität: klar, warm, souverän, persönlich
+      - konkreter Nutzwert
+      - Glaubwürdigkeit und fachliche Sorgfalt
+      - respektvolle Sprache ohne Körper- oder Altersabwertung
+      - CTA-Passung
+      - visuelle Umsetzbarkeit
+
+      Markiere problematische Formulierungen direkt und liefere anschließend eine verbesserte Fassung, ohne die Aussage unnötig zu verlängern.
