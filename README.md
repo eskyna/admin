@@ -192,7 +192,7 @@ Metadaten werden in `data/assets.yaml` gepflegt.
 Die vorhandene Demo-Datei ist erreichbar unter:
 
 ```text
-https://eskyna.com/admin/media/backgrounds/ivory-editorial-4x5.png
+https://eskyna.com/admin/media/backgrounds/01.png
 ```
 
 ## Prompts und Brand-Dokumente
