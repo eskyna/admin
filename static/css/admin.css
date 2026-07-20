@@ -282,13 +282,12 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
 .asset-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .asset-card { min-width: 0; overflow: hidden; background: rgba(255,253,248,.9); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-sm); transition: transform .23s ease, box-shadow .23s ease, border-color .23s ease; }
 .asset-card:hover { transform: translateY(-5px); border-color: rgba(200,171,55,.45); box-shadow: var(--shadow-md); }
-.asset-card__visual { position: relative; width: 100%; height: 255px; display: block; overflow: hidden; padding: 0; background: #ece7de; border: 0; cursor: zoom-in; }
-.asset-card__visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(12,14,12,.26)); opacity: .65; transition: opacity .2s; }
-.asset-card:hover .asset-card__visual::after { opacity: 1; }
-.asset-card__visual img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
-.asset-card:hover .asset-card__visual img { transform: scale(1.035); }
+.asset-card__visual { position: relative; width: 100%; aspect-ratio: 4 / 5; display: block; overflow: hidden; padding: 0; background: linear-gradient(160deg, #f3eee5, #e7e0d4); border: 0; cursor: zoom-in; }
+.asset-card__visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 58%, rgba(12,14,12,.22)); opacity: .55; pointer-events: none; transition: opacity .2s; }
+.asset-card:hover .asset-card__visual::after { opacity: .85; }
+.asset-card__visual img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .asset-card[data-fit="contain"] .asset-card__visual { background: linear-gradient(135deg, #f7f2e9, #e9e2d6); }
-.asset-card[data-fit="contain"] .asset-card__visual img { object-fit: contain; padding: 42px; }
+.asset-card[data-fit="contain"] .asset-card__visual img { padding: 18%; }
 .asset-card__badge { position: absolute; z-index: 2; left: 12px; top: 12px; padding: 5px 8px; color: var(--ink); background: rgba(255,253,248,.88); border: 1px solid rgba(255,255,255,.55); border-radius: 7px; font-size: 8px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; backdrop-filter: blur(9px); }
 .asset-card__preview { position: absolute; z-index: 2; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 5px; padding: 6px 8px; color: white; background: rgba(12,14,12,.58); border-radius: 7px; font-size: 8px; font-weight: 700; opacity: 0; transform: translateY(5px); transition: opacity .2s, transform .2s; backdrop-filter: blur(8px); }
 .asset-card__preview svg { width: 13px; height: 13px; }
@@ -438,9 +437,9 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
 .dialog-close svg { width: 15px; height: 15px; }
 .asset-dialog > form { position: absolute; z-index: 3; top: 12px; right: 12px; }
 .asset-dialog__layout { min-height: 560px; display: grid; grid-template-columns: 1.08fr .92fr; overflow: hidden; border-radius: inherit; }
-.asset-dialog__visual { min-height: 560px; display: grid; place-items: center; overflow: hidden; background: #e8e2d8; }
-.asset-dialog__visual img { width: 100%; height: 100%; max-height: 78vh; object-fit: cover; }
-.asset-dialog__visual.is-contain img { object-fit: contain; padding: 80px; }
+.asset-dialog__visual { min-height: 560px; display: grid; place-items: center; overflow: hidden; background: linear-gradient(160deg, #f3eee5, #e7e0d4); }
+.asset-dialog__visual img { width: 100%; height: 100%; max-height: 78vh; object-fit: contain; object-position: center; }
+.asset-dialog__visual.is-contain img { padding: min(12%, 80px); }
 .asset-dialog__content { display: flex; flex-direction: column; justify-content: center; padding: clamp(30px,5vw,60px); }
 .asset-dialog__content h2 { margin: 15px 0 10px; font-family: var(--display); font-size: clamp(35px,4vw,52px); font-weight: 400; letter-spacing: -.03em; line-height: 1; }
 .asset-dialog__content > p { margin: 0 0 20px; color: var(--muted); font-size: 11px; }
@@ -580,7 +579,6 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
   .chip-group { width: 100%; }
   .filter-chip { flex: 1 1 auto; }
   .asset-grid, .doc-grid { grid-template-columns: 1fr; }
-  .asset-card__visual { height: 280px; }
   .doc-card { min-height: 220px; }
   .audio-composer, .audio-preview { padding: 21px; }
   .audio-page-header { padding: 30px 21px; border-radius: 22px; }
