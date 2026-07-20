@@ -3,21 +3,26 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-const htmlPath = path.resolve(process.argv[2] || "public/admin/index.html");
+const targetPath = path.resolve(process.argv[2] || "public");
 const logoPath = path.resolve(process.argv[3] || "static/media/brand/sign-gold.png");
+const buildVersion = process.env.BUILD_VERSION || "0.4.1";
 
-async function main() {
-  const [html, logo] = await Promise.all([
-    fs.readFile(htmlPath, "utf8"),
-    fs.readFile(logoPath),
-  ]);
+async function listHtmlFiles(target) {
+  const stat = await fs.stat(target);
+  if (stat.isFile()) return target.endsWith(".html") ? [target] : [];
 
-  if (!html.includes("</head>")) {
-    throw new Error(`Could not find </head> in ${htmlPath}.`);
+  const files = [];
+  const entries = await fs.readdir(target, { withFileTypes: true });
+  for (const entry of entries) {
+    const absolutePath = path.join(target, entry.name);
+    if (entry.isDirectory()) files.push(...await listHtmlFiles(absolutePath));
+    if (entry.isFile() && entry.name.endsWith(".html")) files.push(absolutePath);
   }
+  return files;
+}
 
-  const logoDataUri = `data:image/png;base64,${logo.toString("base64")}`;
-  const css = `
+function lockThemeCss(logoDataUri, version) {
+  return `
 <style id="eskyna-lock-theme">
   .staticrypt-html, .staticrypt-body { min-height: 100%; }
   .staticrypt-body { background: #f4efe6 !important; }
@@ -80,7 +85,7 @@ async function main() {
     background: url("${logoDataUri}") center / contain no-repeat;
   }
   .staticrypt-form::after {
-    content: "ESKYNA  /  INTERNAL WORKSPACE";
+    content: "ESKYNA  /  INTERNAL WORKSPACE  /  v${version}";
     display: block;
     margin-top: 34px;
     padding-top: 18px;
@@ -170,10 +175,27 @@ async function main() {
     .staticrypt-form input[type="submit"] { transition: none; }
   }
 </style>`;
+}
 
-  const themed = html.replace("</head>", `${css}\n</head>`);
-  await fs.writeFile(htmlPath, themed, "utf8");
-  console.log(`Applied ESKYNA lock-screen theme to ${htmlPath}.`);
+async function main() {
+  const logo = await fs.readFile(logoPath);
+  const logoDataUri = `data:image/png;base64,${logo.toString("base64")}`;
+  const css = lockThemeCss(logoDataUri, buildVersion.replace(/[^0-9A-Za-z._-]/g, ""));
+  const htmlFiles = await listHtmlFiles(targetPath);
+
+  if (htmlFiles.length === 0) throw new Error(`No HTML files found in ${targetPath}.`);
+
+  let styled = 0;
+  for (const htmlPath of htmlFiles) {
+    const html = await fs.readFile(htmlPath, "utf8");
+    if (!html.includes("</head>")) throw new Error(`Could not find </head> in ${htmlPath}.`);
+    if (html.includes('id="eskyna-lock-theme"')) continue;
+    const themed = html.replace("</head>", `${css}\n</head>`);
+    await fs.writeFile(htmlPath, themed, "utf8");
+    styled += 1;
+  }
+
+  console.log(`Applied ESKYNA lock-screen theme to ${styled} HTML file(s).`);
 }
 
 main().catch((error) => {

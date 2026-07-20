@@ -1,26 +1,94 @@
-# ESKYNA Social Media Studio
+# ESKYNA Social Media Studio v0.4.1
 
-Eigenständige Hugo-Seite für den internen Social-Media-Bereich. Der Build wird unter `/admin/` ausgegeben und enthält:
+Eigenständige Hugo-Seite für den internen Social-Media-Bereich unter:
 
-- eine Bild- und Brand-Asset-Bibliothek mit Suche, Filtern, Vorschau und Download
-- eine sofort kopierbare Prompt Library
+```text
+https://eskyna.com/admin/
+```
+
+Version 0.4.1 korrigiert ausdrücklich die zuletzt sichtbaren Deployment-Probleme:
+
+- Das alte **Kampagnen-Board** ist nicht mehr Bestandteil der Templates oder des gerenderten Builds.
+- Das **Audio Studio** ist eine echte Hugo-Unterseite unter `https://eskyna.com/admin/audio/`.
+- Jede Prompt-Karte besitzt direkt in der Übersicht einen Button **In Zwischenablage kopieren**.
+
+Zusätzlich enthält der Build automatische Prüfungen. GitHub Actions bricht ab, wenn noch altes Kampagnen-Board-Markup vorhanden ist, die Audio-Seite fehlt, `/admin/admin/` erzeugt wird oder das Projekt versehentlich in einem zweiten Ordner `eskyna-admin/` liegt.
+
+## Wichtig: Archiv direkt im Repository-Stamm entpacken
+
+Das v0.4.1-Archiv ist **flach aufgebaut**. Darin liegt kein zusätzlicher Ordner `eskyna-admin/` mehr.
+
+Nach dem Entpacken müssen diese Dateien direkt im Repository-Stamm liegen:
+
+```text
+hugo.toml
+package.json
+layouts/index.html
+content/audio/_index.md
+.github/workflows/hugo.yml
+```
+
+Nicht korrekt wäre:
+
+```text
+eskyna-admin/hugo.toml
+eskyna-admin/layouts/index.html
+```
+
+Falls ein solcher alter Unterordner oder ein alter Build noch existiert, entferne ihn vor dem nächsten Deployment:
+
+```bash
+rm -rf eskyna-admin public
+rm -f data/campaigns.yaml
+```
+
+Der Workflow ist bereits unter `.github/workflows/hugo.yml` enthalten; er muss nicht erneut verschoben werden.
+
+Danach prüfen:
+
+```bash
+bash scripts/verify-source.sh
+```
+
+Die erwartete Ausgabe lautet:
+
+```text
+Source verification passed: root project, no campaign board, audio page and direct prompt copy buttons present.
+```
+
+## Enthaltene Bereiche
+
+- Bild- und Brand-Asset-Bibliothek mit Suche, Filtern, Vorschau und Download
+- automatisch eingelesene Instagram-Hintergründe
+- Prompt Library mit einem direkt sichtbaren Button **In Zwischenablage kopieren** auf jeder Prompt-Karte
+- eigenständiges Audio Studio mit Blog- und Instagram-Modus
 - Markdown-Dokumente wie `ToneOfVoice.md`, `DesignSystem.md` und `CorporateIdentity.md`
-- ein vorbereitetes Kampagnen-Board für den nächsten Ausbauschritt
-- eine vorgeschaltete Passwortabfrage mit StatiCrypt
-- einen geschützten Produktions-Build, der registrierte Medien in die verschlüsselte HTML-Datei einbettet
+- vorgeschaltete Passwortabfrage mit StatiCrypt
 
 Die mitgelieferten Brand-Dokumente und Demo-Hintergründe sind als Arbeitsentwurf beziehungsweise Starter-Assets gekennzeichnet.
 
-## Schnellstart lokal
+## Lokaler Start
 
-Voraussetzungen: Hugo sowie Node.js. Der GitHub-Workflow ist auf Hugo `0.164.0` und Node.js `24.18.0` festgelegt.
+Voraussetzungen: Hugo und Node.js.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Die unverschlüsselte Entwicklungsansicht ist danach unter `http://localhost:1313/admin/` erreichbar.
+Lokale Hauptseite:
+
+```text
+http://localhost:1313/admin/
+```
+
+Lokales Audio Studio:
+
+```text
+http://localhost:1313/admin/audio/
+```
+
+Die Produktions-URL bleibt `https://eskyna.com/admin/`.
 
 Produktions-Build ohne Passwortschutz:
 
@@ -28,138 +96,216 @@ Produktions-Build ohne Passwortschutz:
 npm run build
 ```
 
-Geschützter lokaler Build:
+Geschützter Build:
 
 ```bash
 export STATICRYPT_PASSWORD='ein-langes-einzigartiges-team-passwort'
 npm run build:protected
 ```
 
-Der fertige Output liegt in `public/`, die eigentliche Anwendung in `public/admin/`.
+Der Output liegt direkt in `public/`. Es gibt keinen `public/admin/`-Unterordner und keinen Redirect nach `./admin/`.
 
-## Inhalte pflegen
+## Audio Studio
 
-### Neue Bilder oder Dateien
+Die Audio-Oberfläche befindet sich in:
 
-1. Datei in einen passenden Ordner unter `static/media/` legen:
+```text
+content/audio/_index.md
+layouts/audio/list.html
+```
+
+Sie wird als eigene Seite gerendert:
+
+```text
+public/audio/index.html
+```
+
+Im Browser lautet die URL wegen der Basis-URL:
+
+```text
+https://eskyna.com/admin/audio/
+```
+
+Enthalten sind zwei Modi:
+
+- `blog` für längere, ruhig und erklärend gesprochene Inhalte
+- `instagram` für kompakte, dynamischere Voice-overs für Reels und Stories
+
+Der Endpunkt wird später in `hugo.toml` eingetragen:
+
+```toml
+[params]
+  audioEndpoint = "https://dein-server.example/api/audio/generate"
+```
+
+Beim Klick auf **Audio generieren** sendet der Browser:
+
+```json
+{
+  "mode": "blog",
+  "text": "Der zu vertonende Text ...",
+  "locale": "de-DE",
+  "source": "eskyna-admin"
+}
+```
+
+Der Client akzeptiert entweder eine direkte Audiodatei oder JSON:
+
+```json
+{
+  "audioUrl": "https://dein-server.example/audio/eskyna-blog.mp3",
+  "filename": "eskyna-blog.mp3"
+}
+```
+
+Als URL-Felder werden `audioUrl`, `audio_url`, `downloadUrl`, `download_url` und `url` verarbeitet.
+
+Geheime API-Schlüssel gehören ausschließlich auf den Server. Sie dürfen nicht in `hugo.toml`, HTML oder JavaScript eingetragen werden. Bei einer anderen API-Domain muss der Server die passende CORS-Freigabe setzen.
+
+## Instagram-Hintergründe hinzufügen
+
+Neue Dateien kommen in:
+
+```text
+assets/backgrounds/instagram/
+```
+
+Der Ordner enthält eine `.gitkeep` und bleibt daher auch ohne Bilder im Repository erhalten. Unterstützt werden PNG, JPG/JPEG, WebP, GIF, AVIF, BMP und TIFF.
+
+Beim Build werden passende Bilder automatisch in die Asset-Bibliothek aufgenommen und veröffentlicht unter:
+
+```text
+https://eskyna.com/admin/media/backgrounds/instagram/<dateiname>
+```
+
+Manuell katalogisierte Dateien liegen weiterhin unter:
 
 ```text
 static/media/backgrounds/
 static/media/natalia/
 static/media/brand/
 static/media/templates/
-static/media/campaigns/
 ```
 
-2. Einen Eintrag in `data/assets.yaml` ergänzen. Dieser steuert Titel, Kategorie, Tags, Abmessungen, Nutzungszweck, Rechte und Vorschau.
+Metadaten werden in `data/assets.yaml` gepflegt.
 
-```yaml
-- id: "natalia-portrait-white"
-  title: "Natalia Portrait White"
-  category: "natalia"
-  category_label: "Natalia"
-  file: "media/natalia/natalia-portrait-white.png"
-  filename: "natalia-portrait-white.png"
-  format: "PNG transparent"
-  dimensions: "1600 x 2200"
-  ratio: "8:11"
-  usage: "Feed, Story, Kampagne"
-  rights: "ESKYNA intern"
-  source: "Fotoshooting 2026"
-  updated: "20.07.2026"
-  description: "Freigestelltes Portrait mit weißem Outfit."
-  tags: ["natalia", "portrait", "transparent"]
-  fit: "contain"
+Die vorhandene Demo-Datei ist erreichbar unter:
+
+```text
+https://eskyna.com/admin/media/backgrounds/ivory-editorial-4x5.png
 ```
 
-Nur registrierte Dateien werden in den geschützten Produktions-Build eingebettet. Nicht referenzierte Dateien werden beim Build gemeldet und nicht deployed.
+## Prompts und Brand-Dokumente
 
-### Prompts
+Jede Prompt-Karte zeigt bereits in der Übersicht den Button **In Zwischenablage kopieren**. Der vollständige Prompt wird kopiert, ohne dass die Karte vorher aufgeklappt werden muss. Nach erfolgreichem Kopieren wechselt die Beschriftung kurz zu **Kopiert** und zusätzlich erscheint eine Statusmeldung.
 
-Prompts liegen in `data/prompts.yaml`. Variablen sind bewusst als Klartext-Platzhalter angelegt, damit der komplette Prompt ohne zusätzliche Logik kopiert werden kann.
+Prompts liegen in:
 
-### Brand-Dokumente
-
-Markdown-Dateien liegen unter `content/docs/`. Neue Dokumente benötigen im Front Matter:
-
-```yaml
-build:
-  render: never
-  list: always
+```text
+data/prompts.yaml
 ```
 
-Dadurch erscheinen sie im geschützten Single-Page-Workspace, werden aber nicht als separate unverschlüsselte HTML-Seiten ausgegeben.
+Brand-Dokumente liegen in:
+
+```text
+content/docs/
+```
+
+Die Dokumente werden innerhalb des geschützten Workspaces angezeigt und nicht als frei aufrufbare Einzelseiten gerendert.
 
 ## GitHub Pages Deployment
 
-1. Repository zu GitHub pushen. Reale interne Assets dürfen nicht in einem öffentlichen Repository liegen. Für GitHub Pages aus einem privaten Repository wird ein passender kostenpflichtiger GitHub-Plan benötigt.
-2. Unter **Settings -> Secrets and variables -> Actions** das Repository Secret anlegen:
+Der Workflow liegt bereits korrekt unter:
 
 ```text
-Name: ADMIN_PASSWORD
-Value: ein langes, einzigartiges Passwort mit mindestens 16 Zeichen
+.github/workflows/hugo.yml
 ```
 
-3. Unter **Settings -> Pages** als Source **GitHub Actions** auswählen.
-4. Auf `main` pushen oder den Workflow manuell starten.
+Er verwendet bewusst die feste Basis-URL:
 
-Der Workflow baut Hugo nach `public/admin/`, bettet die registrierten Medien in `index.html` ein, entfernt den öffentlichen `media/`-Ordner, verschlüsselt die HTML-Datei und deployed `public/`. Die Pages-Root leitet anschließend auf `/admin/` weiter.
+```text
+https://eskyna.com/admin/
+```
 
-## Passwortschutz und Sicherheitsmodell
+Damit hängt der Workflow kein zweites `/admin/` an eine dynamisch gelieferte Pages-URL an.
 
-GitHub Pages ist statisches Hosting und stellt keine serverseitige Anmeldung bereit. StatiCrypt verschlüsselt die HTML-Datei und entschlüsselt sie nach erfolgreicher Passworteingabe im Browser.
+Deployment-Schritte:
 
-Wichtig: Ein privates Quell-Repository macht die veröffentlichte Pages-Site nicht automatisch privat. GitHub-eigene Zugriffskontrolle für eine privat veröffentlichte Pages-Site setzt eine Organisation mit GitHub Enterprise Cloud voraus. Ohne diese Funktion ist die URL öffentlich erreichbar und der Schutz dieses Starters beruht auf der clientseitig verschlüsselten StatiCrypt-Datei.
+1. Dateien direkt in den Repository-Stamm übernehmen.
+2. Alte Artefakte mit `rm -rf eskyna-admin public` und `rm -f data/campaigns.yaml` entfernen.
+3. `bash scripts/verify-source.sh` ausführen.
+4. Unter **Settings -> Secrets and variables -> Actions** das Secret `ADMIN_PASSWORD` mit mindestens 16 Zeichen anlegen.
+5. Unter **Settings -> Pages** als Quelle **GitHub Actions** auswählen.
+6. Alle Änderungen einschließlich Löschungen committen und auf `main` pushen.
 
-Im Standard-Build dieses Starters werden die registrierten Dateien unter `static/media/` vor der Verschlüsselung als Data-URLs in die HTML-Datei eingebettet. Der erzeugte öffentliche `media/`-Ordner wird entfernt. Damit liegen auch die eingebetteten Bilder im verschlüsselten Inhalt und sind nicht mehr über separate Asset-URLs abrufbar.
+Nach erfolgreichem Deployment ist bereits auf der Passwortseite unten die Kennzeichnung `v0.4.1` sichtbar. Zusätzlich enthält `build-info.json` die verwendete Basis-URL und Build-Version. Fehlt diese Kennzeichnung, läuft noch ein älteres Pages-Artefakt.
 
-Wichtige Grenzen:
+Vor dem Build prüft `scripts/verify-source.sh` die Repository-Struktur. Nach dem Hugo-Render prüft `scripts/verify-build.sh` unter anderem:
 
-- Das Quell-Repository und seine Git-Historie enthalten weiterhin die Originaldateien; das Repository sollte privat bleiben.
-- Ein statisch verschlüsselter Build kann offline gegen Passwörter getestet werden. Deshalb eine lange, einzigartige Passphrase verwenden und bei Teamwechsel rotieren.
-- Das Einbetten ist für Bilder, PDFs und kleine Dateien gedacht. Einzeldateien über 25 MB brechen den Build standardmäßig ab; große Videos gehören in einen echten zugriffsgeschützten Speicher.
-- Für Benutzerkonten, individuelle Sperrung, Audit-Logs oder hochsensible Daten ist ein Identity- und Access-Management wie Cloudflare Access oder eine serverseitige Anwendung erforderlich.
+- `public/index.html` existiert
+- `public/audio/index.html` existiert
+- beide Audio-Modi sind gerendert
+- die direkten Prompt-Kopierbuttons sind gerendert
+- das Kampagnen-Board ist nicht enthalten
+- `/admin/admin/` kommt nicht vor
+- die Demo-Hintergrunddatei ist veröffentlicht
 
-Der Button **Studio sperren** setzt den StatiCrypt-Logout und lädt die Passwortseite neu. Die Option zum Merken des Passworts ist auf 14 Tage eingestellt.
+Erst danach werden alle HTML-Seiten rekursiv verschlüsselt. Dadurch sind sowohl `/admin/` als auch `/admin/audio/` passwortgeschützt.
 
-Das Einbetten kann für einen Test-Build deaktiviert werden:
+## Passwortschutz und Medien-URLs
+
+Standardmäßig verschlüsselt StatiCrypt alle HTML-Seiten. Die Bilddateien bleiben echte Dateien unter `public/media/`, damit Vorschau, Download und direkte Links funktionieren.
+
+Direkte Bild-URLs werden durch eine clientseitige HTML-Passwortabfrage nicht geschützt. Für einen Build, bei dem referenzierte Medien in die verschlüsselten HTML-Seiten eingebettet und der öffentliche Medienordner entfernt wird:
 
 ```bash
-EMBED_MEDIA=false npm run build:protected
+EMBED_MEDIA=true npm run build:protected
 ```
 
-## `/admin` unter eskyna.com
+Dann funktionieren direkte Medien-URLs absichtlich nicht mehr.
 
-Das Projekt erzeugt den Pfad `/admin/` innerhalb seines eigenen GitHub-Pages-Deployments. Eine separate Pages-Site kann nicht automatisch einen Unterordner einer bereits anderswo gehosteten Website übernehmen.
-
-Für `https://eskyna.com/admin/` gibt es drei Integrationswege:
-
-1. den erzeugten Ordner `public/admin/` in den bestehenden ESKYNA-Website-Deploy aufnehmen
-2. `eskyna.com/admin/` über einen Reverse Proxy auf die Pages-Site routen
-3. den internen Bereich auf eine eigene Subdomain wie `studio.eskyna.com` legen
-
-Für einen dauerhaft internen Arbeitsbereich ist eine eigene Subdomain mit echtem Zugriffsschutz die belastbarste Variante.
+Für Benutzerkonten, individuelle Berechtigungen, Audit-Logs oder besonders sensible Dateien ist ein serverseitiger Zugriffsschutz beziehungsweise Identity-Proxy erforderlich.
 
 ## Projektstruktur
 
 ```text
 .
 |-- .github/workflows/hugo.yml
-|-- content/docs/              # Markdown-Wissensbasis
-|-- data/assets.yaml           # Asset-Katalog
-|-- data/prompts.yaml          # Prompt Library
-|-- layouts/                   # Hugo Templates
+|-- assets/backgrounds/instagram/
+|-- content/audio/_index.md
+|-- content/docs/
+|-- data/assets.yaml
+|-- data/prompts.yaml
+|-- layouts/audio/list.html
+|-- layouts/index.html
 |-- static/css/admin.css
 |-- static/js/admin.js
-|-- static/media/              # Quelldateien
+|-- static/media/
+|-- scripts/verify-source.sh
+|-- scripts/verify-build.sh
 |-- scripts/build.sh
 |-- scripts/build-protected.sh
-|-- scripts/embed-media.mjs    # bettet Assets vor der Verschlüsselung ein
-|-- scripts/style-lock-screen.mjs # ESKYNA-Theme für die Passwortseite
+|-- scripts/embed-media.mjs
+|-- scripts/style-lock-screen.mjs
 |-- hugo.toml
 `-- package.json
 ```
 
-## Design-Hinweis
+## Build-Version prüfen
 
-Die Tone-of-Voice-, CI- und Design-System-Inhalte sind klar als Arbeitsentwurf markiert. Sie orientieren sich an der derzeit sichtbaren ESKYNA-Markenwirkung und sollten vor verbindlicher Nutzung intern fachlich freigegeben werden.
+Nach einem erfolgreichen unverschlüsselten Build steht in:
+
+```text
+public/build-info.json
+```
+
+unter anderem:
+
+```json
+{
+  "version": "0.4.1",
+  "baseURL": "https://eskyna.com/admin/"
+}
+```
+
+Im HTML ist zusätzlich ein Meta-Tag `eskyna-build` mit der Version `0.4.1` enthalten.

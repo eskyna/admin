@@ -24,8 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.164.0
-      NODE_VERSION: 24.18.0
+      NODE_VERSION: 24
       TZ: Europe/Berlin
+      BASE_URL: https://eskyna.com/admin/
+      BUILD_VERSION: 0.4.1
       STATICRYPT_SALT: 8d4ac1d77c284d40af09c7f44a5c1e31
     steps:
       - name: Checkout
@@ -33,12 +35,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Verify repository layout
+        run: bash scripts/verify-source.sh
+
       - name: Setup Pages
-        id: pages
         uses: actions/configure-pages@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -61,9 +65,9 @@ jobs:
             exit 1
           fi
 
-      - name: Build and encrypt /admin
+      - name: Build, verify and encrypt all pages
         env:
-          BASE_URL: ${{ steps.pages.outputs.base_url }}/admin/
+          EMBED_MEDIA: "false"
           STATICRYPT_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
         run: bash scripts/build-protected.sh
 

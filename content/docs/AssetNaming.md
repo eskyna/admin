@@ -1,6 +1,6 @@
 ---
 title: "Asset Naming & Ablage"
-summary: "Ein einfaches Benennungsschema für Bilder, Vorlagen und Kampagnenexporte."
+summary: "Ein einfaches Benennungsschema für Bilder, Vorlagen und Social-Media-Exporte."
 status: "Vorschlag"
 updated: "20.07.2026"
 icon: "folder"
@@ -26,13 +26,15 @@ Verwende Kleinbuchstaben, Bindestriche und eine feste Reihenfolge:
 ## Ordnerstruktur
 
 ```text
-static/media/
+assets/
   backgrounds/
+    instagram/     # wird automatisch eingelesen
+
+static/media/
+  backgrounds/     # manuell in data/assets.yaml katalogisiert
   natalia/
   brand/
   templates/
-  campaigns/
-    2026-08-kampagnenname/
 ```
 
 ## Versionen

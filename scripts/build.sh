@@ -1,34 +1,38 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BASE_URL="${BASE_URL:-http://localhost:1313/admin/}"
+BASE_URL="${BASE_URL:-https://eskyna.com/admin/}"
+BASE_URL="${BASE_URL%/}/"
+BUILD_VERSION="${BUILD_VERSION:-0.4.1}"
+BUILD_COMMIT="${GITHUB_SHA:-local}"
 
+if [[ ! "${BASE_URL}" =~ ^https?:// ]]; then
+  echo "ERROR: BASE_URL must start with http:// or https://" >&2
+  exit 1
+fi
+
+if [[ "${BASE_URL}" == *"/admin/admin/"* ]]; then
+  echo "ERROR: Refusing duplicated admin path in BASE_URL: ${BASE_URL}" >&2
+  exit 1
+fi
+
+bash scripts/verify-source.sh
 rm -rf public
-mkdir -p public/admin
 
 hugo build \
   --gc \
   --minify \
-  --destination public/admin \
+  --destination public \
   --baseURL "${BASE_URL}"
-
-cat > public/index.html <<'HTML'
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <meta http-equiv="refresh" content="0; url=./admin/">
-  <title>ESKYNA Admin</title>
-</head>
-<body><p><a href="./admin/">ESKYNA Social Media Studio öffnen</a></p></body>
-</html>
-HTML
 
 cat > public/robots.txt <<'TXT'
 User-agent: *
-Disallow: /admin/
+Disallow: /
 TXT
 
-echo "Built ${BASE_URL} -> public/admin"
+cat > public/build-info.json <<JSON
+{"version":"${BUILD_VERSION}","baseURL":"${BASE_URL}","commit":"${BUILD_COMMIT}"}
+JSON
+
+bash scripts/verify-build.sh public
+printf 'Built %s -> public\n' "${BASE_URL}"

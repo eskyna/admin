@@ -1,0 +1,160 @@
+{{ define "main" }}
+{{ $assets := site.Data.assets.assets }}
+{{ $prompts := site.Data.prompts.prompts }}
+{{ $docsSection := site.GetPage "/docs" }}
+{{ $docs := $docsSection.Pages.ByWeight }}
+{{ $instagramBackgrounds := slice }}
+{{ range resources.Match "backgrounds/instagram/*.*" }}
+  {{ if reflect.IsImageResourceProcessable . }}
+    {{ $instagramBackgrounds = $instagramBackgrounds | append . }}
+  {{ end }}
+{{ end }}
+{{ $assetCount := add (len $assets) (len $instagramBackgrounds) }}
+{{ $audioEndpoint := site.Params.audioEndpoint | default "" }}
+{{ $homeURL := site.Home.RelPermalink }}
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" aria-label="Hauptnavigation">
+    <a class="brand" href="{{ $homeURL }}" aria-label="ESKYNA Social Media Studio Start">
+      <span class="brand__mark"><img src="{{ "media/brand/sign-gold.png" | relURL }}" alt=""></span>
+      <span class="brand__text"><strong>ESKYNA</strong><small>Social Media Studio</small></span>
+    </a>
+
+    <div class="workspace-label">Workspace</div>
+    <nav class="side-nav">
+      <a class="side-nav__link" href="{{ $homeURL }}#dashboard" data-nav-link>
+        <svg><use href="#icon-grid"></use></svg><span>Dashboard</span>
+      </a>
+      <a class="side-nav__link" href="{{ $homeURL }}#assets" data-nav-link>
+        <svg><use href="#icon-image"></use></svg><span>Asset-Bibliothek</span><b>{{ $assetCount }}</b>
+      </a>
+      <a class="side-nav__link" href="{{ $homeURL }}#prompts" data-nav-link>
+        <svg><use href="#icon-sparkles"></use></svg><span>Prompt Library</span><b>{{ len $prompts }}</b>
+      </a>
+      <a class="side-nav__link is-active" href="{{ .RelPermalink }}" data-nav-link aria-current="page">
+        <svg><use href="#icon-mic"></use></svg><span>Audio Studio</span><b>2</b>
+      </a>
+      <a class="side-nav__link" href="{{ $homeURL }}#documents" data-nav-link>
+        <svg><use href="#icon-file"></use></svg><span>Brand-Dokumente</span><b>{{ len $docs }}</b>
+      </a>
+    </nav>
+
+    <div class="sidebar__spacer"></div>
+    <div class="security-card">
+      <div class="security-card__icon"><svg><use href="#icon-lock"></use></svg></div>
+      <div><strong>Interner Bereich</strong><span>Kein Suchmaschinen-Index</span></div>
+    </div>
+    <button class="lock-button" type="button" data-lock-page>
+      <svg><use href="#icon-lock"></use></svg><span>Studio sperren</span>
+    </button>
+    <div class="sidebar__foot">ESKYNA / Admin v0.4.1</div>
+  </aside>
+
+  <button class="sidebar-scrim" type="button" aria-label="Navigation schließen" data-sidebar-close></button>
+
+  <div class="app-main">
+    <header class="topbar topbar--page">
+      <button class="icon-button mobile-menu" type="button" aria-label="Navigation öffnen" data-sidebar-open>
+        <svg><use href="#icon-menu"></use></svg>
+      </button>
+      <a class="topbar-back" href="{{ $homeURL }}"><svg><use href="#icon-arrow"></use></svg><span>Zurück zum Dashboard</span></a>
+      <div class="topbar__meta">
+        <span class="live-dot"></span>
+        <span>{{ if $audioEndpoint }}Audio-Server verbunden{{ else }}Schnittstelle vorbereitet{{ end }}</span>
+      </div>
+      <div class="avatar" aria-label="Natalia Kleemann">NK</div>
+    </header>
+
+    <main class="workspace audio-workspace">
+      <section class="audio-page-header" aria-labelledby="audio-page-title">
+        <div class="audio-page-header__copy">
+          <div class="eyebrow"><span></span>Audio Studio</div>
+          <h1 id="audio-page-title">Texte in ESKYNA Audio verwandeln.</h1>
+          <p>Wähle zwischen einer ruhigen Blog-Vertonung und einem dynamischeren Instagram-Voice-over. Die eigentliche Generierung wird später über deinen Server ausgeführt.</p>
+        </div>
+        <div class="audio-page-header__status">
+          <span class="connection-badge{{ if $audioEndpoint }} is-connected{{ end }}" data-audio-connection>
+            <span></span>{{ if $audioEndpoint }}Server verbunden{{ else }}Schnittstelle vorbereitet{{ end }}
+          </span>
+          <small>Route: <code>{{ .RelPermalink }}</code></small>
+        </div>
+      </section>
+
+      <section class="audio-studio audio-studio--page" id="audio-generator" aria-label="Audio generieren">
+        <form class="audio-composer" data-audio-form data-endpoint="{{ $audioEndpoint }}" novalidate>
+          <fieldset class="audio-modes">
+            <legend>Ausgabe-Modus</legend>
+            <div class="audio-mode-grid">
+              <label class="audio-mode" for="audio-mode-blog">
+                <input id="audio-mode-blog" type="radio" name="audio-mode" value="blog" checked>
+                <span class="audio-mode__body">
+                  <span class="audio-mode__icon"><svg><use href="#icon-file"></use></svg></span>
+                  <span class="audio-mode__copy"><strong>Blog-Modus</strong><small>Ruhig, klar und erklärend für längere Artikel und Wissensinhalte.</small></span>
+                  <span class="audio-mode__check"><svg><use href="#icon-check"></use></svg></span>
+                </span>
+              </label>
+              <label class="audio-mode" for="audio-mode-instagram">
+                <input id="audio-mode-instagram" type="radio" name="audio-mode" value="instagram">
+                <span class="audio-mode__body">
+                  <span class="audio-mode__icon"><svg><use href="#icon-image"></use></svg></span>
+                  <span class="audio-mode__copy"><strong>Instagram-Modus</strong><small>Kompakt, lebendig und rhythmisch für Reels, Stories und kurze Posts.</small></span>
+                  <span class="audio-mode__check"><svg><use href="#icon-check"></use></svg></span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="audio-input-block">
+            <div class="audio-input-heading">
+              <label for="audio-text">Text für die Vertonung</label>
+              <span data-audio-count>0 Zeichen · 0 Wörter</span>
+            </div>
+            <textarea class="audio-textarea" id="audio-text" name="text" rows="16" placeholder="Füge hier den vollständigen Blog-Text, die Reel-Caption oder dein Voice-over-Skript ein ..." required spellcheck="true" data-audio-text></textarea>
+            <div class="audio-input-footer">
+              <span class="audio-privacy"><svg><use href="#icon-server"></use></svg> Der Text wird erst beim Klick an deinen Server übertragen.</span>
+              <button class="button button--primary audio-submit" type="submit" data-audio-submit disabled>
+                <svg><use href="#icon-sparkles"></use></svg><span data-audio-submit-label>Audio generieren</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <aside class="audio-preview" data-audio-preview aria-label="Audio-Ausgabe">
+          <div class="audio-preview__top">
+            <span class="audio-preview__icon"><svg><use href="#icon-mic"></use></svg></span>
+            <div><span class="overline">Aktueller Modus</span><strong data-audio-mode-label>Blog-Modus</strong></div>
+          </div>
+          <div class="audio-wave" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="audio-status" role="status" aria-live="polite" data-audio-status data-state="idle">
+            <span class="audio-status__dot"></span>
+            <span data-audio-status-text>{{ if $audioEndpoint }}Bereit für die erste Generierung.{{ else }}Noch kein Server-Endpunkt eingetragen.{{ end }}</span>
+          </div>
+          <div class="audio-result" data-audio-result hidden>
+            <audio controls preload="metadata" data-audio-player></audio>
+            <a class="button button--light" href="#" download="eskyna-audio.mp3" data-audio-download><svg><use href="#icon-download"></use></svg> Audio herunterladen</a>
+          </div>
+          <div class="audio-api-note">
+            <span>POST</span><code>{{ if $audioEndpoint }}{{ $audioEndpoint }}{{ else }}params.audioEndpoint{{ end }}</code>
+          </div>
+        </aside>
+      </section>
+
+      <section class="audio-help-grid" aria-label="Server-Integration">
+        <article class="audio-help-card">
+          <span class="audio-help-card__icon"><svg><use href="#icon-server"></use></svg></span>
+          <div><strong>Server später verbinden</strong><p>Trage den Endpunkt in <code>hugo.toml</code> unter <code>params.audioEndpoint</code> ein.</p></div>
+        </article>
+        <article class="audio-help-card">
+          <span class="audio-help-card__icon"><svg><use href="#icon-lock"></use></svg></span>
+          <div><strong>Keine Secrets im Browser</strong><p>API-Schlüssel bleiben ausschließlich auf deinem Server und gehören nicht in Hugo oder JavaScript.</p></div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>ESKYNA Audio Studio</span><span>Build {{ site.Params.buildVersion | default "0.4.1" }}</span></footer>
+  </div>
+</div>
+
+<div class="toast" role="status" aria-live="polite" data-toast><svg><use href="#icon-check"></use></svg><span>Aktion abgeschlossen.</span></div>
+{{ end }}

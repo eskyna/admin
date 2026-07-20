@@ -4,6 +4,13 @@
 {{ $docsSection := site.GetPage "/docs" }}
 {{ $docs := $docsSection.Pages.ByWeight }}
 {{ $featured := where $assets "featured" true }}
+{{ $instagramBackgrounds := slice }}
+{{ range resources.Match "backgrounds/instagram/*.*" }}
+  {{ if reflect.IsImageResourceProcessable . }}
+    {{ $instagramBackgrounds = $instagramBackgrounds | append . }}
+  {{ end }}
+{{ end }}
+{{ $assetCount := add (len $assets) (len $instagramBackgrounds) }}
 <div class="app-shell">
   <aside class="sidebar" id="sidebar" aria-label="Hauptnavigation">
     <a class="brand" href="#dashboard" aria-label="ESKYNA Social Media Studio Start">
@@ -17,16 +24,16 @@
         <svg><use href="#icon-grid"></use></svg><span>Dashboard</span>
       </a>
       <a class="side-nav__link" href="#assets" data-nav-link>
-        <svg><use href="#icon-image"></use></svg><span>Asset-Bibliothek</span><b>{{ len $assets }}</b>
+        <svg><use href="#icon-image"></use></svg><span>Asset-Bibliothek</span><b>{{ $assetCount }}</b>
       </a>
       <a class="side-nav__link" href="#prompts" data-nav-link>
         <svg><use href="#icon-sparkles"></use></svg><span>Prompt Library</span><b>{{ len $prompts }}</b>
       </a>
+      <a class="side-nav__link" href="{{ "audio/" | relURL }}" data-nav-link>
+        <svg><use href="#icon-mic"></use></svg><span>Audio Studio</span><b>2</b>
+      </a>
       <a class="side-nav__link" href="#documents" data-nav-link>
         <svg><use href="#icon-file"></use></svg><span>Brand-Dokumente</span><b>{{ len $docs }}</b>
-      </a>
-      <a class="side-nav__link" href="#campaigns" data-nav-link>
-        <svg><use href="#icon-calendar"></use></svg><span>Kampagnen-Board</span>
       </a>
     </nav>
 
@@ -38,7 +45,7 @@
     <button class="lock-button" type="button" data-lock-page>
       <svg><use href="#icon-lock"></use></svg><span>Studio sperren</span>
     </button>
-    <div class="sidebar__foot">ESKYNA / Admin v0.1</div>
+    <div class="sidebar__foot">ESKYNA / Admin v0.4.1</div>
   </aside>
 
   <button class="sidebar-scrim" type="button" aria-label="Navigation schließen" data-sidebar-close></button>
@@ -65,10 +72,11 @@
         <div class="hero-copy">
           <div class="eyebrow"><span></span>Interner Content Hub</div>
           <h1>Alles für starke<br><em>ESKYNA Inhalte.</em></h1>
-          <p>Hintergründe, Natalia-Motive, Prompts und Markenwissen - zentral organisiert und in Sekunden einsatzbereit.</p>
+          <p>Hintergründe, Natalia-Motive, Prompts, Audio und Markenwissen - zentral organisiert und in Sekunden einsatzbereit.</p>
           <div class="hero-actions">
             <a class="button button--primary" href="#assets">Assets entdecken <svg><use href="#icon-arrow"></use></svg></a>
             <a class="button button--ghost" href="#prompts">Prompt starten</a>
+            <a class="button button--ghost" href="{{ "audio/" | relURL }}"><svg><use href="#icon-mic"></use></svg> Audio erstellen</a>
           </div>
           <div class="hero-note"><svg><use href="#icon-lock"></use></svg> Inhalte werden beim Deployment verschlüsselt.</div>
         </div>
@@ -86,16 +94,16 @@
       </section>
 
       <section class="metrics" aria-label="Bibliotheksstatus">
-        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-image"></use></svg></span><div><strong>{{ len $assets }}</strong><span>Assets bereit</span></div><small>+ Demo-Bibliothek</small></article>
+        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-image"></use></svg></span><div><strong>{{ $assetCount }}</strong><span>Assets bereit</span></div><small>+ Demo-Bibliothek</small></article>
         <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-sparkles"></use></svg></span><div><strong>{{ len $prompts }}</strong><span>Prompts gespeichert</span></div><small>Copy bis QA</small></article>
         <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-file"></use></svg></span><div><strong>{{ len $docs }}</strong><span>Brand-Dokumente</span></div><small>Markdown-basiert</small></article>
-        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-clock"></use></svg></span><div><strong>1</strong><span>zentraler Workspace</span></div><small>unter /admin</small></article>
+        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-mic"></use></svg></span><div><strong>2</strong><span>Audio-Modi</span></div><small>Blog + Instagram</small></article>
       </section>
 
       <section class="page-section" id="assets" data-section>
         <header class="section-heading">
           <div><div class="eyebrow"><span></span>Medienbibliothek</div><h2>Bild-Dateien für Social Media</h2><p>Filtern, prüfen, Pfad kopieren oder Originaldatei herunterladen.</p></div>
-          <div class="section-heading__actions"><span class="count-badge"><b data-visible-assets>{{ len $assets }}</b> Assets</span></div>
+          <div class="section-heading__actions"><span class="count-badge"><b data-visible-assets>{{ $assetCount }}</b> Assets</span></div>
         </header>
 
         <div class="filter-bar" aria-label="Asset-Filter">
@@ -106,12 +114,13 @@
             {{ end }}
           </div>
         </div>
+        <div class="folder-hint"><svg><use href="#icon-image"></use></svg><span>Neue Instagram-Hintergründe aus <code>assets/backgrounds/instagram/</code> werden beim Build automatisch ergänzt.</span></div>
 
         <div class="asset-grid" data-asset-grid>
           {{ range $assets }}
             {{ $assetURL := .file | relURL }}
             {{ $searchText := printf "%s %s %s %s %s" .title .category_label .description .usage (delimit .tags " ") }}
-            <article class="asset-card searchable" data-asset-card data-category="{{ .category }}" data-search="{{ $searchText | lower }}" data-title="{{ .title }}" data-file="{{ $assetURL }}" data-path="{{ .file }}" data-filename="{{ .filename }}" data-format="{{ .format }}" data-dimensions="{{ .dimensions }}" data-ratio="{{ .ratio }}" data-usage="{{ .usage }}" data-rights="{{ .rights }}" data-updated="{{ .updated }}" data-description="{{ .description }}" data-tags="{{ delimit .tags ", " }}" data-category-label="{{ .category_label }}" data-fit="{{ .fit }}">
+            <article class="asset-card searchable" data-asset-card data-category="{{ .category }}" data-search="{{ $searchText | lower }}" data-title="{{ .title }}" data-file="{{ $assetURL }}" data-path="{{ $assetURL }}" data-filename="{{ .filename }}" data-format="{{ .format }}" data-dimensions="{{ .dimensions }}" data-ratio="{{ .ratio }}" data-usage="{{ .usage }}" data-rights="{{ .rights }}" data-updated="{{ .updated }}" data-description="{{ .description }}" data-tags="{{ delimit .tags ", " }}" data-category-label="{{ .category_label }}" data-fit="{{ .fit }}">
               <button class="asset-card__visual" type="button" data-asset-open aria-label="{{ .title }} in Vorschau öffnen">
                 <img src="{{ $assetURL }}" alt="{{ .title }}" loading="lazy">
                 <span class="asset-card__badge">{{ .category_label }}</span>
@@ -122,8 +131,45 @@
                 <dl class="asset-meta"><div><dt>Format</dt><dd>{{ .ratio }}</dd></div><div><dt>Pixel</dt><dd>{{ .dimensions }}</dd></div><div><dt>Einsatz</dt><dd>{{ .usage }}</dd></div></dl>
                 <div class="tag-row">{{ range first 4 .tags }}<span>{{ . }}</span>{{ end }}</div>
                 <div class="asset-card__actions">
-                  <button class="text-button" type="button" data-copy-value="{{ .file }}"><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button>
+                  <button class="text-button" type="button" data-copy-value="{{ $assetURL }}"><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button>
                   <a class="icon-button" href="{{ $assetURL }}" download="{{ .filename }}" title="Originaldatei herunterladen"><svg><use href="#icon-download"></use></svg></a>
+                </div>
+              </div>
+            </article>
+          {{ end }}
+          {{ range $instagramBackgrounds }}
+            {{ $filename := path.Base .Name }}
+            {{ $title := path.BaseName .Name | replaceRE "[-_]+" " " | strings.Title }}
+            {{ $published := resources.Copy (printf "media/backgrounds/instagram/%s" $filename) . }}
+            {{ $assetURL := $published.RelPermalink }}
+            {{ $format := strings.ToUpper (strings.TrimPrefix "." (path.Ext $filename)) }}
+            {{ $dimensions := printf "%d x %d" .Width .Height }}
+            {{ $ratio := "individuell" }}
+            {{ if eq .Width .Height }}
+              {{ $ratio = "1:1" }}
+            {{ else if eq (mul .Width 5) (mul .Height 4) }}
+              {{ $ratio = "4:5" }}
+            {{ else if eq (mul .Width 16) (mul .Height 9) }}
+              {{ $ratio = "9:16" }}
+            {{ else if eq (mul .Width 9) (mul .Height 16) }}
+              {{ $ratio = "16:9" }}
+            {{ else if eq (mul .Width 4) (mul .Height 3) }}
+              {{ $ratio = "3:4" }}
+            {{ end }}
+            {{ $searchText := printf "%s Instagram Hintergrund automatisch" $title }}
+            <article class="asset-card searchable" data-asset-card data-category="backgrounds" data-search="{{ $searchText | lower }}" data-title="{{ $title }}" data-file="{{ $assetURL }}" data-path="{{ $assetURL }}" data-filename="{{ $filename }}" data-format="{{ $format }}" data-dimensions="{{ $dimensions }}" data-ratio="{{ $ratio }}" data-usage="Instagram" data-rights="Bitte intern prüfen" data-updated="Automatisch importiert" data-description="Automatisch aus dem Instagram-Hintergrundordner erkannt." data-tags="instagram, hintergrund, automatisch" data-category-label="Instagram Hintergrund" data-fit="cover">
+              <button class="asset-card__visual" type="button" data-asset-open aria-label="{{ $title }} in Vorschau öffnen">
+                <img src="{{ $assetURL }}" alt="{{ $title }}" loading="lazy" width="{{ .Width }}" height="{{ .Height }}">
+                <span class="asset-card__badge">Instagram Hintergrund</span>
+                <span class="asset-card__preview"><svg><use href="#icon-eye"></use></svg> Vorschau</span>
+              </button>
+              <div class="asset-card__body">
+                <div class="asset-card__title-row"><div><h3>{{ $title }}</h3><p>Automatisch aus <code>assets/backgrounds/instagram/</code> importiert.</p></div><span class="format-pill">{{ $format }}</span></div>
+                <dl class="asset-meta"><div><dt>Format</dt><dd>{{ $ratio }}</dd></div><div><dt>Pixel</dt><dd>{{ $dimensions }}</dd></div><div><dt>Einsatz</dt><dd>Instagram</dd></div></dl>
+                <div class="tag-row"><span>instagram</span><span>hintergrund</span><span>automatisch</span></div>
+                <div class="asset-card__actions">
+                  <button class="text-button" type="button" data-copy-value="{{ $assetURL }}"><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button>
+                  <a class="icon-button" href="{{ $assetURL }}" download="{{ $filename }}" title="Originaldatei herunterladen"><svg><use href="#icon-download"></use></svg></a>
                 </div>
               </div>
             </article>
@@ -151,13 +197,19 @@
           {{ range $prompts }}
             {{ $searchText := printf "%s %s %s %s" .title .platform .description (delimit .tags " ") }}
             <article class="prompt-card searchable" data-prompt-card data-category="{{ .category }}" data-search="{{ $searchText | lower }}">
-              <header class="prompt-card__head"><span class="prompt-icon"><svg><use href="#icon-sparkles"></use></svg></span><div><span class="overline">{{ .platform }} / {{ .category_label }}</span><h3>{{ .title }}</h3></div></header>
+              <header class="prompt-card__head">
+                <span class="prompt-icon"><svg><use href="#icon-sparkles"></use></svg></span>
+                <div class="prompt-card__heading-copy"><span class="overline">{{ .platform }} / {{ .category_label }}</span><h3>{{ .title }}</h3></div>
+                <button class="prompt-copy-button" type="button" data-prompt-copy data-copy-target="prompt-{{ .id }}" data-copy-message="Prompt in die Zwischenablage kopiert." aria-label="Prompt {{ .title }} in die Zwischenablage kopieren">
+                  <svg><use href="#icon-copy"></use></svg><span data-copy-label>In Zwischenablage kopieren</span>
+                </button>
+              </header>
               <p class="prompt-card__description">{{ .description }}</p>
               <div class="variable-row">{{ range .variables }}<code>{{ . }}</code>{{ end }}</div>
               <div class="prompt-code" id="prompt-{{ .id }}"><pre><code>{{ .body }}</code></pre></div>
               <footer class="prompt-card__footer">
                 <button class="text-button" type="button" data-prompt-toggle aria-expanded="false">Prompt ansehen <svg><use href="#icon-chevron"></use></svg></button>
-                <button class="button button--small button--primary" type="button" data-copy-target="prompt-{{ .id }}"><svg><use href="#icon-copy"></use></svg> Kopieren</button>
+                <span class="prompt-card__copy-hint"><svg><use href="#icon-check"></use></svg> Direkt oben kopierbar</span>
               </footer>
             </article>
           {{ end }}
@@ -182,22 +234,6 @@
         </div>
       </section>
 
-      <section class="page-section" id="campaigns" data-section>
-        <header class="section-heading">
-          <div><div class="eyebrow"><span></span>Nächster Ausbau</div><h2>Kampagnen-Board</h2><p>Ein vorbereiteter Bereich für Ideen, Produktion, Freigaben und Learnings.</p></div>
-          <button class="button button--ghost" type="button" data-demo-action><svg><use href="#icon-plus"></use></svg> Kampagne anlegen</button>
-        </header>
-        <div class="campaign-board">
-          {{ range $index, $lane := site.Data.campaigns.lanes }}
-            <section class="campaign-lane">
-              <header><div><span class="lane-dot lane-dot--{{ add $index 1 }}"></span><h3>{{ $lane.label }}</h3></div><b>0</b></header>
-              <p>{{ $lane.description }}</p>
-              <div class="lane-empty"><svg><use href="#icon-plus"></use></svg><span>Ersten Eintrag anlegen</span></div>
-            </section>
-          {{ end }}
-        </div>
-        <div class="implementation-note"><span class="implementation-note__icon"><svg><use href="#icon-sparkles"></use></svg></span><div><strong>Bereit für Phase 2</strong><p>Das Board ist visuell vorbereitet. Für echte Bearbeitung können später GitHub Issues, Decap CMS oder ein kleines Headless CMS angebunden werden.</p></div></div>
-      </section>
     </main>
 
     <footer class="site-footer"><span>ESKYNA Social Media Studio</span><span>Hugo + GitHub Pages + StatiCrypt</span></footer>

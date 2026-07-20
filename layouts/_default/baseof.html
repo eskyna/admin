@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <meta name="description" content="{{ site.Params.description }}">
+  <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
   <meta name="theme-color" content="#1d211c">
-  <title>{{ site.Title }}</title>
+  <meta name="eskyna-build" content="{{ site.Params.buildVersion | default "0.4.1" }}">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="stylesheet" href="{{ "css/admin.css" | relURL }}">
 </head>
-<body>
+<body data-page="{{ if .IsHome }}home{{ else }}{{ .Section }}{{ end }}">
   {{ partial "icons.html" . }}
   {{ block "main" . }}{{ end }}
   <script src="{{ "js/admin.js" | relURL }}" defer></script>

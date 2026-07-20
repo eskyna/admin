@@ -15,28 +15,43 @@ STATICRYPT_SALT="${STATICRYPT_SALT:-8d4ac1d77c284d40af09c7f44a5c1e31}"
 
 bash scripts/build.sh
 
-if [[ "${EMBED_MEDIA:-true}" != "false" ]]; then
-  node scripts/embed-media.mjs public/admin/index.html public/admin
+if [[ "${EMBED_MEDIA:-false}" == "true" ]]; then
+  node scripts/embed-media.mjs public
 fi
 
-npx --no-install staticrypt public/admin/index.html \
-  --directory public/admin \
-  --config false \
-  --salt "${STATICRYPT_SALT}" \
-  --remember 14 \
-  --template-color-primary "#c8ab37" \
-  --template-color-secondary "#1d211c" \
-  --template-title "ESKYNA Social Media Studio" \
-  --template-instructions "Interner Bereich. Bitte das Team-Passwort eingeben." \
-  --template-button "Studio öffnen" \
-  --template-placeholder "Passwort" \
-  --template-toggle-hide "Passwort ausblenden" \
-  --template-toggle-show "Passwort anzeigen" \
-  --template-remember "Auf diesem Gerät 14 Tage merken" \
-  --template-error "Das Passwort ist nicht korrekt."
+rm -rf public-protected
+(
+  cd public
+  npx --no-install staticrypt ./* \
+    --recursive \
+    --directory ../public-protected \
+    --config false \
+    --salt "${STATICRYPT_SALT}" \
+    --remember 14 \
+    --template-color-primary "#c8ab37" \
+    --template-color-secondary "#1d211c" \
+    --template-title "ESKYNA Social Media Studio" \
+    --template-instructions "Interner Bereich. Bitte das Team-Passwort eingeben." \
+    --template-button "Studio öffnen" \
+    --template-placeholder "Passwort" \
+    --template-toggle-hide "Passwort ausblenden" \
+    --template-toggle-show "Passwort anzeigen" \
+    --template-remember "Auf diesem Gerät 14 Tage merken" \
+    --template-error "Das Passwort ist nicht korrekt."
+)
 
-node scripts/style-lock-screen.mjs public/admin/index.html static/media/brand/sign-gold.png
+rm -rf public
+mv public-protected public
+node scripts/style-lock-screen.mjs public static/media/brand/sign-gold.png
 
-test -f public/admin/index.html
+test -f public/index.html
+test -f public/audio/index.html
+grep -q 'id="eskyna-lock-theme"' public/index.html
+grep -q 'id="eskyna-lock-theme"' public/audio/index.html
 
-echo "Protected build created in public/admin"
+if grep -Rni '/admin/admin/' public --include='*.html' --include='*.css' --include='*.js'; then
+  echo "ERROR: Protected build contains the duplicated /admin/admin/ path." >&2
+  exit 1
+fi
+
+printf 'Protected multi-page build created in public.\n'

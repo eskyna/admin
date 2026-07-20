@@ -1,9 +1,10 @@
 {
   "name": "eskyna-social-media-studio",
-  "version": "0.1.0",
+  "version": "0.4.1",
   "private": true,
-  "description": "Password-protected Hugo workspace for ESKYNA social media assets and brand documentation.",
+  "description": "Password-protected Hugo workspace for ESKYNA social media assets, prompts, audio generation and brand documentation.",
   "scripts": {
+    "verify": "bash scripts/verify-source.sh",
     "dev": "hugo server --baseURL http://localhost:1313/admin/ --appendPort=false --navigateToChanged",
     "build": "bash scripts/build.sh",
     "build:protected": "bash scripts/build-protected.sh"
