@@ -666,7 +666,15 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
   :root { --sidebar: 235px; }
   .workspace { padding-inline: 28px; }
   .topbar { padding-inline: 28px; }
-  .hero-section { min-height: min(70vh, 640px); }
+  .hero-section {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    align-items: stretch;
+  }
+  .hero-portraits {
+    min-height: 380px;
+    order: -1;
+  }
   .hero-media__photo { object-position: 78% center; }
   .metrics { grid-template-columns: repeat(2,1fr); }
   .audio-studio { grid-template-columns: 1fr; }
@@ -688,20 +696,19 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
   .workspace { padding: 26px 18px 70px; }
   .page-section { margin-top: 82px; }
   .hero-section {
-    min-height: min(78vh, 620px);
-    align-items: end;
-    padding: 34px 22px 28px;
+    min-height: auto;
+    padding: 24px 18px 26px;
     border-radius: 22px;
+    gap: 22px;
   }
+  .hero-portraits { min-height: 320px; gap: 10px; }
+  .hero-portraits__frame { border-radius: 16px; }
+  .hero-portraits__signet { left: -8px; bottom: 10px; width: 54px; height: 54px; }
   .hero-media__photo { object-position: 82% center; }
   .hero-media__veil {
     background:
-      linear-gradient(180deg, rgba(18, 20, 17, .2) 0%, rgba(18, 20, 17, .55) 42%, rgba(18, 20, 17, .9) 100%),
+      linear-gradient(180deg, rgba(18, 20, 17, .35) 0%, rgba(18, 20, 17, .62) 42%, rgba(18, 20, 17, .9) 100%),
       linear-gradient(105deg, rgba(18, 20, 17, .55) 0%, transparent 60%);
-  }
-  .hero-media__signet {
-    width: 58px;
-    height: 58px;
   }
   .hero-copy h1 { font-size: clamp(34px, 9vw, 52px); max-width: none; }
   .prompt-grid { grid-template-columns: 1fr; }
@@ -719,7 +726,8 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
   html { scroll-padding-top: 82px; }
   .global-search kbd { display: none; }
   .avatar { display: none; }
-  .hero-section { min-height: 560px; padding: 28px 18px 24px; }
+  .hero-section { padding: 20px 14px 22px; }
+  .hero-portraits { min-height: 280px; }
   .hero-brand { margin-bottom: 16px; gap: 11px; }
   .hero-brand__name { font-size: clamp(36px, 12vw, 52px); }
   .hero-copy > p { font-size: 14px; max-width: none; }
