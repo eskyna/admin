@@ -28,8 +28,8 @@ rm -rf public-protected
     --config false \
     --salt "${STATICRYPT_SALT}" \
     --remember 14 \
-    --template-color-primary "#c8ab37" \
-    --template-color-secondary "#1d211c" \
+    --template-color-primary "#c5a059" \
+    --template-color-secondary "#2c1e16" \
     --template-title "ESKYNA Medienstudio" \
     --template-instructions "Interner Bereich. Bitte das Team-Passwort eingeben." \
     --template-button "Studio öffnen" \

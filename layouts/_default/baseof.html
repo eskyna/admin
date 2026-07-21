@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
-  <meta name="theme-color" content="#1d211c">
+  <meta name="theme-color" content="#2c1e16">
   <meta name="eskyna-build" content="{{ site.Params.buildVersion | default "0.4.1" }}">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <link rel="preload" href="{{ "fonts/montserrat-500.ttf" | relURL }}" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="{{ "fonts/open-sans-400.ttf" | relURL }}" as="font" type="font/ttf" crossorigin>
   <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/png" sizes="48x48">
   <link rel="icon" href="{{ "favicon-32.png" | relURL }}" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" sizes="180x180">

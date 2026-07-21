@@ -24,8 +24,29 @@ async function listHtmlFiles(target) {
 function lockThemeCss(logoDataUri, version) {
   return `
 <style id="eskyna-lock-theme">
+  @font-face {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/admin/fonts/montserrat-600.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/admin/fonts/open-sans-400.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/admin/fonts/open-sans-700.ttf") format("truetype");
+  }
   .staticrypt-html, .staticrypt-body { min-height: 100%; }
-  .staticrypt-body { background: #f4efe6 !important; }
+  .staticrypt-body { background: #f6f1ea !important; }
   .staticrypt-content {
     position: relative;
     min-height: 100vh !important;
@@ -34,12 +55,12 @@ function lockThemeCss(logoDataUri, version) {
     overflow: hidden;
     padding: 28px !important;
     box-sizing: border-box;
-    color: #1d211c !important;
+    color: #2c1e16 !important;
     background:
-      radial-gradient(circle at 84% 10%, rgba(200,171,55,.22) 0 10%, transparent 10.2%),
-      radial-gradient(circle at 8% 88%, rgba(92,112,94,.16) 0 13%, transparent 13.2%),
-      linear-gradient(135deg, #f8f3ea, #eee7da) !important;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+      radial-gradient(circle at 84% 10%, rgba(197,160,89,.22) 0 10%, transparent 10.2%),
+      radial-gradient(circle at 8% 88%, rgba(139,94,52,.12) 0 13%, transparent 13.2%),
+      linear-gradient(135deg, #f8f3ea, #efe7db) !important;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   }
   .staticrypt-content::before {
     content: "";
@@ -67,11 +88,11 @@ function lockThemeCss(logoDataUri, version) {
     margin: 0 !important;
     padding: 104px 64px 54px !important;
     overflow: hidden;
-    color: #1d211c !important;
+    color: #2c1e16 !important;
     background: rgba(255,253,248,.96) !important;
-    border: 1px solid rgba(29,33,28,.1);
+    border: 1px solid rgba(44,30,22,.1);
     border-radius: 30px;
-    box-shadow: 0 32px 90px rgba(29,33,28,.18) !important;
+    box-shadow: 0 32px 90px rgba(44,30,22,.16) !important;
     text-align: left !important;
     backdrop-filter: blur(20px);
   }
@@ -97,17 +118,17 @@ function lockThemeCss(logoDataUri, version) {
   }
   .staticrypt-title {
     margin: 0 0 14px !important;
-    color: #1d211c !important;
-    font-family: Georgia, "Times New Roman", serif !important;
-    font-size: clamp(34px, 7vw, 49px) !important;
-    font-weight: 400 !important;
-    letter-spacing: -.035em;
-    line-height: 1.02 !important;
+    color: #2c1e16 !important;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: clamp(30px, 6vw, 44px) !important;
+    font-weight: 600 !important;
+    letter-spacing: -.02em;
+    line-height: 1.08 !important;
     text-align: left !important;
   }
   .staticrypt-instructions {
     margin: 0 0 28px !important;
-    color: #666c64 !important;
+    color: #6d5a4c !important;
     font-size: 14px !important;
     line-height: 1.65 !important;
     text-align: left !important;
@@ -118,11 +139,12 @@ function lockThemeCss(logoDataUri, version) {
     width: 100% !important;
     min-height: 56px;
     box-sizing: border-box !important;
-    color: #1d211c !important;
-    background: #f4efe6 !important;
-    border: 1px solid rgba(29,33,28,.14) !important;
-    border-radius: 14px !important;
+    color: #2c1e16 !important;
+    background: #f6f1ea !important;
+    border: 1px solid rgba(44,30,22,.14) !important;
+    border-radius: 999px !important;
     outline: none !important;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-size: 16px !important;
     transition: border-color .18s, box-shadow .18s, background .18s;
   }
@@ -130,8 +152,8 @@ function lockThemeCss(logoDataUri, version) {
   .staticrypt-form input[type="password"]:focus,
   .staticrypt-form input[type="text"]:focus {
     background: #fffdf8 !important;
-    border-color: #c8ab37 !important;
-    box-shadow: 0 0 0 4px rgba(200,171,55,.14) !important;
+    border-color: #c5a059 !important;
+    box-shadow: 0 0 0 4px rgba(197,160,89,.16) !important;
   }
   .staticrypt-decrypt-button,
   .staticrypt-form input[type="submit"] {
@@ -139,19 +161,20 @@ function lockThemeCss(logoDataUri, version) {
     min-height: 54px;
     margin-top: 12px !important;
     color: #fffdf8 !important;
-    background: #1d211c !important;
+    background: #8b5e34 !important;
     border: 0 !important;
-    border-radius: 14px !important;
+    border-radius: 999px !important;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-size: 13px !important;
-    font-weight: 800 !important;
-    letter-spacing: .03em;
+    font-weight: 700 !important;
+    letter-spacing: .02em;
     cursor: pointer;
     transition: transform .18s, box-shadow .18s, background .18s;
   }
   .staticrypt-decrypt-button:hover,
   .staticrypt-form input[type="submit"]:hover {
-    background: #2a3029 !important;
-    box-shadow: 0 14px 34px rgba(29,33,28,.22);
+    background: #7a522c !important;
+    box-shadow: 0 14px 34px rgba(44,30,22,.2);
     transform: translateY(-1px);
   }
   .staticrypt-remember {
@@ -159,11 +182,11 @@ function lockThemeCss(logoDataUri, version) {
     align-items: center;
     gap: 9px;
     margin: 17px 0 2px !important;
-    color: #666c64 !important;
+    color: #6d5a4c !important;
     font-size: 12px !important;
     text-align: left !important;
   }
-  .staticrypt-remember input { accent-color: #c8ab37; }
+  .staticrypt-remember input { accent-color: #c5a059; }
   #staticrypt-toggle-password-visibility { opacity: .56; }
   @media (max-width: 620px) {
     .staticrypt-content { padding: 12px !important; }
@@ -181,7 +204,7 @@ function faviconLinks(logoDataUri) {
   return `
 <link rel="icon" href="${logoDataUri}" type="image/png">
 <link rel="apple-touch-icon" href="${logoDataUri}">
-<meta name="theme-color" content="#1d211c">`;
+<meta name="theme-color" content="#2c1e16">`;
 }
 
 async function main() {
