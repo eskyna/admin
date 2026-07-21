@@ -3,7 +3,6 @@
 {{ $prompts := site.Data.prompts.prompts }}
 {{ $docsSection := site.GetPage "/docs" }}
 {{ $docs := $docsSection.Pages.ByWeight }}
-{{ $featured := where $assets "featured" true }}
 {{ $instagramBackgrounds := slice }}
 {{ range resources.Match "backgrounds/instagram/*.*" }}
   {{ if reflect.IsImageResourceProcessable . }}
@@ -69,27 +68,22 @@
 
     <main class="workspace">
       <section class="page-section hero-section" id="dashboard" data-section>
+        <div class="hero-media" aria-hidden="true">
+          <img class="hero-media__photo" src="{{ "media/natalia/natalia-desk.png" | relURL }}" alt="" loading="eager" decoding="async">
+          <div class="hero-media__veil"></div>
+          <img class="hero-media__signet" src="{{ "media/brand/sign-gold.png" | relURL }}" alt="">
+        </div>
         <div class="hero-copy">
-          <div class="eyebrow"><span></span>Interner Content Hub</div>
-          <h1>Alles für starke<br><em>ESKYNA Inhalte.</em></h1>
-          <p>Hintergründe, Natalia-Motive, Prompts, Audio und Markenwissen - zentral organisiert und in Sekunden einsatzbereit.</p>
+          <div class="hero-brand">
+            <img class="hero-brand__mark" src="{{ "media/brand/sign-gold.png" | relURL }}" alt="">
+            <span class="hero-brand__name">ESKYNA</span>
+          </div>
+          <h1>Dein Auftritt.<br><em>Deine Präsenz.</em></h1>
+          <p>Natalia-Motive, Logos und Stimme – präzise kuratiert für die Marke, die du führst.</p>
           <div class="hero-actions">
-            <a class="button button--primary" href="#assets">Assets entdecken <svg><use href="#icon-arrow"></use></svg></a>
-            <a class="button button--ghost" href="#prompts">Prompt starten</a>
+            <a class="button button--primary" href="#assets">Assets öffnen <svg><use href="#icon-arrow"></use></svg></a>
             <a class="button button--ghost" href="{{ "audio/" | relURL }}"><svg><use href="#icon-mic"></use></svg> Audio erstellen</a>
           </div>
-          <div class="hero-note"><svg><use href="#icon-lock"></use></svg> Inhalte werden beim Deployment verschlüsselt.</div>
-        </div>
-        <div class="hero-collage" aria-label="Auswahl aktueller ESKYNA Assets">
-          <div class="hero-collage__backdrop"></div>
-          {{ range $index, $asset := first 3 $featured }}
-            {{ $assetURL := $asset.file | relURL }}
-            <figure class="hero-tile hero-tile--{{ add $index 1 }}">
-              <img src="{{ $assetURL }}" alt="{{ $asset.title }}" loading="eager">
-              <figcaption>{{ $asset.title }}</figcaption>
-            </figure>
-          {{ end }}
-          <div class="hero-stamp"><img src="{{ "media/brand/sign-gold.png" | relURL }}" alt=""><span>Curated<br>for ESKYNA</span></div>
         </div>
       </section>
 
