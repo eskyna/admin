@@ -20,7 +20,18 @@
     {{ $instagramBackgrounds = $instagramBackgrounds | append . }}
   {{ end }}
 {{ end }}
-{{ $assetCount := add (add (len $assets) (len $instagramBackgrounds)) (len $nataliaAuto) }}
+{{ $backgroundFolders := site.Data.assets.background_folders | default slice }}
+{{ $folderBackgrounds := slice }}
+{{ range $folder := $backgroundFolders }}
+  {{ $dir := printf "static/media/backgrounds/%s" $folder.id }}
+  {{ range readDir $dir }}
+    {{ $ext := path.Ext .Name | lower }}
+    {{ if and (not .IsDir) (in (slice ".png" ".jpg" ".jpeg" ".webp") $ext) }}
+      {{ $folderBackgrounds = $folderBackgrounds | append (dict "file" . "folder" $folder) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $assetCount := add (add (add (len $assets) (len $instagramBackgrounds)) (len $nataliaAuto)) (len $folderBackgrounds) }}
 <div class="app-shell">
   <aside class="sidebar" id="sidebar" aria-label="Hauptnavigation">
     <a class="brand" href="#dashboard" aria-label="ESKYNA Medienstudio Startseite">
@@ -132,7 +143,8 @@
             {{ end }}
           </div>
         </div>
-        <div class="folder-hint"><svg><use href="#icon-image"></use></svg><span>Neue Natalia-Motive in <code>static/media/natalia/</code> und Instagram-Hintergründe in <code>assets/backgrounds/instagram/</code> erscheinen automatisch.</span></div>
+        <div class="folder-hint"><svg><use href="#icon-image"></use></svg><span>Hintergründe nach Material in <code>static/media/backgrounds/&lt;kategorie&gt;/</code> ablegen (z.&nbsp;B. <code>leinen/</code>, <code>offen/</code>). Natalia in <code>static/media/natalia/</code>. Instagram-Imports in <code>assets/backgrounds/instagram/</code>.</span></div>
+
 
         <div class="asset-grid" data-asset-grid>
           {{ range $assets }}
@@ -171,6 +183,31 @@
                 <div class="asset-card__title-row"><div><h3>{{ $title }}</h3><p>Automatisch aus <code>static/media/natalia/</code> importiert.</p></div><span class="format-pill">{{ $format }}</span></div>
                 <dl class="asset-meta"><div><dt>Format</dt><dd>individuell</dd></div><div><dt>Pixel</dt><dd>Automatisch</dd></div><div><dt>Einsatz</dt><dd>Natalia</dd></div></dl>
                 <div class="tag-row"><span>natalia</span><span>motiv</span><span>automatisch</span></div>
+                <div class="asset-card__actions">
+                  <button class="text-button" type="button" data-copy-value="{{ $assetURL }}"><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button>
+                  <a class="icon-button" href="{{ $assetURL }}" download="{{ $filename }}" title="Originaldatei herunterladen"><svg><use href="#icon-download"></use></svg></a>
+                </div>
+              </div>
+            </article>
+          {{ end }}
+          {{ range $folderBackgrounds }}
+            {{ $file := .file }}
+            {{ $folder := .folder }}
+            {{ $filename := $file.Name }}
+            {{ $title := path.BaseName $filename | replaceRE "[-_]+" " " | strings.Title }}
+            {{ $assetURL := printf "media/backgrounds/%s/%s" $folder.id $filename | relURL }}
+            {{ $format := strings.ToUpper (strings.TrimPrefix "." (path.Ext $filename)) }}
+            {{ $searchText := printf "%s %s Hintergrund %s" $title $folder.category_label $folder.id }}
+            <article class="asset-card searchable" data-asset-card data-category="{{ $folder.category }}" data-search="{{ $searchText | lower }}" data-title="{{ $title }}" data-file="{{ $assetURL }}" data-path="{{ $assetURL }}" data-filename="{{ $filename }}" data-format="{{ $format }}" data-dimensions="Automatisch" data-ratio="4:5" data-usage="Instagram Hintergrund" data-rights="Bitte intern prüfen" data-updated="Automatisch importiert" data-description="{{ printf "Hintergrund · %s" $folder.category_label }}" data-tags="{{ printf "hintergrund, %s, automatisch" $folder.id }}" data-category-label="{{ $folder.category_label }}" data-fit="contain">
+              <button class="asset-card__visual" type="button" data-asset-open aria-label="{{ $title }} in Vorschau öffnen">
+                <img src="{{ $assetURL }}" alt="{{ $title }}" loading="lazy">
+                <span class="asset-card__badge">{{ $folder.category_label }}</span>
+                <span class="asset-card__preview"><svg><use href="#icon-eye"></use></svg> Vorschau</span>
+              </button>
+              <div class="asset-card__body">
+                <div class="asset-card__title-row"><div><h3>{{ $title }}</h3><p>Aus <code>static/media/backgrounds/{{ $folder.id }}/</code></p></div><span class="format-pill">{{ $format }}</span></div>
+                <dl class="asset-meta"><div><dt>Format</dt><dd>4:5</dd></div><div><dt>Pixel</dt><dd>Automatisch</dd></div><div><dt>Material</dt><dd>{{ $folder.category_label }}</dd></div></dl>
+                <div class="tag-row"><span>hintergrund</span><span>{{ $folder.id }}</span><span>automatisch</span></div>
                 <div class="asset-card__actions">
                   <button class="text-button" type="button" data-copy-value="{{ $assetURL }}"><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button>
                   <a class="icon-button" href="{{ $assetURL }}" download="{{ $filename }}" title="Originaldatei herunterladen"><svg><use href="#icon-download"></use></svg></a>

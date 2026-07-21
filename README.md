@@ -181,7 +181,7 @@ https://eskyna.com/admin/media/backgrounds/instagram/<dateiname>
 Manuell katalogisierte Dateien liegen weiterhin unter:
 
 ```text
-static/media/backgrounds/
+static/media/backgrounds/<kategorie>/   # z. B. offen/, leinen/, leder/
 static/media/natalia/
 static/media/brand/
 static/media/templates/
@@ -192,7 +192,7 @@ Metadaten werden in `data/assets.yaml` gepflegt.
 Die vorhandene Demo-Datei ist erreichbar unter:
 
 ```text
-https://eskyna.com/admin/media/backgrounds/01.png
+https://eskyna.com/admin/media/backgrounds/offen/01.png
 ```
 
 ## Prompts und Brand-Dokumente

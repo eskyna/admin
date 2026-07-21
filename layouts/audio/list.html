@@ -9,7 +9,27 @@
     {{ $instagramBackgrounds = $instagramBackgrounds | append . }}
   {{ end }}
 {{ end }}
-{{ $assetCount := add (len $assets) (len $instagramBackgrounds) }}
+{{ $backgroundFolders := site.Data.assets.background_folders | default slice }}
+{{ $folderBackgroundCount := 0 }}
+{{ range $folder := $backgroundFolders }}
+  {{ $dir := printf "static/media/backgrounds/%s" $folder.id }}
+  {{ range readDir $dir }}
+    {{ $ext := path.Ext .Name | lower }}
+    {{ if and (not .IsDir) (in (slice ".png" ".jpg" ".jpeg" ".webp") $ext) }}
+      {{ $folderBackgroundCount = add $folderBackgroundCount 1 }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $nataliaAutoCount := 0 }}
+{{ $catalogedNatalia := slice }}
+{{ range where $assets "category" "natalia" }}{{ $catalogedNatalia = $catalogedNatalia | append .filename }}{{ end }}
+{{ range readDir "static/media/natalia" }}
+  {{ $ext := path.Ext .Name | lower }}
+  {{ if and (not .IsDir) (in (slice ".png" ".jpg" ".jpeg" ".webp") $ext) (not (in $catalogedNatalia .Name)) }}
+    {{ $nataliaAutoCount = add $nataliaAutoCount 1 }}
+  {{ end }}
+{{ end }}
+{{ $assetCount := add (add (add (len $assets) (len $instagramBackgrounds)) $folderBackgroundCount) $nataliaAutoCount }}
 {{ $audioEndpoint := site.Params.audioEndpoint | default "" }}
 {{ $homeURL := site.Home.RelPermalink }}
 <div class="app-shell">

@@ -34,10 +34,19 @@
     return normalize(element.dataset.search || element.textContent).includes(searchQuery);
   }
 
+  function matchesAssetCategory(card, filter) {
+    if (filter === "all") return true;
+    const category = card.dataset.category || "";
+    if (filter === "backgrounds") {
+      return category === "backgrounds" || category.startsWith("bg-");
+    }
+    return category === filter;
+  }
+
   function applyFilters() {
     let assetCount = 0;
     assetCards.forEach((card) => {
-      const categoryMatch = assetFilter === "all" || card.dataset.category === assetFilter;
+      const categoryMatch = matchesAssetCategory(card, assetFilter);
       const visible = categoryMatch && matchesSearch(card);
       card.hidden = !visible;
       if (visible) assetCount += 1;

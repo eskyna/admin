@@ -10,14 +10,14 @@ fail() {
 
 [[ -f "${SITE_DIR}/index.html" ]] || fail "${SITE_DIR}/index.html is missing."
 [[ -f "${SITE_DIR}/audio/index.html" ]] || fail "${SITE_DIR}/audio/index.html is missing."
-[[ -f "${SITE_DIR}/media/backgrounds/01.png" ]] || fail "Default background asset was not published."
+[[ -f "${SITE_DIR}/media/backgrounds/offen/01.png" ]] || fail "Default background asset was not published."
 [[ -f "${SITE_DIR}/media/brand/sign-gold.png" ]] || fail "Brand mark was not published."
 [[ -f "${SITE_DIR}/favicon.png" ]] || fail "Favicon was not published."
 [[ -f "${SITE_DIR}/apple-touch-icon.png" ]] || fail "Apple touch icon was not published."
 
 # Git LFS pointer files must not ship into the published site.
 for asset in \
-  "${SITE_DIR}/media/backgrounds/01.png" \
+  "${SITE_DIR}/media/backgrounds/offen/01.png" \
   "${SITE_DIR}/media/brand/sign-gold.png"
 do
   if head -c 20 "${asset}" | grep -q 'git-lfs.github.com'; then
