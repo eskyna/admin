@@ -96,12 +96,16 @@
           </div>
         </div>
         <div class="hero-portraits" aria-label="Natalia Motive">
-          {{ range $index, $portrait := first 4 $heroPortraits }}
-            {{ if ne $portrait.filename "natalia-desk.png" }}
-              <figure class="hero-portraits__frame hero-portraits__frame--{{ add $index 1 }}">
-                <img src="{{ $portrait.file | relURL }}" alt="{{ $portrait.title }}" loading="eager" decoding="async">
-              </figure>
+          {{ $heroShow := slice }}
+          {{ range $heroPortraits }}
+            {{ if ne .filename "natalia-desk.png" }}
+              {{ $heroShow = $heroShow | append . }}
             {{ end }}
+          {{ end }}
+          {{ range $index, $portrait := first 3 $heroShow }}
+            <figure class="hero-portraits__frame hero-portraits__frame--{{ add $index 1 }}">
+              <img src="{{ $portrait.file | relURL }}" alt="{{ $portrait.title }}" loading="eager" decoding="async">
+            </figure>
           {{ end }}
           <img class="hero-portraits__signet" src="{{ "media/brand/sign-gold.png" | relURL }}" alt="">
         </div>
