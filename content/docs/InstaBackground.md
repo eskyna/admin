@@ -1,5 +1,5 @@
 ---
-title: "Instagram Background"
+title: "Instagram-Hintergrund"
 summary: "Hintergrundbilder für Instagram"
 status: "Arbeitsentwurf"
 updated: "20.07.2026"

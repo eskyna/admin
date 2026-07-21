@@ -1,5 +1,5 @@
 ---
-title: "Tone of Voice"
+title: "Tonalität"
 summary: "Sprachliche Leitplanken, Formulierungsprinzipien und Kanaladaptionen."
 status: "Arbeitsentwurf"
 updated: "20.07.2026"
@@ -56,12 +56,12 @@ Qualität, Langlebigkeit und bewusste Entscheidungen stehen vor Status, Trends u
 
 | Kanal | Ton | Struktur |
 |---|---|---|
-| Instagram | nahbar, visuell, pointiert | Hook, 3-5 klare Gedanken, sanfter CTA |
+| Instagram | nahbar, visuell, pointiert | Einstieg, 3-5 klare Gedanken, sanfter Handlungsaufruf |
 | LinkedIn | souverän, reflektiert, fachlich | Beobachtung, Einordnung, konkreter Nutzen |
 | Newsletter | persönlich, beratend | kurze Einleitung, Hauptgedanke, nächster Schritt |
 | Website | ruhig, vertrauensbildend | Nutzen, Orientierung, Beleg, Einladung |
 
-## CTA-Beispiele
+## Beispiele für Handlungsaufrufe
 
 - "Speichere dir die Checkliste für deinen nächsten Einkauf."
 - "Welche dieser Situationen kennst du aus deinem Kleiderschrank?"

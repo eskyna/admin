@@ -1,4 +1,4 @@
 ---
-title: "ESKYNA Social Media Studio"
-description: "Assets, Prompts und Markenwissen an einem Ort."
+title: "ESKYNA Medienstudio"
+description: "Medien, Prompts und Markenwissen an einem Ort."
 ---

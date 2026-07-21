@@ -1,5 +1,5 @@
 ---
-title: "Brand-Dokumente"
+title: "Marken-Dokumente"
 build:
   render: never
   list: always

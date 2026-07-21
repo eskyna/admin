@@ -2,7 +2,7 @@ categories:
   - id: "all"
     label: "Alle"
   - id: "copy"
-    label: "Copy"
+    label: "Texte"
   - id: "campaign"
     label: "Kampagne"
   - id: "image"
@@ -12,62 +12,62 @@ categories:
 
 prompts:
   - id: "instagram-carousel"
-    title: "Instagram Carousel entwickeln"
+    title: "Instagram-Karussell entwickeln"
     category: "copy"
-    category_label: "Copy"
+    category_label: "Texte"
     platform: "Instagram"
-    description: "Erstellt eine klare Carousel-Dramaturgie mit Hook, Nutzwert und ruhigem CTA."
+    description: "Erstellt eine klare Karussell-Dramaturgie mit Einstieg, Nutzwert und ruhigem Handlungsaufruf."
     updated: "20.07.2026"
-    tags: ["carousel", "instagram", "education", "cta"]
+    tags: ["karussell", "instagram", "wissen", "handlungsaufruf"]
     variables: ["THEMA", "ZIELGRUPPE", "ANZAHL SLIDES", "ANGEBOT"]
     body: |-
-      Du arbeitest als Senior Social Media Editor für ESKYNA, eine Marke für Style- und Imagecoaching.
+      Du arbeitest als erfahrene Social-Media-Redakteurin für ESKYNA, eine Marke für Style- und Imagecoaching.
 
-      Entwickle ein Instagram-Carousel zum Thema {{THEMA}} für {{ZIELGRUPPE}} mit {{ANZAHL SLIDES}} Slides.
+      Entwickle ein Instagram-Karussell zum Thema {{THEMA}} für {{ZIELGRUPPE}} mit {{ANZAHL SLIDES}} Folien.
 
       Anforderungen:
       - Ton: klar, warm, souverän, persönlich; Premium ohne elitär zu klingen.
-      - Eine Hauptaussage pro Slide.
-      - Slide 1: konkrete Hook ohne Clickbait.
-      - Mittlere Slides: nachvollziehbare Beispiele aus Alltag, Garderobe oder Auftreten.
-      - Vorletzter Slide: kompakte Zusammenfassung.
-      - Letzter Slide: sanfter CTA zu {{ANGEBOT}}.
+      - Eine Hauptaussage pro Folie.
+      - Folie 1: konkreter Einstieg ohne Clickbait.
+      - Mittlere Folien: nachvollziehbare Beispiele aus Alltag, Garderobe oder Auftreten.
+      - Vorletzte Folie: kompakte Zusammenfassung.
+      - Letzte Folie: sanfter Handlungsaufruf zu {{ANGEBOT}}.
       - Keine abwertende Sprache über Körper, Alter oder Stil.
       - Keine Superlative und keine künstliche Verknappung.
 
       Liefere:
-      1. Slide-Texte mit maximal 28 Wörtern je Slide.
-      2. Caption mit 900-1.300 Zeichen.
-      3. Drei alternative Hooks.
-      4. Alt-Text für Barrierefreiheit.
+      1. Folientexte mit maximal 28 Wörtern je Folie.
+      2. Bildunterschrift mit 900-1.300 Zeichen.
+      3. Drei alternative Einstiege.
+      4. Alternativtext für Barrierefreiheit.
 
   - id: "linkedin-thought-leadership"
-    title: "LinkedIn Thought-Leadership Post"
+    title: "LinkedIn-Fachbeitrag"
     category: "copy"
-    category_label: "Copy"
+    category_label: "Texte"
     platform: "LinkedIn"
-    description: "Übersetzt eine Beobachtung aus Stil und Wirkung in einen fachlichen LinkedIn-Post."
+    description: "Übersetzt eine Beobachtung aus Stil und Wirkung in einen fachlichen LinkedIn-Beitrag."
     updated: "20.07.2026"
-    tags: ["linkedin", "personal-branding", "expertise", "b2b"]
-    variables: ["BEOBACHTUNG", "KERNAUSSAGE", "BEISPIEL", "CTA"]
+    tags: ["linkedin", "persönliche-marke", "expertise", "b2b"]
+    variables: ["BEOBACHTUNG", "KERNAUSSAGE", "BEISPIEL", "HANDLUNGSAUFRUF"]
     body: |-
-      Schreibe einen LinkedIn-Post für Natalia Kleemann / ESKYNA.
+      Schreibe einen LinkedIn-Beitrag für Natalia Kleemann / ESKYNA.
 
       Ausgangspunkt: {{BEOBACHTUNG}}
       Kernaussage: {{KERNAUSSAGE}}
       Konkretes Beispiel: {{BEISPIEL}}
-      Gewünschter CTA: {{CTA}}
+      Gewünschter Handlungsaufruf: {{HANDLUNGSAUFRUF}}
 
       Struktur:
       - starke, ruhige Einstiegsbeobachtung in 1-2 Zeilen
       - kurze fachliche Einordnung
       - konkretes Beispiel
       - 3 umsetzbare Gedanken oder Fragen
-      - persönlicher Abschluss mit offenem CTA
+      - persönlicher Abschluss mit offenem Handlungsaufruf
 
       Stil:
       - souverän, reflektiert und nahbar
-      - kurze Absätze, keine Buzzwords
+      - kurze Absätze, keine Modeworte
       - keine pauschalen Stilregeln
       - 1.000-1.500 Zeichen
       - maximal drei relevante Hashtags
@@ -76,10 +76,10 @@ prompts:
     title: "Kampagnenkonzept in 30 Minuten"
     category: "campaign"
     category_label: "Kampagne"
-    platform: "Multi-Channel"
-    description: "Erzeugt Leitidee, Content-Säulen, Formate und Messkriterien für eine Kampagne."
+    platform: "Mehrkanal"
+    description: "Erzeugt Leitidee, Inhaltssäulen, Formate und Messkriterien für eine Kampagne."
     updated: "20.07.2026"
-    tags: ["campaign", "planning", "content-pillars", "kpi"]
+    tags: ["kampagne", "planung", "inhaltssäulen", "kennzahlen"]
     variables: ["ZIEL", "ZIELGRUPPE", "ANGEBOT", "ZEITRAUM", "KANAELE"]
     body: |-
       Entwickle ein kompaktes Social-Media-Kampagnenkonzept für ESKYNA.
@@ -97,54 +97,54 @@ prompts:
       2. Drei mögliche Kampagnennamen.
       3. Vier Content-Säulen mit jeweiligem Nutzen.
       4. Einen realistischen Redaktionsplan nach Kanal und Woche.
-      5. Je drei Hooks für Awareness, Consideration und Conversion.
-      6. Benötigte Assets und offene Produktionsfragen.
-      7. Messbare KPIs mit einer kurzen Begründung.
+      5. Je drei Einstiege für Aufmerksamkeit, Interesse und Entscheidung.
+      6. Benötigte Medien und offene Produktionsfragen.
+      7. Messbare Kennzahlen mit einer kurzen Begründung.
       8. Risiken für Marke oder Glaubwürdigkeit und passende Gegenmaßnahmen.
 
   - id: "image-background"
-    title: "AI-Hintergrund für Social Media"
+    title: "KI-Hintergrund für Social Media"
     category: "image"
     category_label: "Bild & Design"
-    platform: "Image Generation"
+    platform: "Bildgenerierung"
     description: "Formuliert einen kontrollierten Bildprompt für ruhige ESKYNA-Hintergründe."
     updated: "20.07.2026"
-    tags: ["image", "background", "editorial", "brand"]
+    tags: ["bild", "hintergrund", "redaktionell", "marke"]
     variables: ["FORMAT", "FARBWELT", "TEXTZONE", "STIMMUNG", "MATERIAL"]
     body: |-
-      Create a premium editorial background for ESKYNA social media.
+      Erstelle einen hochwertigen redaktionellen Hintergrund für ESKYNA Social Media.
 
       Format: {{FORMAT}}
-      Color world: {{FARBWELT}}
-      Reserved negative space for copy: {{TEXTZONE}}
-      Mood: {{STIMMUNG}}
-      Material or texture: {{MATERIAL}}
+      Farbwelt: {{FARBWELT}}
+      Freigehaltener Negativraum für Text: {{TEXTZONE}}
+      Stimmung: {{STIMMUNG}}
+      Material oder Textur: {{MATERIAL}}
 
-      Visual direction:
-      - quiet luxury, warm European editorial styling
-      - generous negative space and a clear focal hierarchy
-      - subtle organic geometry, refined gold accents, soft natural light
-      - tactile, believable materials and restrained depth
-      - no people, no text, no logos, no fashion products
-      - avoid glossy 3D render aesthetics, neon colors, busy patterns and generic stock imagery
+      Visuelle Richtung:
+      - ruhige Premium-Ästhetik, warmes europäisches Editorial
+      - großzügiger Negativraum und klare Bildhierarchie
+      - dezente organische Geometrie, feine Goldakzente, weiches natürliches Licht
+      - taktile, glaubwürdige Materialien und zurückhaltende Tiefe
+      - keine Personen, kein Text, keine Logos, keine Modeprodukte
+      - keine glänzende 3D-Render-Optik, keine Neonfarben, keine unruhigen Muster, keine generischen Stock-Motive
 
-      Output should remain easy to crop and readable behind dark or ivory typography.
+      Das Ergebnis soll gut zuschneidbar bleiben und hinter dunkler oder elfenbeinfarbener Typografie lesbar sein.
 
   - id: "brand-quality-check"
-    title: "Brand- und Qualitätscheck"
+    title: "Marken- und Qualitätscheck"
     category: "quality"
     category_label: "Qualität"
-    platform: "Review"
-    description: "Prüft Entwürfe gegen Tone of Voice, CI, Nutzwert und sensible Aussagen."
+    platform: "Prüfung"
+    description: "Prüft Entwürfe gegen Tonalität, Erscheinungsbild, Nutzwert und sensible Aussagen."
     updated: "20.07.2026"
-    tags: ["review", "qa", "tone-of-voice", "ci"]
-    variables: ["ENTWURF", "KANAL", "ZIEL", "CTA"]
+    tags: ["prüfung", "qualität", "tonalität", "erscheinungsbild"]
+    variables: ["ENTWURF", "KANAL", "ZIEL", "HANDLUNGSAUFRUF"]
     body: |-
       Prüfe den folgenden Social-Media-Entwurf für ESKYNA.
 
       Kanal: {{KANAL}}
       Ziel: {{ZIEL}}
-      Geplanter CTA: {{CTA}}
+      Geplanter Handlungsaufruf: {{HANDLUNGSAUFRUF}}
 
       Entwurf:
       {{ENTWURF}}
@@ -155,7 +155,7 @@ prompts:
       - konkreter Nutzwert
       - Glaubwürdigkeit und fachliche Sorgfalt
       - respektvolle Sprache ohne Körper- oder Altersabwertung
-      - CTA-Passung
+      - Passung des Handlungsaufrufs
       - visuelle Umsetzbarkeit
 
       Markiere problematische Formulierungen direkt und liefere anschließend eine verbesserte Fassung, ohne die Aussage unnötig zu verlängern.

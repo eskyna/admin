@@ -198,7 +198,7 @@
       activeAssetFilename = card.dataset.filename || "eskyna-asset";
       if (dialogImage) {
         dialogImage.src = activeAssetPath;
-        dialogImage.alt = card.dataset.title || "Asset-Vorschau";
+        dialogImage.alt = card.dataset.title || "Medienvorschau";
       }
       dialogVisual?.classList.toggle("is-contain", card.dataset.fit === "contain");
       setDialogText("[data-dialog-category]", card.dataset.categoryLabel);

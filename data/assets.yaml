@@ -8,7 +8,7 @@ categories:
   - id: "templates"
     label: "Vorlagen"
   - id: "brand"
-    label: "Brand Assets"
+    label: "Markenmaterial"
 
 assets:
   - id: "natalia-natalia"
@@ -20,9 +20,9 @@ assets:
     format: "PNG"
     dimensions: "2160 x 3840"
     ratio: "9:16"
-    usage: "Instagram, LinkedIn, Kampagnen, Cover"
-    rights: "Bestehendes ESKYNA Asset"
-    source: "ESKYNA Mediathek"
+    usage: "Instagram, LinkedIn, Kampagnen, Titelbilder"
+    rights: "Bestehendes ESKYNA-Medium"
+    source: "ESKYNA Medienarchiv"
     updated: "21.07.2026"
     description: "Kraftvolles Studio-Portrait vor Schwarz – weißes Outfit, direkter Blick."
     tags: ["natalia", "portrait", "studio", "premium", "vertikal"]
@@ -38,9 +38,9 @@ assets:
     format: "PNG"
     dimensions: "3200 x 4000"
     ratio: "4:5"
-    usage: "Instagram, Beratung, Carousel"
-    rights: "Bestehendes ESKYNA Asset"
-    source: "ESKYNA Mediathek"
+    usage: "Instagram, Beratung, Karussell"
+    rights: "Bestehendes ESKYNA-Medium"
+    source: "ESKYNA Medienarchiv"
     updated: "21.07.2026"
     description: "Charakterstarkes Portrait mit Stoffmustern – ideal für Stil- und Beratungsinhalte."
     tags: ["natalia", "portrait", "stil", "farbe", "beratung"]
@@ -48,7 +48,7 @@ assets:
     featured: true
 
   - id: "natalia-natalia-white-hero"
-    title: "Natalia White Hero"
+    title: "Natalia helles Portrait"
     category: "natalia"
     category_label: "Natalia"
     file: "media/natalia/natalia_white_hero.png"
@@ -56,12 +56,12 @@ assets:
     format: "PNG"
     dimensions: "1600 x 1280"
     ratio: "5:4"
-    usage: "Website, LinkedIn, Hero, Newsletter"
-    rights: "Bestehendes ESKYNA Asset"
-    source: "ESKYNA Mediathek"
+    usage: "Website, LinkedIn, Einstieg, Newsletter"
+    rights: "Bestehendes ESKYNA-Medium"
+    source: "ESKYNA Medienarchiv"
     updated: "21.07.2026"
-    description: "Freundliches Premium-Portrait im hellen Blazer – stark für Hero und Begrüßung."
-    tags: ["natalia", "portrait", "hero", "blazer", "premium"]
+    description: "Freundliches Premium-Portrait im hellen Blazer – stark für Einstieg und Begrüßung."
+    tags: ["natalia", "portrait", "einstieg", "blazer", "premium"]
     fit: "contain"
     featured: true
 
@@ -74,12 +74,12 @@ assets:
     format: "PNG"
     dimensions: "2160 x 3840"
     ratio: "9:16"
-    usage: "Collage, Stories, Cover, Cutout"
-    rights: "Bestehendes ESKYNA Asset"
-    source: "ESKYNA Mediathek"
+    usage: "Collage, Stories, Titelbilder, Freisteller"
+    rights: "Bestehendes ESKYNA-Medium"
+    source: "ESKYNA Medienarchiv"
     updated: "21.07.2026"
-    description: "Transparentes Freisteller-Motiv für Collagen, Cover und Social-Zuschnitte."
-    tags: ["natalia", "freisteller", "transparent", "cutout"]
+    description: "Transparentes Freisteller-Motiv für Collagen, Titelbilder und Social-Zuschnitte."
+    tags: ["natalia", "freisteller", "transparent", "ausschnitt"]
     fit: "contain"
     featured: true
 
@@ -92,12 +92,12 @@ assets:
     format: "PNG"
     dimensions: "1915 x 821"
     ratio: "21:9"
-    usage: "Website, LinkedIn, Kampagnen-Header"
-    rights: "Bestehendes ESKYNA Asset"
-    source: "ESKYNA Mediathek"
+    usage: "Website, LinkedIn, Kampagnen-Kopfzeile"
+    rights: "Bestehendes ESKYNA-Medium"
+    source: "ESKYNA Medienarchiv"
     updated: "21.07.2026"
     description: "Breites Keyvisual mit ruhiger Textfläche auf der linken Seite."
-    tags: ["natalia", "desk", "portrait", "beratung", "landscape"]
+    tags: ["natalia", "schreibtisch", "portrait", "beratung", "querformat"]
     fit: "cover"
     featured: true
 
@@ -111,8 +111,8 @@ assets:
     dimensions: "1484 x 1060"
     ratio: "4:3"
     usage: "Instagram, Stories, Kampagne"
-    rights: "Bestehendes ESKYNA Asset"
-    source: "ESKYNA Mediathek"
+    rights: "Bestehendes ESKYNA-Medium"
+    source: "ESKYNA Medienarchiv"
     updated: "21.07.2026"
     description: "Kampagnenmotiv rund um Stilfragen mit Natalia als Gesicht der Marke."
     tags: ["natalia", "kampagne", "stilfrage", "social"]
@@ -128,15 +128,15 @@ assets:
     dimensions: "1536 x 1024"
     ratio: "3:2"
     usage: "Instagram, Stories, Angebote"
-    rights: "Bestehendes ESKYNA Asset"
-    source: "ESKYNA Mediathek"
+    rights: "Bestehendes ESKYNA-Medium"
+    source: "ESKYNA Medienarchiv"
     updated: "21.07.2026"
     description: "Visuelles Gutschein-Motiv mit Natalia für Angebote und Aktionen."
     tags: ["natalia", "gutschein", "angebot", "kampagne"]
     fit: "contain"
 
   - id: "natalia-eskyna-telegram-bot"
-    title: "ESKYNA Telegram Bot"
+    title: "ESKYNA-Telegram-Bot"
     category: "natalia"
     category_label: "Natalia"
     file: "media/natalia/eskyna_telegram_bot.png"
@@ -144,9 +144,9 @@ assets:
     format: "PNG"
     dimensions: "640 x 640"
     ratio: "1:1"
-    usage: "Telegram, Digital, Avatar"
-    rights: "Bestehendes ESKYNA Asset"
-    source: "ESKYNA Mediathek"
+    usage: "Telegram, digital, Profilbild"
+    rights: "Bestehendes ESKYNA-Medium"
+    source: "ESKYNA Medienarchiv"
     updated: "21.07.2026"
     description: "Quadratische Grafik für den ESKYNA Telegram-Bot und digitale Kanäle."
     tags: ["natalia", "telegram", "bot", "digital"]
@@ -161,12 +161,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "01"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "01"]
     fit: "cover"
     featured: true
 
@@ -179,12 +179,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "02"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "02"]
     fit: "cover"
     featured: true
 
@@ -197,12 +197,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "03"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "03"]
     fit: "cover"
     featured: true
 
@@ -215,12 +215,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "04"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "04"]
     fit: "cover"
 
   - id: "bg-05"
@@ -232,12 +232,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "05"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "05"]
     fit: "cover"
 
   - id: "bg-06"
@@ -249,12 +249,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "06"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "06"]
     fit: "cover"
 
   - id: "bg-07"
@@ -266,12 +266,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "07"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "07"]
     fit: "cover"
 
   - id: "bg-08"
@@ -283,12 +283,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "08"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "08"]
     fit: "cover"
 
   - id: "bg-09"
@@ -300,12 +300,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "09"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "09"]
     fit: "cover"
 
   - id: "bg-10"
@@ -317,12 +317,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "10"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "10"]
     fit: "cover"
 
   - id: "bg-11"
@@ -334,12 +334,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "11"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "11"]
     fit: "cover"
 
   - id: "bg-12"
@@ -351,12 +351,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "12"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "12"]
     fit: "cover"
 
   - id: "bg-13"
@@ -368,12 +368,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "13"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "13"]
     fit: "cover"
 
   - id: "bg-14"
@@ -385,12 +385,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "14"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "14"]
     fit: "cover"
 
   - id: "bg-15"
@@ -402,12 +402,12 @@ assets:
     format: "PNG"
     dimensions: "997 x 1577"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "15"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "15"]
     fit: "cover"
 
   - id: "bg-16"
@@ -419,12 +419,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "16"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "16"]
     fit: "cover"
 
   - id: "bg-17"
@@ -436,12 +436,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "17"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "17"]
     fit: "cover"
 
   - id: "bg-18"
@@ -453,12 +453,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "18"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "18"]
     fit: "cover"
 
   - id: "bg-19"
@@ -470,12 +470,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "19"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "19"]
     fit: "cover"
 
   - id: "bg-20"
@@ -487,12 +487,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "20"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "20"]
     fit: "cover"
 
   - id: "bg-21"
@@ -504,12 +504,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "21"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "21"]
     fit: "cover"
 
   - id: "bg-22"
@@ -521,12 +521,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "22"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "22"]
     fit: "cover"
 
   - id: "bg-23"
@@ -538,12 +538,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "23"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "23"]
     fit: "cover"
 
   - id: "bg-24"
@@ -555,12 +555,12 @@ assets:
     format: "PNG"
     dimensions: "1092 x 1440"
     ratio: "3:4"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "24"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "24"]
     fit: "cover"
 
   - id: "bg-25"
@@ -572,12 +572,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "25"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "25"]
     fit: "cover"
 
   - id: "bg-26"
@@ -589,12 +589,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "26"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "26"]
     fit: "cover"
 
   - id: "bg-27"
@@ -606,12 +606,12 @@ assets:
     format: "PNG"
     dimensions: "1122 x 1402"
     ratio: "4:5"
-    usage: "Instagram Feed, Carousel"
+    usage: "Instagram-Feed, Karussell"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "27"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "27"]
     fit: "cover"
 
   - id: "bg-28"
@@ -623,12 +623,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "28"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "28"]
     fit: "cover"
 
   - id: "bg-29"
@@ -640,12 +640,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "29"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "29"]
     fit: "cover"
 
   - id: "bg-30"
@@ -657,12 +657,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "30"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "30"]
     fit: "cover"
 
   - id: "bg-31"
@@ -674,12 +674,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "31"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "31"]
     fit: "cover"
 
   - id: "bg-32"
@@ -691,12 +691,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "32"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "32"]
     fit: "cover"
 
   - id: "bg-33"
@@ -708,12 +708,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "33"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "33"]
     fit: "cover"
 
   - id: "bg-34"
@@ -725,12 +725,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "34"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "34"]
     fit: "cover"
 
   - id: "bg-35"
@@ -742,12 +742,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "35"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "35"]
     fit: "cover"
 
   - id: "bg-36"
@@ -759,12 +759,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "36"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "36"]
     fit: "cover"
 
   - id: "bg-37"
@@ -776,12 +776,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "37"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "37"]
     fit: "cover"
 
   - id: "bg-38"
@@ -793,12 +793,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "38"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "38"]
     fit: "cover"
 
   - id: "bg-39"
@@ -810,12 +810,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "39"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "39"]
     fit: "cover"
 
   - id: "bg-40"
@@ -827,12 +827,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "40"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "40"]
     fit: "cover"
 
   - id: "bg-41"
@@ -844,12 +844,12 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "41"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "41"]
     fit: "cover"
 
   - id: "bg-42"
@@ -861,16 +861,16 @@ assets:
     format: "PNG"
     dimensions: "1024 x 1536"
     ratio: "2:3"
-    usage: "Instagram Feed, Story"
+    usage: "Instagram-Feed, Story"
     rights: "ESKYNA intern"
-    source: "ESKYNA Background Set"
+    source: "ESKYNA Hintergrundserie"
     updated: "20.07.2026"
-    description: "Editorial Instagram-Hintergrund für ESKYNA Social-Media-Postings."
-    tags: ["instagram", "editorial", "background", "42"]
+    description: "Redaktioneller Instagram-Hintergrund für ESKYNA Social-Media-Beiträge."
+    tags: ["instagram", "redaktionell", "hintergrund", "42"]
     fit: "cover"
 
   - id: "template-quote-card"
-    title: "Quote Card 4:5"
+    title: "Zitatkarte 4:5"
     category: "templates"
     category_label: "Vorlage"
     file: "media/templates/quote-card-4x5.png"
@@ -878,27 +878,27 @@ assets:
     format: "PNG"
     dimensions: "1080 x 1350"
     ratio: "4:5"
-    usage: "Zitat, Claim, Testimonial"
+    usage: "Zitat, Aussage, Empfehlung"
     rights: "ESKYNA intern"
-    source: "Demo-Asset im Starter"
+    source: "ESKYNA Einstiegsbibliothek"
     updated: "20.07.2026"
-    description: "Reduzierte Feed-Vorlage mit viel Weißraum und Goldrahmen."
-    tags: ["template", "quote", "claim", "feed", "ivory"]
+    description: "Reduzierte Beitragsvorlage mit viel Weißraum und Goldrahmen."
+    tags: ["vorlage", "zitat", "aussage", "feed", "elfenbein"]
     fit: "cover"
 
   - id: "brand-sign-gold"
-    title: "ESKYNA Signet Gold"
+    title: "ESKYNA-Signet Gold"
     category: "brand"
-    category_label: "Brand Asset"
+    category_label: "Markenmaterial"
     file: "media/brand/sign-gold.png"
     filename: "sign-gold.png"
     format: "PNG transparent"
     dimensions: "420 x 421"
     ratio: "1:1"
-    usage: "Signatur, Cover, Branding"
-    rights: "Bestehendes ESKYNA Asset"
+    usage: "Signatur, Titelbild, Markenauftritt"
+    rights: "Bestehendes ESKYNA-Medium"
     source: "eskyna.com"
     updated: "20.07.2026"
     description: "Optimierte transparente Variante des goldenen ESKYNA-Signets."
-    tags: ["logo", "signet", "gold", "transparent", "brand"]
+    tags: ["logo", "signet", "gold", "transparent", "marke"]
     fit: "contain"

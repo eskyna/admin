@@ -1,5 +1,5 @@
 ---
-title: "Asset Naming & Ablage"
+title: "Dateibenennung & Ablage"
 summary: "Ein einfaches Benennungsschema für Bilder, Vorlagen und Social-Media-Exporte."
 status: "Vorschlag"
 updated: "20.07.2026"
@@ -43,6 +43,6 @@ static/media/
 - Finaler freigegebener Export: zusätzlich `-final`
 - Keine Dateinamen wie `final-final-neu-2.png`
 
-## Metadaten pro Asset
+## Metadaten pro Medium
 
 Jeder Eintrag in `data/assets.yaml` sollte Titel, Kategorie, Format, Abmessungen, Einsatz, Tags, Quelle und Aktualisierungsdatum enthalten.

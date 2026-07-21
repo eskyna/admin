@@ -1,5 +1,5 @@
 ---
-title: "Design System"
+title: "Designsystem"
 summary: "Farben, Typografie, Abstände, Bildsprache und Komponenten für Social Media."
 status: "Arbeitsentwurf"
 updated: "20.07.2026"
@@ -16,46 +16,46 @@ build:
 
 <div class="swatch-grid">
   <div class="swatch"><span style="background:#c8ab37"></span><strong>ESKYNA Gold</strong><code>#C8AB37</code></div>
-  <div class="swatch"><span style="background:#1d211c"></span><strong>Ink</strong><code>#1D211C</code></div>
-  <div class="swatch"><span style="background:#f6f1e8"></span><strong>Ivory</strong><code>#F6F1E8</code></div>
-  <div class="swatch"><span style="background:#5c705e"></span><strong>Sage</strong><code>#5C705E</code></div>
-  <div class="swatch"><span style="background:#c7a799"></span><strong>Soft Rose</strong><code>#C7A799</code></div>
+  <div class="swatch"><span style="background:#1d211c"></span><strong>Tinte</strong><code>#1D211C</code></div>
+  <div class="swatch"><span style="background:#f6f1e8"></span><strong>Elfenbein</strong><code>#F6F1E8</code></div>
+  <div class="swatch"><span style="background:#5c705e"></span><strong>Salbei</strong><code>#5C705E</code></div>
+  <div class="swatch"><span style="background:#c7a799"></span><strong>Sanftes Rosa</strong><code>#C7A799</code></div>
 </div>
 
 ### Einsatz
 
 - **Gold:** Signet, feine Linien, Akzente und kleine Hervorhebungen.
-- **Ink:** Primäre Schrift, dunkle Editorial-Flächen und Kontrast.
-- **Ivory:** Standardhintergrund und großzügige Ruhezonen.
-- **Sage:** Sekundärfarbe für Beratung, Ruhe und Orientierung.
-- **Soft Rose:** sparsame warme Ergänzung, nicht als Hauptfarbe.
+- **Tinte:** Primäre Schrift, dunkle redaktionelle Flächen und Kontrast.
+- **Elfenbein:** Standardhintergrund und großzügige Ruhezonen.
+- **Salbei:** Sekundärfarbe für Beratung, Ruhe und Orientierung.
+- **Sanftes Rosa:** sparsame warme Ergänzung, nicht als Hauptfarbe.
 
 ## Typografie
 
 ### Display
 
-Elegante Serifenschrift für kurze Headlines, Zitate und Kampagnentitel. In diesem Starter wird ein systemnaher Serif-Stack verwendet, damit keine externen Font-Dateien nötig sind.
+Elegante Serifenschrift für kurze Überschriften, Zitate und Kampagnentitel. In diesem Starter wird ein systemnaher Serif-Stack verwendet, damit keine externen Schriftdateien nötig sind.
 
-### UI und Fließtext
+### Oberfläche und Fließtext
 
-Neutrale Sans-Serif-Schrift mit hoher Lesbarkeit. Social Posts bevorzugen klare Hierarchien und maximal zwei Schriftstile pro Motiv.
+Neutrale Sans-Serif-Schrift mit hoher Lesbarkeit. Social-Media-Beiträge bevorzugen klare Hierarchien und maximal zwei Schriftstile pro Motiv.
 
 ## Layoutregeln
 
-1. Eine Hauptbotschaft pro Slide.
+1. Eine Hauptbotschaft pro Folie.
 2. Mindestens 8-10 % Sicherheitsabstand zum Rand.
 3. Gold nicht als große Textfläche einsetzen.
 4. Portraits erhalten Blickraum und werden nicht mit Text überladen.
-5. Carousel-Slides folgen einer stabilen, wiedererkennbaren Hierarchie.
+5. Karussell-Folien folgen einer stabilen, wiedererkennbaren Hierarchie.
 
 ## Empfohlene Formate
 
 | Einsatz | Format | Pixel |
 |---|---:|---:|
-| Instagram Feed | 4:5 | 1080 x 1350 |
-| Instagram Story / Reel Cover | 9:16 | 1080 x 1920 |
-| Square / LinkedIn | 1:1 | 1080 x 1080 |
-| LinkedIn Landscape | 1.91:1 | 1200 x 627 |
+| Instagram-Feed | 4:5 | 1080 x 1350 |
+| Instagram-Story / Reel-Titel | 9:16 | 1080 x 1920 |
+| Quadrat / LinkedIn | 1:1 | 1080 x 1080 |
+| LinkedIn Querformat | 1.91:1 | 1200 x 627 |
 
 ## Bildsprache
 

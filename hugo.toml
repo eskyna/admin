@@ -1,12 +1,12 @@
 baseURL = "https://eskyna.com/admin/"
 languageCode = "de-DE"
-title = "ESKYNA Social Media Studio"
+title = "ESKYNA Medienstudio"
 publishDir = "public"
 disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
 enableRobotsTXT = true
 
 [params]
-  description = "Interne Asset-, Prompt-, Audio- und Brand-Bibliothek für das ESKYNA Social-Media-Team."
+  description = "Interne Medien-, Prompt-, Audio- und Markenbibliothek für das ESKYNA Social-Media-Team."
   owner = "ESKYNA"
   buildVersion = "0.4.1"
   audioEndpoint = ""

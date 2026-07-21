@@ -85,7 +85,7 @@ function lockThemeCss(logoDataUri, version) {
     background: url("${logoDataUri}") center / contain no-repeat;
   }
   .staticrypt-form::after {
-    content: "ESKYNA  /  INTERNAL WORKSPACE  /  v${version}";
+    content: "ESKYNA  /  INTERNER ARBEITSBEREICH  /  v${version}";
     display: block;
     margin-top: 34px;
     padding-top: 18px;

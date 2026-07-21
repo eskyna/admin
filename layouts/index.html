@@ -23,27 +23,27 @@
 {{ $assetCount := add (add (len $assets) (len $instagramBackgrounds)) (len $nataliaAuto) }}
 <div class="app-shell">
   <aside class="sidebar" id="sidebar" aria-label="Hauptnavigation">
-    <a class="brand" href="#dashboard" aria-label="ESKYNA Social Media Studio Start">
+    <a class="brand" href="#dashboard" aria-label="ESKYNA Medienstudio Startseite">
       <span class="brand__mark"><img src="{{ "media/brand/sign-gold.png" | relURL }}" alt=""></span>
-      <span class="brand__text"><strong>ESKYNA</strong><small>Social Media Studio</small></span>
+      <span class="brand__text"><strong>ESKYNA</strong><small>Medienstudio</small></span>
     </a>
 
-    <div class="workspace-label">Workspace</div>
+    <div class="workspace-label">Arbeitsbereich</div>
     <nav class="side-nav">
       <a class="side-nav__link is-active" href="#dashboard" data-nav-link>
-        <svg><use href="#icon-grid"></use></svg><span>Dashboard</span>
+        <svg><use href="#icon-grid"></use></svg><span>Übersicht</span>
       </a>
       <a class="side-nav__link" href="#assets" data-nav-link>
-        <svg><use href="#icon-image"></use></svg><span>Asset-Bibliothek</span><b>{{ $assetCount }}</b>
+        <svg><use href="#icon-image"></use></svg><span>Medienbibliothek</span><b>{{ $assetCount }}</b>
       </a>
       <a class="side-nav__link" href="#prompts" data-nav-link>
-        <svg><use href="#icon-sparkles"></use></svg><span>Prompt Library</span><b>{{ len $prompts }}</b>
+        <svg><use href="#icon-sparkles"></use></svg><span>Prompt-Bibliothek</span><b>{{ len $prompts }}</b>
       </a>
       <a class="side-nav__link" href="{{ "audio/" | relURL }}" data-nav-link>
-        <svg><use href="#icon-mic"></use></svg><span>Audio Studio</span><b>2</b>
+        <svg><use href="#icon-mic"></use></svg><span>Audioatelier</span><b>2</b>
       </a>
       <a class="side-nav__link" href="#documents" data-nav-link>
-        <svg><use href="#icon-file"></use></svg><span>Brand-Dokumente</span><b>{{ len $docs }}</b>
+        <svg><use href="#icon-file"></use></svg><span>Marken-Dokumente</span><b>{{ len $docs }}</b>
       </a>
     </nav>
 
@@ -53,9 +53,9 @@
       <div><strong>Interner Bereich</strong><span>Kein Suchmaschinen-Index</span></div>
     </div>
     <button class="lock-button" type="button" data-lock-page>
-      <svg><use href="#icon-lock"></use></svg><span>Studio sperren</span>
+      <svg><use href="#icon-lock"></use></svg><span>Bereich sperren</span>
     </button>
-    <div class="sidebar__foot">ESKYNA / Admin v0.4.1</div>
+    <div class="sidebar__foot">ESKYNA / Verwaltung v0.4.1</div>
   </aside>
 
   <button class="sidebar-scrim" type="button" aria-label="Navigation schließen" data-sidebar-close></button>
@@ -67,12 +67,12 @@
       </button>
       <label class="global-search" for="global-search">
         <svg><use href="#icon-search"></use></svg>
-        <input id="global-search" type="search" placeholder="Assets, Prompts und Dokumente durchsuchen" autocomplete="off">
+        <input id="global-search" type="search" placeholder="Medien, Prompts und Dokumente durchsuchen" autocomplete="off">
         <kbd>⌘ K</kbd>
       </label>
       <div class="topbar__meta">
         <span class="live-dot"></span>
-        <span>Workspace aktuell</span>
+        <span>Arbeitsbereich aktuell</span>
       </div>
       <div class="avatar" aria-label="Natalia Kleemann">NK</div>
     </header>
@@ -91,7 +91,7 @@
           <h1>Dein Auftritt.<br><em>Deine Präsenz.</em></h1>
           <p>Natalia-Motive, Logos und Stimme – präzise kuratiert für die Marke, die du führst.</p>
           <div class="hero-actions">
-            <a class="button button--primary" href="#assets">Natalia-Assets öffnen <svg><use href="#icon-arrow"></use></svg></a>
+            <a class="button button--primary" href="#assets">Natalia-Motive öffnen <svg><use href="#icon-arrow"></use></svg></a>
             <a class="button button--ghost" href="{{ "audio/" | relURL }}"><svg><use href="#icon-mic"></use></svg> Audio erstellen</a>
           </div>
         </div>
@@ -112,19 +112,19 @@
       </section>
 
       <section class="metrics" aria-label="Bibliotheksstatus">
-        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-image"></use></svg></span><div><strong>{{ $assetCount }}</strong><span>Assets bereit</span></div><small>+ Demo-Bibliothek</small></article>
-        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-sparkles"></use></svg></span><div><strong>{{ len $prompts }}</strong><span>Prompts gespeichert</span></div><small>Copy bis QA</small></article>
-        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-file"></use></svg></span><div><strong>{{ len $docs }}</strong><span>Brand-Dokumente</span></div><small>Markdown-basiert</small></article>
-        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-mic"></use></svg></span><div><strong>2</strong><span>Audio-Modi</span></div><small>Blog + Instagram</small></article>
+        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-image"></use></svg></span><div><strong>{{ $assetCount }}</strong><span>Medien bereit</span></div><small>+ aktuelle Bibliothek</small></article>
+        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-sparkles"></use></svg></span><div><strong>{{ len $prompts }}</strong><span>Prompts gespeichert</span></div><small>Von Text bis Freigabe</small></article>
+        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-file"></use></svg></span><div><strong>{{ len $docs }}</strong><span>Marken-Dokumente</span></div><small>Markdown-basiert</small></article>
+        <article class="metric-card"><span class="metric-card__icon"><svg><use href="#icon-mic"></use></svg></span><div><strong>2</strong><span>Audio-Modi</span></div><small>Blog und Instagram</small></article>
       </section>
 
       <section class="page-section" id="assets" data-section>
         <header class="section-heading">
-          <div><div class="eyebrow"><span></span>Medienbibliothek</div><h2>Bild-Dateien für Social Media</h2><p>Filtern, prüfen, Pfad kopieren oder Originaldatei herunterladen.</p></div>
-          <div class="section-heading__actions"><span class="count-badge"><b data-visible-assets>{{ $assetCount }}</b> Assets</span></div>
+          <div><div class="eyebrow"><span></span>Medienbibliothek</div><h2>Bilddateien für Social Media</h2><p>Filtern, prüfen, Pfad kopieren oder Originaldatei herunterladen.</p></div>
+          <div class="section-heading__actions"><span class="count-badge"><b data-visible-assets>{{ $assetCount }}</b> Medien</span></div>
         </header>
 
-        <div class="filter-bar" aria-label="Asset-Filter">
+        <div class="filter-bar" aria-label="Medienfilter">
           <div class="filter-bar__label"><svg><use href="#icon-filter"></use></svg> Filtern</div>
           <div class="chip-group">
             {{ range site.Data.assets.categories }}
@@ -216,12 +216,12 @@
             </article>
           {{ end }}
         </div>
-        <div class="empty-state" data-assets-empty hidden><svg><use href="#icon-search"></use></svg><h3>Keine passenden Assets</h3><p>Filter oder Suchbegriff anpassen.</p></div>
+        <div class="empty-state" data-assets-empty hidden><svg><use href="#icon-search"></use></svg><h3>Keine passenden Medien</h3><p>Filter oder Suchbegriff anpassen.</p></div>
       </section>
 
       <section class="page-section" id="prompts" data-section>
         <header class="section-heading">
-          <div><div class="eyebrow"><span></span>Prompt Library</div><h2>Bewährte Prompts, sofort kopierbar</h2><p>Mit Variablen für schnelle, markenkonforme Social-Media-Produktion.</p></div>
+          <div><div class="eyebrow"><span></span>Prompt-Bibliothek</div><h2>Bewährte Prompts, sofort kopierbar</h2><p>Mit Variablen für schnelle, markenkonforme Social-Media-Produktion.</p></div>
           <div class="section-heading__actions"><span class="count-badge"><b data-visible-prompts>{{ len $prompts }}</b> Prompts</span></div>
         </header>
 
@@ -260,7 +260,7 @@
 
       <section class="page-section" id="documents" data-section>
         <header class="section-heading">
-          <div><div class="eyebrow"><span></span>Single Source of Truth</div><h2>Brand-Dokumente</h2><p>Direkt aus Markdown gerendert - leicht versionierbar und gemeinsam pflegbar.</p></div>
+          <div><div class="eyebrow"><span></span>Zentrale Wissensbasis</div><h2>Marken-Dokumente</h2><p>Direkt aus Markdown gerendert – leicht versionierbar und gemeinsam pflegbar.</p></div>
         </header>
         <div class="doc-grid">
           {{ range $docs }}
@@ -277,7 +277,7 @@
 
     </main>
 
-    <footer class="site-footer"><span>ESKYNA Social Media Studio</span><span>Hugo + GitHub Pages + StatiCrypt</span></footer>
+    <footer class="site-footer"><span>ESKYNA Medienstudio</span><span>Intern verschlüsselt bereitgestellt</span></footer>
   </div>
 </div>
 
@@ -298,7 +298,7 @@
   {{ $docID := .File.ContentBaseName | urlize }}
   <dialog class="doc-dialog" id="doc-{{ $docID }}">
     <div class="doc-dialog__bar"><div><span class="status-pill">{{ .Params.status }}</span><span>Aktualisiert {{ .Params.updated }}</span></div><form method="dialog"><button class="dialog-close" aria-label="Dokument schließen"><svg><use href="#icon-x"></use></svg></button></form></div>
-    <article class="prose"><div class="eyebrow"><span></span>ESKYNA Brand Library</div><h1>{{ .Title }}</h1><p class="lead">{{ .Params.summary }}</p>{{ .Content }}</article>
+    <article class="prose"><div class="eyebrow"><span></span>ESKYNA Markenbibliothek</div><h1>{{ .Title }}</h1><p class="lead">{{ .Params.summary }}</p>{{ .Content }}</article>
   </dialog>
 {{ end }}
 
