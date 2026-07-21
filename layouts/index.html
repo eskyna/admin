@@ -3,13 +3,24 @@
 {{ $prompts := site.Data.prompts.prompts }}
 {{ $docsSection := site.GetPage "/docs" }}
 {{ $docs := $docsSection.Pages.ByWeight }}
+{{ $nataliaAssets := where $assets "category" "natalia" }}
+{{ $heroPortraits := where $nataliaAssets "featured" true }}
+{{ $catalogedNatalia := slice }}
+{{ range $nataliaAssets }}{{ $catalogedNatalia = $catalogedNatalia | append .filename }}{{ end }}
+{{ $nataliaAuto := slice }}
+{{ range readDir "static/media/natalia" }}
+  {{ $ext := path.Ext .Name | lower }}
+  {{ if and (not .IsDir) (in (slice ".png" ".jpg" ".jpeg" ".webp") $ext) (not (in $catalogedNatalia .Name)) }}
+    {{ $nataliaAuto = $nataliaAuto | append . }}
+  {{ end }}
+{{ end }}
 {{ $instagramBackgrounds := slice }}
 {{ range resources.Match "backgrounds/instagram/*.*" }}
   {{ if reflect.IsImageResourceProcessable . }}
     {{ $instagramBackgrounds = $instagramBackgrounds | append . }}
   {{ end }}
 {{ end }}
-{{ $assetCount := add (len $assets) (len $instagramBackgrounds) }}
+{{ $assetCount := add (add (len $assets) (len $instagramBackgrounds)) (len $nataliaAuto) }}
 <div class="app-shell">
   <aside class="sidebar" id="sidebar" aria-label="Hauptnavigation">
     <a class="brand" href="#dashboard" aria-label="ESKYNA Social Media Studio Start">
@@ -71,7 +82,6 @@
         <div class="hero-media" aria-hidden="true">
           <img class="hero-media__photo" src="{{ "media/natalia/natalia-desk.png" | relURL }}" alt="" loading="eager" decoding="async">
           <div class="hero-media__veil"></div>
-          <img class="hero-media__signet" src="{{ "media/brand/sign-gold.png" | relURL }}" alt="">
         </div>
         <div class="hero-copy">
           <div class="hero-brand">
@@ -81,9 +91,19 @@
           <h1>Dein Auftritt.<br><em>Deine Präsenz.</em></h1>
           <p>Natalia-Motive, Logos und Stimme – präzise kuratiert für die Marke, die du führst.</p>
           <div class="hero-actions">
-            <a class="button button--primary" href="#assets">Assets öffnen <svg><use href="#icon-arrow"></use></svg></a>
+            <a class="button button--primary" href="#assets">Natalia-Assets öffnen <svg><use href="#icon-arrow"></use></svg></a>
             <a class="button button--ghost" href="{{ "audio/" | relURL }}"><svg><use href="#icon-mic"></use></svg> Audio erstellen</a>
           </div>
+        </div>
+        <div class="hero-portraits" aria-label="Natalia Motive">
+          {{ range $index, $portrait := first 4 $heroPortraits }}
+            {{ if ne $portrait.filename "natalia-desk.png" }}
+              <figure class="hero-portraits__frame hero-portraits__frame--{{ add $index 1 }}">
+                <img src="{{ $portrait.file | relURL }}" alt="{{ $portrait.title }}" loading="eager" decoding="async">
+              </figure>
+            {{ end }}
+          {{ end }}
+          <img class="hero-portraits__signet" src="{{ "media/brand/sign-gold.png" | relURL }}" alt="">
         </div>
       </section>
 
@@ -108,7 +128,7 @@
             {{ end }}
           </div>
         </div>
-        <div class="folder-hint"><svg><use href="#icon-image"></use></svg><span>Neue Instagram-Hintergründe aus <code>assets/backgrounds/instagram/</code> werden beim Build automatisch ergänzt.</span></div>
+        <div class="folder-hint"><svg><use href="#icon-image"></use></svg><span>Neue Natalia-Motive in <code>static/media/natalia/</code> und Instagram-Hintergründe in <code>assets/backgrounds/instagram/</code> erscheinen automatisch.</span></div>
 
         <div class="asset-grid" data-asset-grid>
           {{ range $assets }}
@@ -127,6 +147,29 @@
                 <div class="asset-card__actions">
                   <button class="text-button" type="button" data-copy-value="{{ $assetURL }}"><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button>
                   <a class="icon-button" href="{{ $assetURL }}" download="{{ .filename }}" title="Originaldatei herunterladen"><svg><use href="#icon-download"></use></svg></a>
+                </div>
+              </div>
+            </article>
+          {{ end }}
+          {{ range $nataliaAuto }}
+            {{ $filename := .Name }}
+            {{ $title := path.BaseName .Name | replaceRE "[-_]+" " " | strings.Title }}
+            {{ $assetURL := printf "media/natalia/%s" $filename | relURL }}
+            {{ $format := strings.ToUpper (strings.TrimPrefix "." (path.Ext $filename)) }}
+            {{ $searchText := printf "%s Natalia Motiv automatisch" $title }}
+            <article class="asset-card searchable" data-asset-card data-category="natalia" data-search="{{ $searchText | lower }}" data-title="{{ $title }}" data-file="{{ $assetURL }}" data-path="{{ $assetURL }}" data-filename="{{ $filename }}" data-format="{{ $format }}" data-dimensions="Automatisch" data-ratio="individuell" data-usage="Natalia" data-rights="Bitte intern prüfen" data-updated="Automatisch importiert" data-description="Automatisch aus dem Natalia-Medienordner erkannt." data-tags="natalia, motiv, automatisch" data-category-label="Natalia" data-fit="contain">
+              <button class="asset-card__visual" type="button" data-asset-open aria-label="{{ $title }} in Vorschau öffnen">
+                <img src="{{ $assetURL }}" alt="{{ $title }}" loading="lazy">
+                <span class="asset-card__badge">Natalia</span>
+                <span class="asset-card__preview"><svg><use href="#icon-eye"></use></svg> Vorschau</span>
+              </button>
+              <div class="asset-card__body">
+                <div class="asset-card__title-row"><div><h3>{{ $title }}</h3><p>Automatisch aus <code>static/media/natalia/</code> importiert.</p></div><span class="format-pill">{{ $format }}</span></div>
+                <dl class="asset-meta"><div><dt>Format</dt><dd>individuell</dd></div><div><dt>Pixel</dt><dd>Automatisch</dd></div><div><dt>Einsatz</dt><dd>Natalia</dd></div></dl>
+                <div class="tag-row"><span>natalia</span><span>motiv</span><span>automatisch</span></div>
+                <div class="asset-card__actions">
+                  <button class="text-button" type="button" data-copy-value="{{ $assetURL }}"><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button>
+                  <a class="icon-button" href="{{ $assetURL }}" download="{{ $filename }}" title="Originaldatei herunterladen"><svg><use href="#icon-download"></use></svg></a>
                 </div>
               </div>
             </article>
