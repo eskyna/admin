@@ -31,7 +31,7 @@ grep -q 'Instagram-Modus' "${SITE_DIR}/audio/index.html" || fail "Rendered Insta
 grep -q '/admin/audio/' "${SITE_DIR}/index.html" || fail "Dashboard does not point to /admin/audio/."
 grep -q 'data-prompt-copy' "${SITE_DIR}/index.html" || fail "Rendered prompt copy buttons are missing."
 grep -q 'data-doc-copy' "${SITE_DIR}/index.html" || fail "Rendered document copy buttons are missing."
-grep -q 'id="doc-source-toneofvoice"' "${SITE_DIR}/index.html" || grep -q 'id=doc-source-toneofvoice' "${SITE_DIR}/index.html" || fail "Tone of Voice copy source is missing."
+grep -q 'id="doc-source-ToneOfVoice"' "${SITE_DIR}/index.html" || grep -q 'id=doc-source-ToneOfVoice' "${SITE_DIR}/index.html" || fail "Tone of Voice copy source is missing."
 [[ -f "${SITE_DIR}/docs/ToneOfVoice/index.html" ]] || fail "Tone of Voice document page was not published."
 grep -q 'data-doc-copy' "${SITE_DIR}/docs/ToneOfVoice/index.html" || fail "Tone of Voice page is missing copy actions."
 grep -q 'In Zwischenablage kopieren' "${SITE_DIR}/index.html" || fail "Rendered prompt copy labels are missing."
