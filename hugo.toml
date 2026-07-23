@@ -3,6 +3,7 @@ languageCode = "de-DE"
 title = "ESKYNA Medienstudio"
 publishDir = "public"
 disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
+disablePathToLower = true
 enableRobotsTXT = true
 
 [params]
@@ -14,6 +15,10 @@ enableRobotsTXT = true
 [caches]
   [caches.images]
     dir = ":cacheDir/images"
+
+[permalinks]
+  [permalinks.page]
+    docs = "/docs/:contentbasename/"
 
 [markup]
   [markup.goldmark]

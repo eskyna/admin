@@ -5,9 +5,6 @@ status: "Arbeitsentwurf"
 updated: "20.07.2026"
 icon: "message"
 weight: 10
-build:
-  render: never
-  list: always
 ---
 
 > **Arbeitsentwurf:** Diese Leitlinien sind ein Startpunkt auf Basis der derzeit sichtbaren Markenwirkung. Vor der verbindlichen Nutzung bitte intern abstimmen.

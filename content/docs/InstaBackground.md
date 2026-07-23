@@ -5,9 +5,6 @@ status: "Arbeitsentwurf"
 updated: "20.07.2026"
 icon: "sparkles"
 weight: 30
-build:
-  render: never
-  list: always
 ---
 
 AUFGABE

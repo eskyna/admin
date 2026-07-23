@@ -5,9 +5,6 @@ status: "Vorschlag"
 updated: "20.07.2026"
 icon: "folder"
 weight: 40
-build:
-  render: never
-  list: always
 ---
 
 ## Dateinamen

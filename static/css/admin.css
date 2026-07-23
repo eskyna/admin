@@ -624,6 +624,9 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
 .doc-card footer svg { width: 12px; height: 12px; }
 .doc-card__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; }
 .doc-dialog__actions { display: flex; align-items: center; gap: 10px; }
+.doc-page__bar { position: sticky; top: 0; z-index: 2; min-height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 0 clamp(22px,4vw,58px); background: rgba(255,253,248,.92); border-bottom: 1px solid var(--line); backdrop-filter: blur(18px); }
+.doc-page__bar > div:first-child { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 8px; }
+.doc-workspace .prose { padding-top: 36px; }
 
 .site-footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px clamp(22px,4vw,58px); color: var(--muted-2); border-top: 1px solid var(--line); font-size: 8px; letter-spacing: .05em; text-transform: uppercase; }
 

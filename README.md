@@ -211,7 +211,13 @@ Brand-Dokumente liegen in:
 content/docs/
 ```
 
-Die Dokumente werden innerhalb des geschützten Workspaces angezeigt und nicht als frei aufrufbare Einzelseiten gerendert.
+Die Dokumente werden als eigene, passwortgeschützte Seiten gerendert, z. B.:
+
+```text
+https://eskyna.com/admin/docs/ToneOfVoice/
+```
+
+Auf der Übersicht und auf der Dokumentseite lässt sich der Link mit **Link kopieren** teilen.
 
 ## GitHub Pages Deployment
 

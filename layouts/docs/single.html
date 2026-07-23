@@ -1,0 +1,117 @@
+{{ define "main" }}
+{{ $assets := site.Data.assets.assets }}
+{{ $prompts := site.Data.prompts.prompts }}
+{{ $docsSection := site.GetPage "/docs" }}
+{{ $docs := $docsSection.Pages.ByWeight }}
+{{ $instagramBackgrounds := slice }}
+{{ range resources.Match "backgrounds/instagram/*.*" }}
+  {{ if reflect.IsImageResourceProcessable . }}
+    {{ $instagramBackgrounds = $instagramBackgrounds | append . }}
+  {{ end }}
+{{ end }}
+{{ $backgroundFolders := site.Data.assets.background_folders | default slice }}
+{{ $folderBackgroundCount := 0 }}
+{{ range $folder := $backgroundFolders }}
+  {{ $dir := printf "static/media/backgrounds/%s" $folder.id }}
+  {{ range readDir $dir }}
+    {{ $ext := path.Ext .Name | lower }}
+    {{ if and (not .IsDir) (in (slice ".png" ".jpg" ".jpeg" ".webp") $ext) }}
+      {{ $folderBackgroundCount = add $folderBackgroundCount 1 }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $nataliaAutoCount := 0 }}
+{{ $catalogedNatalia := slice }}
+{{ range where $assets "category" "natalia" }}{{ $catalogedNatalia = $catalogedNatalia | append .filename }}{{ end }}
+{{ range readDir "static/media/natalia" }}
+  {{ $ext := path.Ext .Name | lower }}
+  {{ if and (not .IsDir) (in (slice ".png" ".jpg" ".jpeg" ".webp") $ext) (not (in $catalogedNatalia .Name)) }}
+    {{ $nataliaAutoCount = add $nataliaAutoCount 1 }}
+  {{ end }}
+{{ end }}
+{{ $assetCount := add (add (add (len $assets) (len $instagramBackgrounds)) $folderBackgroundCount) $nataliaAutoCount }}
+{{ $homeURL := site.Home.RelPermalink }}
+{{ $docsURL := printf "%s#documents" $homeURL }}
+{{ $docID := .File.ContentBaseName | urlize }}
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" aria-label="Hauptnavigation">
+    <a class="brand" href="{{ $homeURL }}" aria-label="ESKYNA Medienstudio Startseite">
+      <span class="brand__mark"><img src="{{ "media/brand/sign-gold.png" | relURL }}" alt=""></span>
+      <span class="brand__text"><strong>ESKYNA</strong><small>Medienstudio</small></span>
+    </a>
+
+    <div class="workspace-label">Arbeitsbereich</div>
+    <nav class="side-nav">
+      <a class="side-nav__link" href="{{ $homeURL }}#dashboard" data-nav-link>
+        <svg><use href="#icon-grid"></use></svg><span>Übersicht</span>
+      </a>
+      <a class="side-nav__link" href="{{ $homeURL }}#assets" data-nav-link>
+        <svg><use href="#icon-image"></use></svg><span>Medienbibliothek</span><b>{{ $assetCount }}</b>
+      </a>
+      <a class="side-nav__link" href="{{ $homeURL }}#prompts" data-nav-link>
+        <svg><use href="#icon-sparkles"></use></svg><span>Prompt-Bibliothek</span><b>{{ len $prompts }}</b>
+      </a>
+      <a class="side-nav__link" href="{{ "audio/" | relURL }}" data-nav-link>
+        <svg><use href="#icon-mic"></use></svg><span>Audioatelier</span><b>2</b>
+      </a>
+      <a class="side-nav__link is-active" href="{{ $docsURL }}" data-nav-link aria-current="page">
+        <svg><use href="#icon-file"></use></svg><span>Marken-Dokumente</span><b>{{ len $docs }}</b>
+      </a>
+    </nav>
+
+    <div class="sidebar__spacer"></div>
+    <div class="security-card">
+      <div class="security-card__icon"><svg><use href="#icon-lock"></use></svg></div>
+      <div><strong>Interner Bereich</strong><span>Kein Suchmaschinen-Index</span></div>
+    </div>
+    <button class="lock-button" type="button" data-lock-page>
+      <svg><use href="#icon-lock"></use></svg><span>Bereich sperren</span>
+    </button>
+    <div class="sidebar__foot">ESKYNA / Verwaltung v0.4.1</div>
+  </aside>
+
+  <button class="sidebar-scrim" type="button" aria-label="Navigation schließen" data-sidebar-close></button>
+
+  <div class="app-main">
+    <header class="topbar topbar--page">
+      <button class="icon-button mobile-menu" type="button" aria-label="Navigation öffnen" data-sidebar-open>
+        <svg><use href="#icon-menu"></use></svg>
+      </button>
+      <a class="topbar-back" href="{{ $docsURL }}"><svg><use href="#icon-arrow"></use></svg><span>Alle Dokumente</span></a>
+      <div class="topbar__meta">
+        <span class="live-dot"></span>
+        <span>{{ .File.ContentBaseName }}.md</span>
+      </div>
+      <div class="avatar" aria-label="Natalia Kleemann">NK</div>
+    </header>
+
+    <main class="workspace doc-workspace">
+      <div class="doc-page__bar">
+        <div>
+          <span class="status-pill">{{ .Params.status }}</span>
+          <span>Aktualisiert {{ .Params.updated }}</span>
+        </div>
+        <div class="doc-dialog__actions">
+          <button class="prompt-copy-button" type="button" data-doc-copy data-copy-value="{{ .Permalink }}" data-copy-message="Link in die Zwischenablage kopiert." aria-label="Link zu {{ .Title }} kopieren">
+            <svg><use href="#icon-copy"></use></svg><span data-copy-label>Link kopieren</span>
+          </button>
+          <button class="prompt-copy-button" type="button" data-doc-copy data-copy-target="doc-source-{{ $docID }}" data-copy-message="Dokument in die Zwischenablage kopiert." aria-label="{{ .Title }} in die Zwischenablage kopieren">
+            <svg><use href="#icon-copy"></use></svg><span data-copy-label>In Zwischenablage kopieren</span>
+          </button>
+        </div>
+      </div>
+      <article class="prose">
+        <div class="eyebrow"><span></span>ESKYNA Markenbibliothek</div>
+        <h1>{{ .Title }}</h1>
+        <p class="lead">{{ .Params.summary }}</p>
+        {{ .Content }}
+      </article>
+    </main>
+
+    <footer class="site-footer"><span>ESKYNA Medienstudio</span><span>Intern verschlüsselt bereitgestellt</span></footer>
+  </div>
+</div>
+
+<pre id="doc-source-{{ $docID }}" hidden>{{ .RawContent }}</pre>
+<div class="toast" role="status" aria-live="polite" data-toast><svg><use href="#icon-check"></use></svg><span>In die Zwischenablage kopiert.</span></div>
+{{ end }}

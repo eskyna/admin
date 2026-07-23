@@ -32,6 +32,8 @@ grep -q '/admin/audio/' "${SITE_DIR}/index.html" || fail "Dashboard does not poi
 grep -q 'data-prompt-copy' "${SITE_DIR}/index.html" || fail "Rendered prompt copy buttons are missing."
 grep -q 'data-doc-copy' "${SITE_DIR}/index.html" || fail "Rendered document copy buttons are missing."
 grep -q 'id="doc-source-toneofvoice"' "${SITE_DIR}/index.html" || grep -q 'id=doc-source-toneofvoice' "${SITE_DIR}/index.html" || fail "Tone of Voice copy source is missing."
+[[ -f "${SITE_DIR}/docs/ToneOfVoice/index.html" ]] || fail "Tone of Voice document page was not published."
+grep -q 'data-doc-copy' "${SITE_DIR}/docs/ToneOfVoice/index.html" || fail "Tone of Voice page is missing copy actions."
 grep -q 'In Zwischenablage kopieren' "${SITE_DIR}/index.html" || fail "Rendered prompt copy labels are missing."
 
 if grep -RniE 'Kampagnen-Board|id="campaigns"|href="#campaigns"|data-campaign-board' "${SITE_DIR}" --include='*.html'; then

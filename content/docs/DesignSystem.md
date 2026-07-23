@@ -5,9 +5,6 @@ status: "Arbeitsentwurf"
 updated: "20.07.2026"
 icon: "palette"
 weight: 20
-build:
-  render: never
-  list: always
 ---
 
 > **Arbeitsentwurf:** Die Werte sind als belastbare Ausgangsbasis für neue Social-Media-Layouts angelegt. Finale Freigabe und Abgleich mit vorhandenen Produktionsdateien stehen noch aus.
