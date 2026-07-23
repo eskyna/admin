@@ -297,7 +297,7 @@
 
       <section class="page-section" id="documents" data-section>
         <header class="section-heading">
-          <div><div class="eyebrow"><span></span>Zentrale Wissensbasis</div><h2>Marken-Dokumente</h2><p>Direkt aus Markdown gerendert – leicht versionierbar und gemeinsam pflegbar.</p></div>
+          <div><div class="eyebrow"><span></span>Zentrale Wissensbasis</div><h2>Marken-Dokumente</h2><p>Direkt aus Markdown gerendert – mit einem Klick in die Zwischenablage kopierbar.</p></div>
         </header>
         <div class="doc-grid">
           {{ range $docs }}
@@ -306,7 +306,15 @@
             <article class="doc-card searchable" data-search="{{ $docSearch | lower }}">
               <div class="doc-card__top"><span class="doc-icon"><svg><use href="#icon-{{ .Params.icon }}"></use></svg></span><span class="status-pill">{{ .Params.status }}</span></div>
               <h3>{{ .Title }}</h3><p>{{ .Params.summary }}</p>
-              <footer><span><svg><use href="#icon-clock"></use></svg> {{ .Params.updated }}</span><button class="text-button" type="button" data-dialog-open="doc-{{ $docID }}">Öffnen <svg><use href="#icon-arrow"></use></svg></button></footer>
+              <footer>
+                <span><svg><use href="#icon-clock"></use></svg> {{ .Params.updated }}</span>
+                <div class="doc-card__actions">
+                  <button class="prompt-copy-button" type="button" data-doc-copy data-copy-target="doc-source-{{ $docID }}" data-copy-message="Dokument in die Zwischenablage kopiert." aria-label="{{ .Title }} in die Zwischenablage kopieren">
+                    <svg><use href="#icon-copy"></use></svg><span data-copy-label>In Zwischenablage kopieren</span>
+                  </button>
+                  <button class="text-button" type="button" data-dialog-open="doc-{{ $docID }}">Öffnen <svg><use href="#icon-arrow"></use></svg></button>
+                </div>
+              </footer>
             </article>
           {{ end }}
         </div>
@@ -333,8 +341,17 @@
 
 {{ range $docs }}
   {{ $docID := .File.ContentBaseName | urlize }}
+  <pre id="doc-source-{{ $docID }}" hidden>{{ .RawContent }}</pre>
   <dialog class="doc-dialog" id="doc-{{ $docID }}">
-    <div class="doc-dialog__bar"><div><span class="status-pill">{{ .Params.status }}</span><span>Aktualisiert {{ .Params.updated }}</span></div><form method="dialog"><button class="dialog-close" aria-label="Dokument schließen"><svg><use href="#icon-x"></use></svg></button></form></div>
+    <div class="doc-dialog__bar">
+      <div><span class="status-pill">{{ .Params.status }}</span><span>Aktualisiert {{ .Params.updated }}</span></div>
+      <div class="doc-dialog__actions">
+        <button class="prompt-copy-button" type="button" data-doc-copy data-copy-target="doc-source-{{ $docID }}" data-copy-message="Dokument in die Zwischenablage kopiert." aria-label="{{ .Title }} in die Zwischenablage kopieren">
+          <svg><use href="#icon-copy"></use></svg><span data-copy-label>In Zwischenablage kopieren</span>
+        </button>
+        <form method="dialog"><button class="dialog-close" aria-label="Dokument schließen"><svg><use href="#icon-x"></use></svg></button></form>
+      </div>
+    </div>
     <article class="prose"><div class="eyebrow"><span></span>ESKYNA Markenbibliothek</div><h1>{{ .Title }}</h1><p class="lead">{{ .Params.summary }}</p>{{ .Content }}</article>
   </dialog>
 {{ end }}

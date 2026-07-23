@@ -30,6 +30,8 @@ grep -q 'Blog-Modus' "${SITE_DIR}/audio/index.html" || fail "Rendered Blog mode 
 grep -q 'Instagram-Modus' "${SITE_DIR}/audio/index.html" || fail "Rendered Instagram mode is missing."
 grep -q '/admin/audio/' "${SITE_DIR}/index.html" || fail "Dashboard does not point to /admin/audio/."
 grep -q 'data-prompt-copy' "${SITE_DIR}/index.html" || fail "Rendered prompt copy buttons are missing."
+grep -q 'data-doc-copy' "${SITE_DIR}/index.html" || fail "Rendered document copy buttons are missing."
+grep -q 'id="doc-source-toneofvoice"' "${SITE_DIR}/index.html" || grep -q 'id=doc-source-toneofvoice' "${SITE_DIR}/index.html" || fail "Tone of Voice copy source is missing."
 grep -q 'In Zwischenablage kopieren' "${SITE_DIR}/index.html" || fail "Rendered prompt copy labels are missing."
 
 if grep -RniE 'Kampagnen-Board|id="campaigns"|href="#campaigns"|data-campaign-board' "${SITE_DIR}" --include='*.html'; then
