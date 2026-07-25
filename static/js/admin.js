@@ -6,17 +6,19 @@
   const normalize = (value = "") => value.toLocaleLowerCase("de").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   const searchInput = qs("#global-search");
-  const assetCards = qsa("[data-asset-card]");
   const promptCards = qsa("[data-prompt-card]");
   const docCards = qsa(".doc-card.searchable");
   const assetEmpty = qs("[data-assets-empty]");
+  const backgroundsEmpty = qs("[data-backgrounds-empty]");
   const promptEmpty = qs("[data-prompts-empty]");
   const visibleAssets = qs("[data-visible-assets]");
+  const visibleBackgrounds = qs("[data-visible-backgrounds]");
   const visiblePrompts = qs("[data-visible-prompts]");
   const toast = qs("[data-toast]");
   let toastTimer;
   const copyFeedbackTimers = new WeakMap();
   let assetFilter = "all";
+  let backgroundFilter = "all";
   let promptFilter = "all";
   let searchQuery = "";
 
@@ -34,25 +36,35 @@
     return normalize(element.dataset.search || element.textContent).includes(searchQuery);
   }
 
-  function matchesAssetCategory(card, filter) {
-    if (filter === "all") return true;
-    const category = card.dataset.category || "";
-    if (filter === "backgrounds") {
-      return category === "backgrounds" || category.startsWith("bg-");
-    }
-    return category === filter;
+  function libraryCards(library) {
+    return qsa("[data-asset-card]").filter((card) => (card.getAttribute("data-library") || "") === library);
+  }
+
+  function applyCardFilter(cards, filter, emptyState, counter) {
+    let visibleCount = 0;
+    cards.forEach((card) => {
+      const category = card.getAttribute("data-category") || "";
+      const categoryMatch = filter === "all" || category === filter;
+      const visible = categoryMatch && matchesSearch(card);
+      card.hidden = !visible;
+      card.classList.toggle("is-filtered-out", !visible);
+      if (visible) visibleCount += 1;
+    });
+    if (counter) counter.textContent = String(visibleCount);
+    if (emptyState) emptyState.hidden = visibleCount !== 0;
+  }
+
+  function setActiveChip(selector, activeButton) {
+    qsa(selector).forEach((item) => {
+      const active = item === activeButton;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
   }
 
   function applyFilters() {
-    let assetCount = 0;
-    assetCards.forEach((card) => {
-      const categoryMatch = matchesAssetCategory(card, assetFilter);
-      const visible = categoryMatch && matchesSearch(card);
-      card.hidden = !visible;
-      if (visible) assetCount += 1;
-    });
-    if (visibleAssets) visibleAssets.textContent = String(assetCount);
-    if (assetEmpty) assetEmpty.hidden = assetCount !== 0;
+    applyCardFilter(libraryCards("media"), assetFilter, assetEmpty, visibleAssets);
+    applyCardFilter(libraryCards("backgrounds"), backgroundFilter, backgroundsEmpty, visibleBackgrounds);
 
     let promptCount = 0;
     promptCards.forEach((card) => {
@@ -69,20 +81,32 @@
     });
   }
 
-  qsa("[data-asset-filter]").forEach((button) => {
-    button.addEventListener("click", () => {
-      assetFilter = button.dataset.assetFilter || "all";
-      qsa("[data-asset-filter]").forEach((item) => item.classList.toggle("is-active", item === button));
+  document.addEventListener("click", (event) => {
+    const bgButton = event.target.closest("[data-bg-filter]");
+    if (bgButton) {
+      event.preventDefault();
+      backgroundFilter = bgButton.getAttribute("data-bg-filter") || "all";
+      setActiveChip("[data-bg-filter]", bgButton);
       applyFilters();
-    });
-  });
+      return;
+    }
 
-  qsa("[data-prompt-filter]").forEach((button) => {
-    button.addEventListener("click", () => {
-      promptFilter = button.dataset.promptFilter || "all";
-      qsa("[data-prompt-filter]").forEach((item) => item.classList.toggle("is-active", item === button));
+    const assetButton = event.target.closest("[data-asset-filter]");
+    if (assetButton) {
+      event.preventDefault();
+      assetFilter = assetButton.getAttribute("data-asset-filter") || "all";
+      setActiveChip("[data-asset-filter]", assetButton);
       applyFilters();
-    });
+      return;
+    }
+
+    const promptButton = event.target.closest("[data-prompt-filter]");
+    if (promptButton) {
+      event.preventDefault();
+      promptFilter = promptButton.getAttribute("data-prompt-filter") || "all";
+      setActiveChip("[data-prompt-filter]", promptButton);
+      applyFilters();
+    }
   });
 
   if (searchInput) {

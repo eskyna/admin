@@ -11,7 +11,7 @@ fail() {
 [[ -f content/audio/_index.md ]] || fail "The dedicated content/audio page is missing."
 [[ -f layouts/audio/list.html ]] || fail "The dedicated Audio Studio template is missing."
 [[ -f .github/workflows/hugo.yml ]] || fail "The GitHub Pages workflow must be located at .github/workflows/hugo.yml."
-[[ -d assets/backgrounds/instagram ]] || fail "assets/backgrounds/instagram is missing."
+[[ -d static/media/backgrounds ]] || fail "static/media/backgrounds is missing."
 [[ ! -f data/campaigns.yaml ]] || fail "Remove obsolete data/campaigns.yaml before deploying."
 
 EXPECTED_BASE_URL='https://eskyna.com/admin/'

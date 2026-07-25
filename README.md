@@ -162,34 +162,26 @@ Als URL-Felder werden `audioUrl`, `audio_url`, `downloadUrl`, `download_url` und
 
 Geheime API-Schlüssel gehören ausschließlich auf den Server. Sie dürfen nicht in `hugo.toml`, HTML oder JavaScript eingetragen werden. Bei einer anderen API-Domain muss der Server die passende CORS-Freigabe setzen.
 
-## Instagram-Hintergründe hinzufügen
+## Hintergründe hinzufügen
 
-Neue Dateien kommen in:
+Neue Dateien kommen in den passenden Material-Ordner:
 
 ```text
-assets/backgrounds/instagram/
+static/media/backgrounds/<Kategorie>/   # z. B. Seide/, offen/, Leder/
 ```
 
-Der Ordner enthält eine `.gitkeep` und bleibt daher auch ohne Bilder im Repository erhalten. Unterstützt werden PNG, JPG/JPEG, WebP, GIF, AVIF, BMP und TIFF.
+Unterstützt werden PNG, JPG/JPEG und WebP. Beim Build erscheinen sie automatisch in der Sektion **Hintergründe**.
 
-Beim Build werden passende Bilder automatisch in die Asset-Bibliothek aufgenommen und veröffentlicht unter:
-
-```text
-https://eskyna.com/admin/media/backgrounds/instagram/<dateiname>
-```
-
-Manuell katalogisierte Dateien liegen weiterhin unter:
+Weitere Medien liegen unter:
 
 ```text
-static/media/backgrounds/<kategorie>/   # z. B. offen/, leinen/, leder/
 static/media/natalia/
 static/media/brand/
-static/media/templates/
 ```
 
-Metadaten werden in `data/assets.yaml` gepflegt.
+Metadaten für katalogisierte Motive werden in `data/assets.yaml` gepflegt.
 
-Die vorhandene Demo-Datei ist erreichbar unter:
+Beispiel-URL:
 
 ```text
 https://eskyna.com/admin/media/backgrounds/offen/01.png
@@ -277,7 +269,6 @@ Für Benutzerkonten, individuelle Berechtigungen, Audit-Logs oder besonders sens
 ```text
 .
 |-- .github/workflows/hugo.yml
-|-- assets/backgrounds/instagram/
 |-- content/audio/_index.md
 |-- content/docs/
 |-- data/assets.yaml

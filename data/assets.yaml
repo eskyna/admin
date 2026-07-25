@@ -1,8 +1,14 @@
 categories:
   - id: "all"
     label: "Alle"
-  - id: "backgrounds"
-    label: "Hintergründe"
+  - id: "natalia"
+    label: "Natalia"
+  - id: "brand"
+    label: "Markenmaterial"
+
+background_categories:
+  - id: "all"
+    label: "Alle"
   - id: "bg-offen"
     label: "Noch offen"
   - id: "bg-pflanzen"
@@ -25,12 +31,6 @@ categories:
     label: "Feinkarton"
   - id: "bg-tweed"
     label: "Tweed"
-  - id: "natalia"
-    label: "Natalia"
-  - id: "templates"
-    label: "Vorlagen"
-  - id: "brand"
-    label: "Markenmaterial"
 
 background_folders:
   - id: "offen"
@@ -219,23 +219,6 @@ assets:
     description: "Quadratische Grafik für den ESKYNA Telegram-Bot und digitale Kanäle."
     tags: ["natalia", "telegram", "bot", "digital"]
     fit: "contain"
-
-  - id: "template-quote-card"
-    title: "Zitatkarte 4:5"
-    category: "templates"
-    category_label: "Vorlage"
-    file: "media/templates/quote-card-4x5.png"
-    filename: "quote-card-4x5.png"
-    format: "PNG"
-    dimensions: "1080 x 1350"
-    ratio: "4:5"
-    usage: "Zitat, Aussage, Empfehlung"
-    rights: "ESKYNA intern"
-    source: "ESKYNA Einstiegsbibliothek"
-    updated: "20.07.2026"
-    description: "Reduzierte Beitragsvorlage mit viel Weißraum und Goldrahmen."
-    tags: ["vorlage", "zitat", "aussage", "feed", "elfenbein"]
-    fit: "cover"
 
   - id: "brand-sign-gold"
     title: "ESKYNA-Signet Gold"
