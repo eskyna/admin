@@ -6,18 +6,24 @@ Ordne Bilder **per Drag & Drop** in den passenden Ordner. Beim nächsten Build e
 |--------|--------------------------|
 | `offen/` | Noch offen |
 | `pflanzen/` | Pflanzen |
-| `baumwolle/` | Baumwolle |
-| `leder/` | Leder |
-| `satin/` | Satin |
-| `seide/` | Seide |
-| `leinen/` | Leinen |
+| `Baumwolle/` | Baumwolle |
+| `Leder/` | Leder |
+| `Satin/` | Satin |
+| `Seide/` | Seide |
+| `Leinen/` | Leinen |
+| `Kaschmir/` | Kaschmir |
+| `Samt/` | Samt |
+| `Feinkarton/` | Feinkarton |
+| `Tweed/` | Tweed |
 
 ## Ablauf
 
-1. Datei in den gewünschten Ordner verschieben (z. B. `01.png` → `leinen/01.png`).
+1. Datei in den gewünschten Ordner verschieben (z. B. `01.png` → `Leinen/01.png`).
 2. Speichern / committen.
 3. Nach dem Deploy ist die Kategorie in der Medienbibliothek sichtbar.
 
 Unterstützte Formate: PNG, JPG, JPEG, WebP.
 
 Dateien in `offen/` bleiben sichtbar, bis du sie einer Material-Kategorie zuordnest.
+
+**Hinweis:** Ordnernamen groß schreiben wie oben (wichtig für Linux/CI). PNGs liegen unter Git LFS.
