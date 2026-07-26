@@ -18,6 +18,12 @@ Ordne Bilder **per Drag & Drop** in den passenden Ordner. Beim nächsten Build e
 | `Natur/` | Natur |
 | `Blumen/` | Blumen |
 | `Marmor/` | Marmor |
+| `Efeu/` | Efeu |
+| `Steine/` | Steine |
+| `Moos/` | Moos |
+| `Glas/` | Glas |
+| `Klee/` | Klee |
+| `Jeans/` | Jeans |
 
 ## Ablauf
 
