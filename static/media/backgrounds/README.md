@@ -15,6 +15,9 @@ Ordne Bilder **per Drag & Drop** in den passenden Ordner. Beim nächsten Build e
 | `Samt/` | Samt |
 | `Feinkarton/` | Feinkarton |
 | `Tweed/` | Tweed |
+| `Natur/` | Natur |
+| `Blumen/` | Blumen |
+| `Marmor/` | Marmor |
 
 ## Ablauf
 
