@@ -253,7 +253,7 @@
         });
       }
       if (dialogDownload) {
-        dialogDownload.href = activeAssetPath;
+        dialogDownload.href = activeAssetSourcePath || activeAssetPath;
         dialogDownload.download = activeAssetFilename;
       }
       assetDialog.showModal();

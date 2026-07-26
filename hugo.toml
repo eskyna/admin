@@ -9,12 +9,25 @@ enableRobotsTXT = true
 [params]
   description = "Interne Medien-, Prompt-, Audio- und Markenbibliothek für das ESKYNA Social-Media-Team."
   owner = "ESKYNA"
-  buildVersion = "0.4.2"
+  buildVersion = "0.4.3"
   audioEndpoint = ""
+  # Hintergrund-Kacheln und Dialog-Vorschaubilder (Hugo Extended)
+  backgroundThumb = "480x webp q72"
+  backgroundPreview = "1200x webp q82"
 
 [caches]
   [caches.images]
     dir = ":cacheDir/images"
+    maxAge = "8760h"
+
+[module]
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    # Damit Hintergründe aus static/ per resources.Get verarbeitet werden können
+    source = "static/media/backgrounds"
+    target = "assets/media/backgrounds"
 
 [permalinks]
   [permalinks.page]

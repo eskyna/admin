@@ -172,6 +172,8 @@ static/media/backgrounds/<Kategorie>/   # z. B. Seide/, offen/, Leder/
 
 Unterstützt werden PNG, JPG/JPEG und WebP. Beim Build erscheinen sie automatisch in der Sektion **Hintergründe**.
 
+Auf Production erzeugt **Hugo Extended** daraus kleine WebP-Vorschaubilder für die Kacheln (ca. 480 px) und den Dialog (ca. 1200 px). Original-PNGs bleiben für Download und Pfad-Kopie erhalten. Dafür ist in CI das Extended-Binary Pflicht.
+
 Weitere Medien liegen unter:
 
 ```text

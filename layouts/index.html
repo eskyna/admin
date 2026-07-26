@@ -20,7 +20,7 @@
   {{ $dir := printf "static/media/backgrounds/%s" $folder.id }}
   {{ range readDir $dir }}
     {{ $ext := path.Ext .Name | lower }}
-    {{ if and (not .IsDir) (in (slice ".png" ".jpg" ".jpeg" ".webp") $ext) }}
+    {{ if and (not .IsDir) (not (strings.HasPrefix .Name ".")) (in (slice ".png" ".jpg" ".jpeg" ".webp") $ext) }}
       {{ $folderBackgrounds = $folderBackgrounds | append (dict "file" . "folder" $folder) }}
     {{ end }}
   {{ end }}
@@ -208,17 +208,34 @@
         </div>
 
         <div class="bg-grid" data-bg-grid>
+          {{ $thumbSpec := site.Params.backgroundThumb | default "480x webp q72" }}
+          {{ $previewSpec := site.Params.backgroundPreview | default "1200x webp q82" }}
           {{ range $folderBackgrounds }}
             {{ $file := .file }}
             {{ $folder := .folder }}
             {{ $filename := $file.Name }}
             {{ $title := path.BaseName $filename | replaceRE "[-_]+" " " | strings.Title }}
-            {{ $assetURL := printf "media/backgrounds/%s/%s" $folder.id $filename | relURL }}
+            {{ $origPath := printf "media/backgrounds/%s/%s" $folder.id $filename }}
+            {{ $assetURL := $origPath | relURL }}
+            {{ $thumbURL := $assetURL }}
+            {{ $previewURL := $assetURL }}
+            {{ $thumbWidth := 0 }}
+            {{ $thumbHeight := 0 }}
+            {{ with resources.Get $origPath }}
+              {{ if reflect.IsImageResourceProcessable . }}
+                {{ $thumb := .Resize $thumbSpec }}
+                {{ $preview := .Resize $previewSpec }}
+                {{ $thumbURL = $thumb.RelPermalink }}
+                {{ $previewURL = $preview.RelPermalink }}
+                {{ $thumbWidth = $thumb.Width }}
+                {{ $thumbHeight = $thumb.Height }}
+              {{ end }}
+            {{ end }}
             {{ $format := strings.ToUpper (strings.TrimPrefix "." (path.Ext $filename)) }}
             {{ $searchText := printf "%s %s Hintergrund %s" $title $folder.category_label $folder.id }}
-            <article class="bg-card searchable" data-asset-card data-library="backgrounds" data-category="{{ $folder.category }}" data-search="{{ $searchText | lower }}" data-title="{{ $title }}" data-file="{{ $assetURL }}" data-path="{{ $assetURL }}" data-filename="{{ $filename }}" data-format="{{ $format }}" data-dimensions="Automatisch" data-ratio="4:5" data-usage="Instagram Hintergrund" data-rights="Bitte intern prüfen" data-updated="Automatisch importiert" data-description="{{ printf "Hintergrund · %s" $folder.category_label }}" data-tags="{{ printf "hintergrund, %s, automatisch" $folder.id }}" data-category-label="{{ $folder.category_label }}" data-fit="contain">
+            <article class="bg-card searchable" data-asset-card data-library="backgrounds" data-category="{{ $folder.category }}" data-search="{{ $searchText | lower }}" data-title="{{ $title }}" data-file="{{ $previewURL }}" data-path="{{ $assetURL }}" data-filename="{{ $filename }}" data-format="{{ $format }}" data-dimensions="Automatisch" data-ratio="4:5" data-usage="Instagram Hintergrund" data-rights="Bitte intern prüfen" data-updated="Automatisch importiert" data-description="{{ printf "Hintergrund · %s" $folder.category_label }}" data-tags="{{ printf "hintergrund, %s, automatisch" $folder.id }}" data-category-label="{{ $folder.category_label }}" data-fit="contain">
               <button class="bg-card__visual" type="button" data-asset-open aria-label="{{ $title }} in Vorschau öffnen">
-                <img src="{{ $assetURL }}" alt="{{ $title }}" loading="lazy">
+                <img src="{{ $thumbURL }}" alt="{{ $title }}" loading="lazy" decoding="async"{{ if gt $thumbWidth 0 }} width="{{ $thumbWidth }}" height="{{ $thumbHeight }}"{{ end }}>
                 <span class="bg-card__badge">{{ $folder.category_label }}</span>
               </button>
               <div class="bg-card__bar">

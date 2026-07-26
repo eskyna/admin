@@ -9,7 +9,7 @@
   {{ $dir := printf "static/media/backgrounds/%s" $folder.id }}
   {{ range readDir $dir }}
     {{ $ext := path.Ext .Name | lower }}
-    {{ if and (not .IsDir) (in (slice ".png" ".jpg" ".jpeg" ".webp") $ext) }}
+    {{ if and (not .IsDir) (not (strings.HasPrefix .Name ".")) (in (slice ".png" ".jpg" ".jpeg" ".webp") $ext) }}
       {{ $folderBackgroundCount = add $folderBackgroundCount 1 }}
     {{ end }}
   {{ end }}

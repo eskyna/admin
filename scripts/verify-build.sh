@@ -36,6 +36,11 @@ grep -q 'id="doc-source-ToneOfVoice"' "${SITE_DIR}/index.html" || grep -q 'id=do
 grep -q 'data-doc-copy' "${SITE_DIR}/docs/ToneOfVoice/index.html" || fail "Tone of Voice page is missing copy actions."
 grep -q 'In Zwischenablage kopieren' "${SITE_DIR}/index.html" || fail "Rendered prompt copy labels are missing."
 
+# Background grid should use generated WebP thumbs (Hugo Extended image pipeline).
+if ! grep -E 'media/backgrounds/.+\.webp' "${SITE_DIR}/index.html" >/dev/null; then
+  fail "Background preview WebP thumbs were not generated (is Hugo Extended installed?)."
+fi
+
 if grep -RniE 'Kampagnen-Board|id="campaigns"|href="#campaigns"|data-campaign-board' "${SITE_DIR}" --include='*.html'; then
   fail "The rendered site still contains campaign-board markup."
 fi

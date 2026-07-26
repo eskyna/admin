@@ -7,6 +7,9 @@ fail() {
 }
 
 [[ -f hugo.toml ]] || fail "hugo.toml must be in the repository root."
+if ! hugo version 2>/dev/null | grep -qi 'extended'; then
+  fail "Hugo Extended is required for background image previews (webp thumbs)."
+fi
 [[ -f layouts/index.html ]] || fail "layouts/index.html is missing in the repository root."
 [[ -f content/audio/_index.md ]] || fail "The dedicated content/audio page is missing."
 [[ -f layouts/audio/list.html ]] || fail "The dedicated Audio Studio template is missing."
