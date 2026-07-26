@@ -7,57 +7,95 @@ icon: "palette"
 weight: 20
 ---
 
-> **Arbeitsentwurf:** Die Werte sind als belastbare Ausgangsbasis für neue Social-Media-Layouts angelegt. Finale Freigabe und Abgleich mit vorhandenen Produktionsdateien stehen noch aus.
+# ESKYNA design system
 
-## Farbpalette
+## Visual direction
 
-<div class="swatch-grid">
-  <div class="swatch"><span style="background:#c8ab37"></span><strong>ESKYNA Gold</strong><code>#C8AB37</code></div>
-  <div class="swatch"><span style="background:#1d211c"></span><strong>Tinte</strong><code>#1D211C</code></div>
-  <div class="swatch"><span style="background:#f6f1e8"></span><strong>Elfenbein</strong><code>#F6F1E8</code></div>
-  <div class="swatch"><span style="background:#5c705e"></span><strong>Salbei</strong><code>#5C705E</code></div>
-  <div class="swatch"><span style="background:#c7a799"></span><strong>Sanftes Rosa</strong><code>#C7A799</code></div>
-</div>
+The ESKYNA website uses a warm, elegant and calm visual language.
+The design should feel personal and refined, not loud.
+Use warm neutrals, soft surfaces and restrained gold accents.
 
-### Einsatz
+## Core palette
 
-- **Gold:** Signet, feine Linien, Akzente und kleine Hervorhebungen.
-- **Tinte:** Primäre Schrift, dunkle redaktionelle Flächen und Kontrast.
-- **Elfenbein:** Standardhintergrund und großzügige Ruhezonen.
-- **Salbei:** Sekundärfarbe für Beratung, Ruhe und Orientierung.
-- **Sanftes Rosa:** sparsame warme Ergänzung, nicht als Hauptfarbe.
+| Token          | Hex       | Use                             |
+| -------------- | --------- | ------------------------------- |
+| Warm Alabaster | `#f9f6f0` | Main background                 |
+| Soft Sand      | `#e3d5c8` | Secondary background            |
+| Page Wash      | `#f6f1ea` | Body background                 |
+| Muted Gold     | `#c5a059` | Primary accent                  |
+| Warm Cocoa     | `#8b5e34` | Strong accent                   |
+| Espresso Brown | `#2c1e16` | Text and deep accents           |
+| Deep Cocoa     | `#4a3426` | Hero CTA background             |
+| White          | `#ffffff` | Light surfaces and text on dark |
 
-## Typografie
+## CSS variables
 
-### Display
+Runtime tokens are defined in `static/css/main.css`.
+Use semantic aliases in components:
 
-Elegante Serifenschrift für kurze Überschriften, Zitate und Kampagnentitel. In diesem Starter wird ein systemnaher Serif-Stack verwendet, damit keine externen Schriftdateien nötig sind.
+```css
+--bg
+--bg-soft
+--page-wash
+--text
+--muted
+--accent
+--accent-strong
+--on-dark
+--surface-card-soft
+--card-border
+```
 
-### Oberfläche und Fließtext
+Machine readable reference tokens live in `data/design_tokens.yaml`.
 
-Neutrale Sans-Serif-Schrift mit hoher Lesbarkeit. Social-Media-Beiträge bevorzugen klare Hierarchien und maximal zwei Schriftstile pro Motiv.
+## Usage rules
 
-## Layoutregeln
+Use `--text` for body text.
+Use `--accent` for important links, highlights and primary focus moments.
+Use `--accent-strong` for hover states and strong borders.
+Use `--bg` and `--page-wash` for calm page backgrounds.
+Use `--bg-soft` for separated sections.
+Do not use pure black for normal text.
+Do not invent new beige or gold values for standard components.
 
-1. Eine Hauptbotschaft pro Folie.
-2. Mindestens 8-10 % Sicherheitsabstand zum Rand.
-3. Gold nicht als große Textfläche einsetzen.
-4. Portraits erhalten Blickraum und werden nicht mit Text überladen.
-5. Karussell-Folien folgen einer stabilen, wiedererkennbaren Hierarchie.
+## Typography
 
-## Empfohlene Formate
+Use existing font variables:
 
-| Einsatz | Format | Pixel |
-|---|---:|---:|
-| Instagram-Feed | 4:5 | 1080 x 1350 |
-| Instagram-Story / Reel-Titel | 9:16 | 1080 x 1920 |
-| Quadrat / LinkedIn | 1:1 | 1080 x 1080 |
-| LinkedIn Querformat | 1.91:1 | 1200 x 627 |
+```css
+--font-headline
+--font-subtitle
+--font-text
+```
 
-## Bildsprache
+Headlines should feel refined and calm.
+Body text should be easy to scan.
+Avoid dense paragraphs.
 
-- warmes, weiches Licht und ruhige Hintergründe
-- hochwertige Materialien und aufgeräumte Kompositionen
-- Natalia souverän, zugewandt und natürlich
-- keine künstlich hektischen Trend-Collagen
-- Retusche glaubwürdig und texturtreu halten
+## Components
+
+Buttons:
+
+- Rounded shape.
+- Clear contrast.
+- Short labels.
+- Gold or deep cocoa for strong actions.
+
+Cards:
+
+- Soft backgrounds.
+- Subtle border.
+- Gentle shadow only when needed.
+
+Sections:
+
+- Generous vertical spacing.
+- Clear heading and short intro.
+- No visual overload.
+
+## Campaign extension: MACHN
+
+MACHN uses a stronger navy and gold palette.
+This is allowed as a campaign extension.
+Keep the tone still premium, clean and calm.
+Do not let campaign colors leak into normal ESKYNA components unless intended.
