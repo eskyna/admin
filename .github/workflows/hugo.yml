@@ -29,7 +29,7 @@ jobs:
       BASE_URL: https://eskyna.com/admin/
       BUILD_VERSION: 0.4.3
       STATICRYPT_SALT: 8d4ac1d77c284d40af09c7f44a5c1e31
-      HUGO_CACHEDIR: ${{ runner.temp }}/hugo-cache
+      HUGO_CACHEDIR: ${{ github.workspace }}/.hugo-cache
     steps:
       - name: Checkout
         uses: actions/checkout@v7
