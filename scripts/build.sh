@@ -17,6 +17,16 @@ if [[ "${BASE_URL}" == *"/admin/admin/"* ]]; then
 fi
 
 bash scripts/verify-source.sh
+
+if ! command -v hugo >/dev/null 2>&1; then
+  echo "ERROR: hugo is not installed." >&2
+  exit 1
+fi
+if ! hugo version 2>/dev/null | grep -qi 'extended'; then
+  echo "ERROR: Hugo Extended is required for background image previews (webp thumbs)." >&2
+  exit 1
+fi
+
 rm -rf public
 
 hugo build \
