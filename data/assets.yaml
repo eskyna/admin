@@ -31,6 +31,12 @@ background_categories:
     label: "Feinkarton"
   - id: "bg-tweed"
     label: "Tweed"
+  - id: "bg-natur"
+    label: "Natur"
+  - id: "bg-blumen"
+    label: "Blumen"
+  - id: "bg-marmor"
+    label: "Marmor"
 
 background_folders:
   - id: "offen"
@@ -77,6 +83,18 @@ background_folders:
     label: "Tweed"
     category: "bg-tweed"
     category_label: "Tweed"
+  - id: "Natur"
+    label: "Natur"
+    category: "bg-natur"
+    category_label: "Natur"
+  - id: "Blumen"
+    label: "Blumen"
+    category: "bg-blumen"
+    category_label: "Blumen"
+  - id: "Marmor"
+    label: "Marmor"
+    category: "bg-marmor"
+    category_label: "Marmor"
 
 assets:
   - id: "natalia-natalia"
