@@ -49,6 +49,10 @@ background_categories:
     label: "Klee"
   - id: "bg-jeans"
     label: "Jeans"
+  - id: "bg-carbonfaser"
+    label: "Carbonfaser"
+  - id: "bg-flanell"
+    label: "Flanell"
 
 background_folders:
   - id: "offen"
@@ -131,6 +135,14 @@ background_folders:
     label: "Jeans"
     category: "bg-jeans"
     category_label: "Jeans"
+  - id: "Carbonfaser"
+    label: "Carbonfaser"
+    category: "bg-carbonfaser"
+    category_label: "Carbonfaser"
+  - id: "Flanell"
+    label: "Flanell"
+    category: "bg-flanell"
+    category_label: "Flanell"
 
 assets:
   - id: "natalia-natalia"
