@@ -24,6 +24,8 @@ Ordne Bilder **per Drag & Drop** in den passenden Ordner. Beim nächsten Build e
 | `Glas/` | Glas |
 | `Klee/` | Klee |
 | `Jeans/` | Jeans |
+| `Carbonfaser/` | Carbonfaser |
+| `Flanell/` | Flanell |
 
 ## Ablauf
 
