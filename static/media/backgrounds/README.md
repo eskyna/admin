@@ -26,6 +26,11 @@ Ordne Bilder **per Drag & Drop** in den passenden Ordner. Beim nächsten Build e
 | `Jeans/` | Jeans |
 | `Carbonfaser/` | Carbonfaser |
 | `Flanell/` | Flanell |
+| `Gold/` | Gold |
+| `Holzmuster/` | Holzmuster |
+| `Mosaik/` | Mosaik |
+| `Pluesch/` | Pluesch |
+| `Teppich/` | Teppich |
 
 ## Ablauf
 
