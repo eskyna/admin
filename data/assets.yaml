@@ -63,6 +63,12 @@ background_categories:
     label: "Pluesch"
   - id: "bg-teppich"
     label: "Teppich"
+  - id: "bg-wasser"
+    label: "Wasser"
+  - id: "bg-sand"
+    label: "Sand"
+  - id: "bg-edelsteine"
+    label: "Edelsteine"
 
 background_folders:
   - id: "offen"
@@ -173,6 +179,18 @@ background_folders:
     label: "Teppich"
     category: "bg-teppich"
     category_label: "Teppich"
+  - id: "Wasser"
+    label: "Wasser"
+    category: "bg-wasser"
+    category_label: "Wasser"
+  - id: "Sand"
+    label: "Sand"
+    category: "bg-sand"
+    category_label: "Sand"
+  - id: "Edelsteine"
+    label: "Edelsteine"
+    category: "bg-edelsteine"
+    category_label: "Edelsteine"
 
 assets:
   - id: "natalia-natalia"

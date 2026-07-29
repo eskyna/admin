@@ -31,6 +31,9 @@ Ordne Bilder **per Drag & Drop** in den passenden Ordner. Beim nächsten Build e
 | `Mosaik/` | Mosaik |
 | `Pluesch/` | Pluesch |
 | `Teppich/` | Teppich |
+| `Wasser/` | Wasser |
+| `Sand/` | Sand |
+| `Edelsteine/` | Edelsteine |
 
 ## Ablauf
 
