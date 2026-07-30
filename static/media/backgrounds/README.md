@@ -29,7 +29,7 @@ Ordne Bilder **per Drag & Drop** in den passenden Ordner. Beim nächsten Build e
 | `Gold/` | Gold |
 | `Holzmuster/` | Holzmuster |
 | `Mosaik/` | Mosaik |
-| `Pluesch/` | Pluesch |
+| `Pluesch/` | Plüsch |
 | `Teppich/` | Teppich |
 | `Wasser/` | Wasser |
 | `Sand/` | Sand |

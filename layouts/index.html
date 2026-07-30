@@ -201,8 +201,8 @@
         <div class="filter-bar" aria-label="Hintergrund-Filter">
           <div class="filter-bar__label"><svg><use href="#icon-filter"></use></svg> Material</div>
           <div class="chip-group">
-            {{ range site.Data.assets.background_categories }}
-              <button class="filter-chip{{ if eq .id "all" }} is-active{{ end }}" type="button" data-bg-filter="{{ .id }}">{{ .label }}</button>
+            {{ range sort site.Data.assets.background_categories "label" }}
+              <button class="filter-chip{{ if eq .id "all" }} is-active{{ end }}" type="button" data-bg-filter="{{ .id }}" aria-pressed="{{ if eq .id "all" }}true{{ else }}false{{ end }}">{{ .label }}</button>
             {{ end }}
           </div>
         </div>
@@ -332,7 +332,21 @@
       <span class="status-pill" data-dialog-category></span><h2 data-dialog-title></h2><p data-dialog-description></p>
       <dl class="dialog-meta"><div><dt>Dateiformat</dt><dd data-dialog-format></dd></div><div><dt>Abmessungen</dt><dd data-dialog-dimensions></dd></div><div><dt>Seitenverhältnis</dt><dd data-dialog-ratio></dd></div><div><dt>Einsatz</dt><dd data-dialog-usage></dd></div><div><dt>Rechte</dt><dd data-dialog-rights></dd></div><div><dt>Aktualisiert</dt><dd data-dialog-updated></dd></div></dl>
       <div class="tag-row" data-dialog-tags></div>
-      <div class="dialog-actions"><button class="button button--ghost" type="button" data-dialog-copy><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button><a class="button button--primary" href="#" download data-dialog-download><svg><use href="#icon-download"></use></svg> Original laden</a></div>
+      <div class="flip-tools" data-flip-tools hidden>
+        <div class="flip-tools__label">Spiegeln</div>
+        <div class="flip-tools__buttons">
+          <button class="filter-chip" type="button" data-flip="horizontal" aria-pressed="false">
+            <svg><use href="#icon-flip-h"></use></svg><span>Horizontal</span>
+          </button>
+          <button class="filter-chip" type="button" data-flip="vertical" aria-pressed="false">
+            <svg><use href="#icon-flip-v"></use></svg><span>Vertikal</span>
+          </button>
+        </div>
+      </div>
+      <div class="dialog-actions">
+        <button class="button button--ghost" type="button" data-dialog-copy><svg><use href="#icon-copy"></use></svg> Pfad kopieren</button>
+        <a class="button button--primary" href="#" download data-dialog-download><svg><use href="#icon-download"></use></svg><span data-dialog-download-label>Original laden</span></a>
+      </div>
     </div>
   </div>
 </dialog>

@@ -212,14 +212,92 @@
   const dialogVisual = qs(".asset-dialog__visual", assetDialog || document);
   const dialogImage = qs("[data-dialog-image]", assetDialog || document);
   const dialogDownload = qs("[data-dialog-download]", assetDialog || document);
+  const dialogDownloadLabel = qs("[data-dialog-download-label]", assetDialog || document);
   const dialogCopy = qs("[data-dialog-copy]", assetDialog || document);
+  const flipTools = qs("[data-flip-tools]", assetDialog || document);
   let activeAssetPath = "";
   let activeAssetSourcePath = "";
   let activeAssetFilename = "eskyna-asset";
+  let activeLibrary = "";
+  let flipHorizontal = false;
+  let flipVertical = false;
+  let flipObjectUrl = "";
 
   function setDialogText(selector, value) {
     const element = qs(selector, assetDialog || document);
     if (element) element.textContent = value || "-";
+  }
+
+  function clearFlipObjectUrl() {
+    if (flipObjectUrl) {
+      URL.revokeObjectURL(flipObjectUrl);
+      flipObjectUrl = "";
+    }
+  }
+
+  function flippedFilename(baseName) {
+    const match = baseName.match(/^(.*?)(\.[^.]+)?$/);
+    const stem = match?.[1] || baseName;
+    const ext = ".png";
+    const suffix = [flipHorizontal ? "h" : "", flipVertical ? "v" : ""].join("");
+    return suffix ? `${stem}-flip-${suffix}${ext}` : baseName;
+  }
+
+  function updateFlipPreview() {
+    if (!dialogImage) return;
+    dialogImage.classList.toggle("is-flip-h", flipHorizontal);
+    dialogImage.classList.toggle("is-flip-v", flipVertical);
+    qsa("[data-flip]", assetDialog || document).forEach((button) => {
+      const axis = button.dataset.flip;
+      const active = axis === "horizontal" ? flipHorizontal : flipVertical;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+    const flipped = flipHorizontal || flipVertical;
+    if (dialogDownloadLabel) {
+      dialogDownloadLabel.textContent = flipped ? "Gespiegelt laden" : "Original laden";
+    }
+    if (dialogDownload && !flipped) {
+      clearFlipObjectUrl();
+      dialogDownload.href = activeAssetSourcePath || activeAssetPath;
+      dialogDownload.download = activeAssetFilename;
+    }
+  }
+
+  function resetFlipState() {
+    flipHorizontal = false;
+    flipVertical = false;
+    clearFlipObjectUrl();
+    updateFlipPreview();
+  }
+
+  function loadImage(src) {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.decoding = "async";
+      image.onload = () => resolve(image);
+      image.onerror = () => reject(new Error("Bild konnte nicht geladen werden."));
+      image.src = src;
+    });
+  }
+
+  async function createFlippedBlob(src) {
+    const image = await loadImage(src);
+    const canvas = document.createElement("canvas");
+    canvas.width = image.naturalWidth || image.width;
+    canvas.height = image.naturalHeight || image.height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("Canvas nicht verfügbar.");
+    ctx.translate(flipHorizontal ? canvas.width : 0, flipVertical ? canvas.height : 0);
+    ctx.scale(flipHorizontal ? -1 : 1, flipVertical ? -1 : 1);
+    ctx.drawImage(image, 0, 0);
+    const blob = await new Promise((resolve, reject) => {
+      canvas.toBlob((result) => {
+        if (result) resolve(result);
+        else reject(new Error("Gespiegeltes Bild konnte nicht erzeugt werden."));
+      }, "image/png");
+    });
+    return blob;
   }
 
   qsa("[data-asset-open]").forEach((button) => {
@@ -229,6 +307,8 @@
       activeAssetPath = card.dataset.file || "";
       activeAssetSourcePath = card.dataset.path || "";
       activeAssetFilename = card.dataset.filename || "eskyna-asset";
+      activeLibrary = card.dataset.library || "";
+      resetFlipState();
       if (dialogImage) {
         dialogImage.src = activeAssetPath;
         dialogImage.alt = card.dataset.title || "Medienvorschau";
@@ -252,15 +332,59 @@
           tagContainer.appendChild(span);
         });
       }
+      if (flipTools) flipTools.hidden = activeLibrary !== "backgrounds";
       if (dialogDownload) {
         dialogDownload.href = activeAssetSourcePath || activeAssetPath;
         dialogDownload.download = activeAssetFilename;
       }
+      updateFlipPreview();
       assetDialog.showModal();
     });
   });
 
+  qsa("[data-flip]", assetDialog || document).forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.dataset.flip === "horizontal") flipHorizontal = !flipHorizontal;
+      if (button.dataset.flip === "vertical") flipVertical = !flipVertical;
+      clearFlipObjectUrl();
+      updateFlipPreview();
+    });
+  });
+
+  dialogDownload?.addEventListener("click", async (event) => {
+    if (!(flipHorizontal || flipVertical)) return;
+    event.preventDefault();
+    if (!dialogDownload || dialogDownload.dataset.busy === "true") return;
+    const source = activeAssetSourcePath || activeAssetPath;
+    if (!source) return;
+    dialogDownload.dataset.busy = "true";
+    const previousLabel = dialogDownloadLabel?.textContent || "Gespiegelt laden";
+    if (dialogDownloadLabel) dialogDownloadLabel.textContent = "Wird erzeugt …";
+    try {
+      const blob = await createFlippedBlob(source);
+      clearFlipObjectUrl();
+      flipObjectUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = flipObjectUrl;
+      link.download = flippedFilename(activeAssetFilename);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      showToast("Gespiegeltes Bild heruntergeladen.");
+    } catch (error) {
+      showToast(error?.message || "Spiegeln fehlgeschlagen.");
+    } finally {
+      if (dialogDownloadLabel) dialogDownloadLabel.textContent = previousLabel;
+      delete dialogDownload.dataset.busy;
+    }
+  });
+
   dialogCopy?.addEventListener("click", () => copyText(activeAssetSourcePath));
+
+  assetDialog?.addEventListener("close", () => {
+    resetFlipState();
+    if (flipTools) flipTools.hidden = true;
+  });
 
   qsa("[data-dialog-open]").forEach((button) => {
     button.addEventListener("click", () => {
