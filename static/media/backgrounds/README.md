@@ -34,6 +34,26 @@ Ordne Bilder **per Drag & Drop** in den passenden Ordner. Beim nächsten Build e
 | `Wasser/` | Wasser |
 | `Sand/` | Sand |
 | `Edelsteine/` | Edelsteine |
+| `Wolle/` | Wolle |
+| `Terrazzo/` | Terrazzo |
+| `Teddyfell/` | Teddyfell |
+| `Steppstoff/` | Steppstoff |
+| `Spitze/` | Spitze |
+| `Seidenpapier/` | Seidenpapier |
+| `Schnee/` | Schnee |
+| `Plexiglas/` | Plexiglas |
+| `Perlmutt/` | Perlmutt |
+| `Pailletten/` | Pailletten |
+| `Organza/` | Organza |
+| `Oel/` | Öl |
+| `Lurex/` | Lurex |
+| `Laub/` | Laub |
+| `Latex/` | Latex |
+| `Lack/` | Lack |
+| `Kord/` | Kord |
+| `Hahnentritt/` | Hahnentritt |
+| `Haekelspitze/` | Häkelspitze |
+| `Batik/` | Batik |
 
 ## Ablauf
 
