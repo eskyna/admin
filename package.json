@@ -7,9 +7,12 @@
     "verify": "bash scripts/verify-source.sh",
     "dev": "hugo server --baseURL http://localhost:1313/admin/ --appendPort=false --navigateToChanged",
     "build": "bash scripts/build.sh",
-    "build:protected": "bash scripts/build-protected.sh"
+    "build:protected": "bash scripts/build-protected.sh",
+    "lint": "bin/lint"
   },
   "devDependencies": {
+    "gemini-watermark": "^0.1.2",
+    "pngjs": "^7.0.0",
     "staticrypt": "3.5.4"
   }
 }
