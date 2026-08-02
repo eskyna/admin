@@ -167,7 +167,7 @@ Geheime API-Schlüssel gehören ausschließlich auf den Server. Sie dürfen nich
 Neue Dateien kommen in den passenden Material-Ordner:
 
 ```text
-static/media/backgrounds/<Kategorie>/   # z. B. Seide/, offen/, Leder/
+static/media/backgrounds/<Kategorie>/   # z. B. Seide/, Natur/, Leder/
 ```
 
 Unterstützt werden PNG, JPG/JPEG und WebP. Beim Build erscheinen sie automatisch in der Sektion **Hintergründe**.
@@ -186,7 +186,7 @@ Metadaten für katalogisierte Motive werden in `data/assets.yaml` gepflegt.
 Beispiel-URL:
 
 ```text
-https://eskyna.com/admin/media/backgrounds/offen/01.png
+https://eskyna.com/admin/media/backgrounds/Natur/01.png
 ```
 
 ## Prompts und Brand-Dokumente

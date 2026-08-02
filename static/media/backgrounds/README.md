@@ -4,7 +4,6 @@ Ordne Bilder **per Drag & Drop** in den passenden Ordner. Beim nächsten Build e
 
 | Ordner | Filter in der Bibliothek |
 |--------|--------------------------|
-| `offen/` | Noch offen |
 | `pflanzen/` | Pflanzen |
 | `Baumwolle/` | Baumwolle |
 | `Leder/` | Leder |
@@ -62,7 +61,5 @@ Ordne Bilder **per Drag & Drop** in den passenden Ordner. Beim nächsten Build e
 3. Nach dem Deploy ist die Kategorie in der Medienbibliothek sichtbar.
 
 Unterstützte Formate: PNG, JPG, JPEG, WebP.
-
-Dateien in `offen/` bleiben sichtbar, bis du sie einer Material-Kategorie zuordnest.
 
 **Hinweis:** Ordnernamen groß schreiben wie oben (wichtig für Linux/CI). PNGs liegen unter Git LFS.

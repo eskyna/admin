@@ -63,8 +63,6 @@ background_categories:
     label: "Mosaik"
   - id: "bg-natur"
     label: "Natur"
-  - id: "bg-offen"
-    label: "Noch offen"
   - id: "bg-organza"
     label: "Organza"
   - id: "bg-pailletten"
@@ -111,10 +109,6 @@ background_categories:
     label: "Öl"
 
 background_folders:
-  - id: "offen"
-    label: "Noch offen"
-    category: "bg-offen"
-    category_label: "Noch offen"
   - id: "pflanzen"
     label: "Pflanzen"
     category: "bg-pflanzen"
