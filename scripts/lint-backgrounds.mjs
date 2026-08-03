@@ -52,6 +52,9 @@ const EXCEPTIONS = new Set([
   "static/media/backgrounds/Perlmutt/06.png",
   "static/media/backgrounds/Sand/05.png",
   "static/media/backgrounds/Sand/06.png",
+  "static/media/backgrounds/Schnee/08.png",
+  "static/media/backgrounds/Seidenpapier/08.png",
+  "static/media/backgrounds/Spitze/08.png",
   "static/media/backgrounds/Steine/07.png",
 ]);
 
