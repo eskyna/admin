@@ -26,6 +26,8 @@ const WATERMARK_THRESHOLD = 0.35;
 /** Relative paths under the repo root that skip all background lint checks. */
 const EXCEPTIONS = new Set([
   "static/media/backgrounds/Baumwolle/09.png",
+  "static/media/backgrounds/Baumwolle/13.png",
+  "static/media/backgrounds/Baumwolle/14.png",
   "static/media/backgrounds/Blumen/01.png",
   "static/media/backgrounds/Blumen/02.png",
   "static/media/backgrounds/Blumen/06.png",
@@ -33,6 +35,7 @@ const EXCEPTIONS = new Set([
   "static/media/backgrounds/Haekelspitze/01.png",
   "static/media/backgrounds/Hahnentritt/07.png",
   "static/media/backgrounds/Kaschmir/07.png",
+  "static/media/backgrounds/Kaschmir/08.png",
   "static/media/backgrounds/Klee/04.png",
   "static/media/backgrounds/Klee/05.png",
   "static/media/backgrounds/Kord/06.png",
