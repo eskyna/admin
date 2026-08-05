@@ -399,6 +399,62 @@
     });
   });
 
+  const farbeBuilder = qs("[data-farbe-builder]");
+  if (farbeBuilder) {
+    const farbeOrigin = (farbeBuilder.dataset.farbeOrigin || "https://eskyna.com").replace(/\/$/, "");
+    const farbeName = qs("[data-farbe-name]", farbeBuilder);
+    const farbeUrl = qs("[data-farbe-url]", farbeBuilder);
+    const farbeCopy = qs("[data-farbe-copy]", farbeBuilder);
+    const farbeOpen = qs("[data-farbe-open]", farbeBuilder);
+    const farbeHint = qs("[data-farbe-hint]", farbeBuilder);
+
+    function selectedFarbePath() {
+      return qs('input[name="farbe-card"]:checked', farbeBuilder)?.dataset.farbePath || "/farbe/";
+    }
+
+    function buildFarbeLink() {
+      const path = selectedFarbePath();
+      const name = (farbeName?.value || "").trim();
+      const url = new URL(path, `${farbeOrigin}/`);
+      if (name) url.searchParams.set("name", name);
+      return { href: url.toString(), ready: Boolean(name) };
+    }
+
+    function updateFarbeLink() {
+      const { href, ready } = buildFarbeLink();
+      if (farbeUrl) {
+        farbeUrl.textContent = href;
+        farbeUrl.classList.toggle("is-ready", ready);
+      }
+      if (farbeOpen) farbeOpen.href = href;
+      if (farbeCopy) farbeCopy.disabled = !ready;
+      if (farbeHint) {
+        farbeHint.textContent = ready
+          ? "Link ist bereit zum Kopieren oder Öffnen."
+          : "Bitte Namen eingeben, um den personalisierten Link zu erzeugen.";
+        farbeHint.classList.toggle("is-ready", ready);
+      }
+    }
+
+    farbeBuilder.addEventListener("change", updateFarbeLink);
+    farbeName?.addEventListener("input", updateFarbeLink);
+    farbeCopy?.addEventListener("click", () => {
+      const { href, ready } = buildFarbeLink();
+      if (!ready) return;
+      copyText(href, farbeCopy);
+    });
+    farbeBuilder.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const { href, ready } = buildFarbeLink();
+      if (!ready) {
+        farbeName?.focus();
+        return;
+      }
+      window.open(href, "_blank", "noopener,noreferrer");
+    });
+    updateFarbeLink();
+  }
+
   const audioForm = qs("[data-audio-form]");
   const audioText = qs("[data-audio-text]", audioForm || document);
   const audioSubmit = qs("[data-audio-submit]", audioForm || document);

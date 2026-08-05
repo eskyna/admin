@@ -1,0 +1,53 @@
+entry_url: "https://eskyna.com/farbe"
+entry_label: "ESKYNA Farbe"
+base_origin: "https://eskyna.com"
+
+cards:
+  - number: 1
+    slug: "hell_kalt"
+    name: "hell kalt"
+    url: "/farbe/hell_kalt/"
+  - number: 2
+    slug: "hell_warm"
+    name: "hell warm"
+    url: "/farbe/hell_warm/"
+  - number: 3
+    slug: "tief_kalt"
+    name: "tief kalt"
+    url: "/farbe/tief_kalt/"
+  - number: 4
+    slug: "tief_warm"
+    name: "tief warm"
+    url: "/farbe/tief_warm/"
+  - number: 5
+    slug: "kalt_sanft"
+    name: "kalt sanft"
+    url: "/farbe/kalt_sanft/"
+  - number: 6
+    slug: "kalt_rein"
+    name: "kalt rein"
+    url: "/farbe/kalt_rein/"
+  - number: 7
+    slug: "warm_sanft"
+    name: "warm sanft"
+    url: "/farbe/warm_sanft/"
+  - number: 8
+    slug: "warm_rein"
+    name: "warm rein"
+    url: "/farbe/warm_rein/"
+  - number: 9
+    slug: "sanft_warm"
+    name: "sanft warm"
+    url: "/farbe/sanft_warm/"
+  - number: 10
+    slug: "sanft_kalt"
+    name: "sanft kalt"
+    url: "/farbe/sanft_kalt/"
+  - number: 11
+    slug: "rein_warm"
+    name: "rein warm"
+    url: "/farbe/rein_warm/"
+  - number: 12
+    slug: "rein_kalt"
+    name: "rein kalt"
+    url: "/farbe/rein_kalt/"

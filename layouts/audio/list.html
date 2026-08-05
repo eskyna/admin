@@ -46,6 +46,9 @@
       <a class="side-nav__link" href="{{ $homeURL }}#backgrounds" data-nav-link>
         <svg><use href="#icon-palette"></use></svg><span>Hintergründe</span><b>{{ $backgroundCount }}</b>
       </a>
+      <a class="side-nav__link" href="{{ $homeURL }}#farbe" data-nav-link>
+        <svg><use href="#icon-swatches"></use></svg><span>Farbkarte</span><b>{{ len site.Data.farbe.cards }}</b>
+      </a>
       <a class="side-nav__link" href="{{ $homeURL }}#prompts" data-nav-link>
         <svg><use href="#icon-sparkles"></use></svg><span>Prompt-Bibliothek</span><b>{{ len $prompts }}</b>
       </a>

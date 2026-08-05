@@ -46,6 +46,9 @@
       <a class="side-nav__link" href="#backgrounds" data-nav-link>
         <svg><use href="#icon-palette"></use></svg><span>Hintergründe</span><b>{{ $backgroundCount }}</b>
       </a>
+      <a class="side-nav__link" href="#farbe" data-nav-link>
+        <svg><use href="#icon-swatches"></use></svg><span>Farbkarte</span><b>{{ len site.Data.farbe.cards }}</b>
+      </a>
       <a class="side-nav__link" href="#prompts" data-nav-link>
         <svg><use href="#icon-sparkles"></use></svg><span>Prompt-Bibliothek</span><b>{{ len $prompts }}</b>
       </a>
@@ -249,6 +252,77 @@
           {{ end }}
         </div>
         <div class="empty-state" data-backgrounds-empty hidden><svg><use href="#icon-search"></use></svg><h3>Keine passenden Hintergründe</h3><p>Materialfilter oder Suchbegriff anpassen.</p></div>
+      </section>
+
+      {{ $farbe := site.Data.farbe }}
+      {{ $farbeDefault := index $farbe.cards 0 }}
+      {{ $farbeDefaultURL := printf "%s%s" $farbe.base_origin $farbeDefault.url }}
+      <section class="page-section" id="farbe" data-section>
+        <header class="section-heading">
+          <div>
+            <div class="eyebrow"><span></span>Farbkarte</div>
+            <h2>Kundenlinks zur Farbberatung</h2>
+            <p>Öffne die Einstiegsseite oder erstelle personalisierte Links zu einer der 12 Farbkarten.</p>
+          </div>
+          <div class="section-heading__actions">
+            <a class="button button--ghost button--small" href="{{ $farbe.entry_url }}" target="_blank" rel="noopener noreferrer">
+              <svg><use href="#icon-external"></use></svg> Farbe öffnen
+            </a>
+          </div>
+        </header>
+
+        <div class="farbe-layout">
+          <a class="farbe-entry" href="{{ $farbe.entry_url }}" target="_blank" rel="noopener noreferrer">
+            <span class="farbe-entry__icon"><svg><use href="#icon-swatches"></use></svg></span>
+            <span class="farbe-entry__copy">
+              <strong>{{ $farbe.entry_label }}</strong>
+              <small>Einstiegsseite für die Farbberatung</small>
+              <code>{{ $farbe.entry_url }}</code>
+            </span>
+            <span class="farbe-entry__action">Öffnen <svg><use href="#icon-external"></use></svg></span>
+          </a>
+
+          <form class="farbe-builder" data-farbe-builder data-farbe-origin="{{ $farbe.base_origin }}" novalidate>
+            <div class="farbe-builder__intro">
+              <strong>Kundenlink erstellen</strong>
+              <p>Farbkarte wählen, Namen eintragen, Link kopieren oder öffnen.</p>
+            </div>
+
+            <fieldset class="farbe-cards">
+              <legend>Farbkarte</legend>
+              <div class="farbe-card-grid">
+                {{ range $farbe.cards }}
+                  <label class="farbe-card" for="farbe-card-{{ .slug }}">
+                    <input id="farbe-card-{{ .slug }}" type="radio" name="farbe-card" value="{{ .slug }}" data-farbe-path="{{ .url }}"{{ if eq .number 1 }} checked{{ end }}>
+                    <span class="farbe-card__body">
+                      <span class="farbe-card__number">{{ .number }}</span>
+                      <span class="farbe-card__name">{{ .name }}</span>
+                    </span>
+                  </label>
+                {{ end }}
+              </div>
+            </fieldset>
+
+            <div class="farbe-field">
+              <label for="farbe-name">Name der Person</label>
+              <input id="farbe-name" class="farbe-input" type="text" name="name" placeholder="z. B. Natalia" autocomplete="off" spellcheck="false" data-farbe-name>
+            </div>
+
+            <div class="farbe-result">
+              <div class="farbe-result__label">Kundenlink</div>
+              <code class="farbe-result__url" data-farbe-url>{{ $farbeDefaultURL }}</code>
+              <div class="farbe-result__actions">
+                <button class="button button--ghost" type="button" data-farbe-copy disabled>
+                  <svg><use href="#icon-copy"></use></svg> Link kopieren
+                </button>
+                <a class="button button--primary" href="{{ $farbeDefaultURL }}" target="_blank" rel="noopener noreferrer" data-farbe-open>
+                  <svg><use href="#icon-external"></use></svg> Link öffnen
+                </a>
+              </div>
+              <p class="farbe-result__hint" data-farbe-hint>Bitte Namen eingeben, um den personalisierten Link zu erzeugen.</p>
+            </div>
+          </form>
+        </div>
       </section>
 
       <section class="page-section" id="prompts" data-section>
